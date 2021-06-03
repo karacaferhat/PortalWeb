@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/macbook/PortalWeb/PortalWeb.csproj": {}
+    "/Users/hurel/Desktop/WORKS/FERHAT/PortalWebUI/PortalWeb/PortalWeb.csproj": {}
   },
   "projects": {
-    "/Users/macbook/PortalWeb/PortalWeb.csproj": {
+    "/Users/hurel/Desktop/WORKS/FERHAT/PortalWebUI/PortalWeb/PortalWeb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/macbook/PortalWeb/PortalWeb.csproj",
+        "projectUniqueName": "/Users/hurel/Desktop/WORKS/FERHAT/PortalWebUI/PortalWeb/PortalWeb.csproj",
         "projectName": "PortalWeb",
-        "projectPath": "/Users/macbook/PortalWeb/PortalWeb.csproj",
-        "packagesPath": "/Users/macbook/.nuget/packages/",
-        "outputPath": "/Users/macbook/PortalWeb/obj/",
+        "projectPath": "/Users/hurel/Desktop/WORKS/FERHAT/PortalWebUI/PortalWeb/PortalWeb.csproj",
+        "packagesPath": "/Users/hurel/.nuget/packages/",
+        "outputPath": "/Users/hurel/Desktop/WORKS/FERHAT/PortalWebUI/PortalWeb/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/macbook/.nuget/NuGet/NuGet.Config"
+          "/Users/hurel/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -55,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.201/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.300/RuntimeIdentifierGraph.json"
         }
       }
     }

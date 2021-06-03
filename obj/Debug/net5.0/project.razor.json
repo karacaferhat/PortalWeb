@@ -1,5 +1,5 @@
 {
-  "FilePath": "/Users/macbook/PortalWeb/PortalWeb.csproj",
+  "FilePath": "/Users/hurel/Desktop/WORKS/FERHAT/PortalWebUI/PortalWeb/PortalWeb.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "5.0",
@@ -15619,38 +15619,38 @@
   "RootNamespace": "PortalWeb",
   "Documents": [
     {
-      "FilePath": "/Users/macbook/PortalWeb/Pages/Shared/_Layout.cshtml",
-      "TargetPath": "Pages\\Shared\\_Layout.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/macbook/PortalWeb/Pages/Error.cshtml",
-      "TargetPath": "Pages\\Error.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/macbook/PortalWeb/Pages/Index.cshtml",
-      "TargetPath": "Pages\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/macbook/PortalWeb/Pages/Shared/_ValidationScriptsPartial.cshtml",
-      "TargetPath": "Pages\\Shared\\_ValidationScriptsPartial.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/macbook/PortalWeb/Pages/_ViewImports.cshtml",
-      "TargetPath": "Pages\\_ViewImports.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/macbook/PortalWeb/Pages/Privacy.cshtml",
+      "FilePath": "/Users/hurel/Desktop/WORKS/FERHAT/PortalWebUI/PortalWeb/Pages/Privacy.cshtml",
       "TargetPath": "Pages\\Privacy.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/macbook/PortalWeb/Pages/_ViewStart.cshtml",
+      "FilePath": "/Users/hurel/Desktop/WORKS/FERHAT/PortalWebUI/PortalWeb/Pages/Error.cshtml",
+      "TargetPath": "Pages\\Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/hurel/Desktop/WORKS/FERHAT/PortalWebUI/PortalWeb/Pages/_ViewStart.cshtml",
       "TargetPath": "Pages\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/hurel/Desktop/WORKS/FERHAT/PortalWebUI/PortalWeb/Pages/Index.cshtml",
+      "TargetPath": "Pages\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/hurel/Desktop/WORKS/FERHAT/PortalWebUI/PortalWeb/Pages/Shared/_Layout.cshtml",
+      "TargetPath": "Pages\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/hurel/Desktop/WORKS/FERHAT/PortalWebUI/PortalWeb/Pages/Shared/_ValidationScriptsPartial.cshtml",
+      "TargetPath": "Pages\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/hurel/Desktop/WORKS/FERHAT/PortalWebUI/PortalWeb/Pages/_ViewImports.cshtml",
+      "TargetPath": "Pages\\_ViewImports.cshtml",
       "FileKind": "mvc"
     }
   ],
