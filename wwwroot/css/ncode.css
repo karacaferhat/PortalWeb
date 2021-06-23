@@ -58,6 +58,7 @@ p {
   white-space: nowrap;
   background-color: #343a40;
   transition: min-width ease 200ms, width ease 200ms, max-width ease 200ms;
+  z-index: 9998;
 }
 .side-menu .brand {
   display: flex;
