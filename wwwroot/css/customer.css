@@ -1,0 +1,75 @@
+﻿/*----------------------------
+0000. SHARED
+----------------------------*/
+a {color: #467be2;}
+a:hover {color: #0d6efd;}
+.a-href-non-shape:hover {border-color: #467be2;}
+.btn-primary {background-color: #467be2;}
+.mat-input input:hover ~ .icon, .mat-input input:focus ~ .icon, .mat-input input.filled:focus ~ .icon {color: #467be2;}
+.mat-input input:focus ~ .placeholder, .mat-input input.filled:focus ~ .placeholder {color: #467be2;}
+.mat-input input:hover ~ .input-border, .mat-input input:focus ~ .input-border, .mat-input input.filled:focus ~ .input-border {border-color: #467be2;}
+.mat-input input:focus ~ .input-border {box-shadow: 0 0 0 1px #467be2;}
+.mat-checkbox input[type="checkbox"]:checked ~ .checkbox {
+  background-color: #467be2;
+  border-color: #467be2;
+}
+.sring .ring-item {border-color: #f5333f transparent transparent transparent;}
+
+/*----------------------------
+001. SIDE MENU/NAVIGATION
+----------------------------*/
+.side-menu .brand img {margin: auto auto auto .5rem;}
+.side-menu li.active > a:after, .side-menu a.collapser:after {color: #f5333f;}
+.search-icon {
+    color: #f5333f;
+    opacity: .5;
+}
+.search-group > input {box-shadow: 0 0 0 1px #fb9ca1;}
+.search-group > input:focus {box-shadow: 0 0 0 1px #f5333f, 0 0 0 4px rgba(245,51,63,.33);}
+.main-navbar .icon-only .nav-link {
+    color: #f5333f;
+    box-shadow: 0 0 0 1px #f5333f;
+}
+.main-navbar .icon-only .nav-link:hover,
+.main-navbar .icon-only .nav-link:focus {
+    color: #ffb0b5;
+    background-color: #f5333f;
+    box-shadow: 0 0 0 1px #842029;
+}
+.user-img .user-icon {
+    color: #ffb0b5;
+    background-color: #f5333f;
+    box-shadow: 0 0 0 1px #f5333f;
+}
+.main-navbar .user-img {box-shadow: 0 0 0 1px #f5333f;}
+/* ICONIZED */
+.side-menu.iconized > ul > li.active > a,
+.side-menu.iconized > ul > li > a.collapser.active {
+  color: #ffced1;
+  background-color: #f5333f;
+}
+
+/*----------------------------
+003. HEADER NAVBAR
+----------------------------*/
+.main-navbar .navbar-nav .nav-link:hover {box-shadow: 0 0 0 2px #ffced1;}
+.user.show .user-img {box-shadow: 0 0 0 1px #f5333f, 0 0 0 6px rgba(245,51,63,.66);}
+.user.show img, .user.show .user-icon {border-color: #b9101b;}
+
+/*----------------------------
+PAGES
+----------------------------*/
+/*----------------------------
+005. LOGIN
+----------------------------*/
+.login .main.content {background-image: url("../imgs/navimgs/login-bg.jpg");}
+.branding {
+    background-color: #171552;
+    background-position: 62% bottom;
+    background-image: url("../imgs/navimgs/login-form-bg.png");
+}
+.branding img {
+    width: 200px;
+    padding: 0 .5rem 0 0;
+    margin: 1.25rem auto auto auto;
+}

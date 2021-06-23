@@ -15619,6 +15619,11 @@
   "RootNamespace": "PortalWeb",
   "Documents": [
     {
+      "FilePath": "/Users/hurel/Desktop/WORKS/FERHAT/PortalWebUI/PortalWeb/Pages/Orders.cshtml",
+      "TargetPath": "Pages\\Orders.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/hurel/Desktop/WORKS/FERHAT/PortalWebUI/PortalWeb/Pages/Privacy.cshtml",
       "TargetPath": "Pages\\Privacy.cshtml",
       "FileKind": "mvc"
@@ -15631,6 +15636,11 @@
     {
       "FilePath": "/Users/hurel/Desktop/WORKS/FERHAT/PortalWebUI/PortalWeb/Pages/_ViewStart.cshtml",
       "TargetPath": "Pages\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/hurel/Desktop/WORKS/FERHAT/PortalWebUI/PortalWeb/Pages/Login.cshtml",
+      "TargetPath": "Pages\\Login.cshtml",
       "FileKind": "mvc"
     },
     {

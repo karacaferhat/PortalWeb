@@ -76,3 +76,5 @@
 /Users/hurel/Desktop/WORKS/FERHAT/PortalWebUI/PortalWeb/obj/Debug/net5.0/PortalWeb.pdb
 /Users/hurel/Desktop/WORKS/FERHAT/PortalWebUI/PortalWeb/obj/Debug/net5.0/PortalWeb.genruntimeconfig.cache
 /Users/hurel/Desktop/WORKS/FERHAT/PortalWebUI/PortalWeb/obj/Debug/net5.0/PortalWeb.csproj.CopyComplete
+/Users/hurel/Desktop/WORKS/FERHAT/PortalWebUI/PortalWeb/obj/Debug/net5.0/Razor/Pages/Orders.cshtml.g.cs
+/Users/hurel/Desktop/WORKS/FERHAT/PortalWebUI/PortalWeb/obj/Debug/net5.0/Razor/Pages/Login.cshtml.g.cs

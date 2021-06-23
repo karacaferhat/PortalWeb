@@ -1,0 +1,47 @@
+@page
+@model OrdersModel
+@{
+    ViewBag.Title = "login";
+}
+<div class="login-group with-branding with-footer">
+    <div class="login-form-content">
+        <div class="branding">
+            <img class="login-logo" src="~/imgs/navimgs/d_logo.svg">
+        </div>
+        <div class="login-form">
+            <div class="wellcome-text">
+                <p><b>Wellcome Guest!</b></p>
+                <p>You can login with this form.</p>
+            </div>
+            <div class="mat-input-group">
+                <div class="mat-input mat-text with-deco-icon">
+                    <input type="text">
+                    <span class="icon fas fa-user"></span>
+                    <span class="placeholder">Name/e-mail or nickname</span>
+                    <span class="input-border"></span>
+                </div>
+                <div class="mat-input mat-text with-deco-icon">
+                    <input type="text">
+                    <span class="icon fas fa-key"></span>
+                    <span class="placeholder">Password</span>
+                    <span class="input-border"></span>
+                </div>
+            </div>
+            <div class="submit-group">
+                <label class="mat-input mat-checkbox">
+                    <input type="checkbox">
+                    <span class="checkbox"></span>
+                    <span class="label-text">Remember me.</span>
+                </label>
+                <button id="loginSubmit" class="btn btn-primary ripple-fx no-border">Login</button>
+            </div>
+
+            <div class="forgot-pass">
+                <a class="a-href-non-shape" href="Forgot">Forgot Password?</a>
+            </div>
+        </div>
+    </div>
+    <div class="login-form-footer">
+        Bu portal <b>Dönmez Debriyaj Sanayi ve Ticaret A.Ş.</b> adına <b>ncode Yazılım Ltd. Şti.</b> tarafından geliştirilmiştir. İletişim için <a href="mailto:info@donmezdebriyaj.com.tr">info@donmezdebriyaj.com.tr</a>
+    </div>
+</div>
