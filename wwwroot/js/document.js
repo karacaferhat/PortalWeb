@@ -1,5 +1,6 @@
 const baseUri = "api/v1/deliverydocument/"
 
+const status = document.getElementById("status");
 const selectButton = document.getElementById("select-button");
 const fileInput = document.getElementById("file-input");
 
@@ -32,6 +33,7 @@ const getServiceSasUriForContainer = async () => {
     .then(data => {
 
         if (data) {
+            console.log(data);
             uploadFiles(data.sasString);
         }
     })
@@ -54,8 +56,8 @@ const uploadFiles = async (containerURL) => {
         }
         await Promise.all(promises);
         reportStatus("Done.");
-        listFiles();
     } catch (error) {
+        console.log(error);
         reportStatus(error.body.message);
     }
 }
