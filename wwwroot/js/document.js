@@ -1,3 +1,5 @@
+//!!!!ONEMLI!!!! azure dan cors u duzelt
+
 const baseUri = "https://tederikportaldocumentservice.azurewebsites.net/api/v1/deliverydocument/"
 
 const status = document.getElementById("status");
@@ -51,7 +53,6 @@ const uploadFiles = async (sasString) => {
         const promises = [];
         for (const file of fileInput.files) {
             const blockBlobURL = azblob.BlockBlobURL.fromContainerURL(containerURL, file.name);
-            console.log("success");
             promises.push(azblob.uploadBrowserDataToBlockBlob(
                 azblob.Aborter.none, file, blockBlobURL));
         }
