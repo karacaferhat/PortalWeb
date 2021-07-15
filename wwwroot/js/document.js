@@ -1,4 +1,4 @@
-const baseUri = "api/v1/deliverydocument/"
+const baseUri = "https://tederikportaldocumentservice.azurewebsites.net/api/v1/deliverydocument/"
 
 const status = document.getElementById("status");
 const selectButton = document.getElementById("select-button");
@@ -16,7 +16,7 @@ const getServiceSasUriForContainerAndUpload = async () => {
     const request = {vendor : "701480"}
 
 
-    fetch(baseUri + "uploadDeliveryAttachment", {
+    fetch(baseUri + "getServiceSasUriForContainer", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -32,7 +32,6 @@ const getServiceSasUriForContainerAndUpload = async () => {
         })
         .then(data => {
             if (data) {
-                console.log(data);
                 uploadFiles(data.sasString);
             }
         })
@@ -44,21 +43,24 @@ const getServiceSasUriForContainerAndUpload = async () => {
 }
 
 
-const uploadFiles = async (containerURL) => {
+const uploadFiles = async (sasString) => {
     try {
+        const containerURL = new azblob.ContainerURL(sasString, azblob.StorageURL.newPipeline(new azblob.AnonymousCredential));
+
         reportStatus("Uploading files...");
         const promises = [];
         for (const file of fileInput.files) {
             const blockBlobURL = azblob.BlockBlobURL.fromContainerURL(containerURL, file.name);
-
+            console.log("success");
             promises.push(azblob.uploadBrowserDataToBlockBlob(
                 azblob.Aborter.none, file, blockBlobURL));
         }
         await Promise.all(promises);
         reportStatus("Done.");
+
     } catch (error) {
-        console.log("Couldn't Upload" + error);
-        reportStatus("Couldn't Upload" + error);
+        console.log(error);
+        reportStatus(error);
     }
 }
 
