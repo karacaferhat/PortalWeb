@@ -4,13 +4,9 @@
     ViewBag.Title = "Belgeler";
 }
 
-<form method="post" enctype="multipart/form-data">
-    <input asp-for="UploadFileDto.Name"></input>
 
-    <input asp-for="UploadFileDto.File"></input>
-
-    <input type="submit" class="btn btn-info" />
-</form>
+<button id="select-button">Select and upload files</button>
+<input type="file" id="file-input" multiple style="display: none;" />
 
 
 <script src="~/js/document.js" charset="utf-8" asp-append-version="true"></script>
