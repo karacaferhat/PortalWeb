@@ -8,11 +8,11 @@ using Microsoft.Extensions.Logging;
 
 namespace PortalWeb.Pages
 {
-    public class OrdersModel : PageModel
+    public class DocumentModel : PageModel
     {
-        private readonly ILogger<OrdersModel> _logger;
+        private readonly ILogger<DocumentModel> _logger;
 
-        public OrdersModel(ILogger<OrdersModel> logger)
+        public DocumentModel(ILogger<DocumentModel> logger)
         {
             _logger = logger;
         }
