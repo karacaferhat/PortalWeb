@@ -5,16 +5,21 @@
 }
 
 <div class="form-group">
-    <div class="mx-2">
-    <label for="process-type">Process Type</label>
+    <div class="m-2">
+        <p><b>Status:</b></p>
+        <span id="status"></span>
+    </div>
+
+    <div class="m-2">
+        <label for="process-type">Process Type</label>
         <select id="process-type">
+            <option value="documentByType">Document By Type</option>
             <option value="deliveryDocument">Delivery Document</option>
             <option value="deliveryLineDocument">Delivery Line Document</option>
-            <option value="documentByType">Document By Type</option>
         </select>
     </div>
 
-    <div class="mx-2">
+    <div class="m-2">
         <button id="select-button" class="btn btn-primary">
              <span id= "upload-text" style="display: block">
                 Select and upload files
@@ -27,11 +32,15 @@
         <input type="file" id="file-input" style="display: none;" multiple/>
     </div>
 
-    <div class="mx-2">
-        <p><b>Status:</b></p>
-        <span id="status"></span>
+    <div class="m-2">
+        <button class="btn btn-primary" id="list-button">List files</button>
+        <p><b>Files:</b></p>
+        <div id="file-list">
+
+        </div>
     </div>
 </div>
+
 
 <script src="~/lib/azurestoragejs.blob-10.5.0/azure-storage-blob.js" asp-append-version="true"></script>
 <script src="~/js/document.js" charset="utf-8" asp-append-version="true"></script>
