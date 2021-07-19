@@ -61,18 +61,18 @@ const uploadFiles = async () => {
     let vendor = "701480";
     let processType = processTypeInput.value.toString();
     let documentType = "asdfg";
-    let asno = "123456789";
+    let asNo = "123456789";
     let asLineNo = "123456";
 
     let request = {
         vendor: vendor,
-        processType: processType,
         documentType: documentType,
-        asno: asno,
+        asNo: asNo,
         asLineNo: asLineNo
     }
 
-    let sasString = (await fetchData(documentServiceBaseUri + "getServiceSasUriForContainer", request)).sasString;
+    let sasString = (await fetchData(documentServiceBaseUri + `getServiceSasUriForContainer/${processType}`, request)).sasString;
+
 
     try {
         if (!sasString)
@@ -83,7 +83,7 @@ const uploadFiles = async () => {
 
         const promises = [];
         for (const file of fileInput.files) {
-            if(await checkIfFileExists(processType, file.name, vendor, documentType, asno, asLineNo)) {
+            if(await checkIfFileExists(processType, file.name, vendor, documentType, asNo, asLineNo)) {
                 console.log("File Already Exists. It Won't Upload.");
                 reportStatus(`${file.name} Already Exists. Couldn't Upload`, false);
                 continue;
@@ -94,8 +94,8 @@ const uploadFiles = async () => {
             promises.push(azblob.uploadBrowserDataToBlockBlob(
                 azblob.Aborter.none, file, blockBlobURL));
 
-            let filePath = vendor + '/' + getFilePath(processType, file.name, vendor, documentType, asno, asLineNo);
-            await logUpload(vendor, asno, asLineNo, file.name, filePath);
+            let filePath = vendor + '/' + getFilePath(processType, file.name, vendor, documentType, asNo, asLineNo);
+            await logUpload(vendor, asNo, asLineNo, file.name, filePath);
         }
         await Promise.all(promises);
         reportStatus("Done.", false);
@@ -110,19 +110,23 @@ const uploadFiles = async () => {
 const listFiles = async () => {
     const request = {
         vendor: "701480",
-        fileType: "asdfg"
+        documentType: "asdfg",
+        asNo : "123456789",
+        asLineNo : "123456"
     };
 
+    let processType = processTypeInput.value.toString();
+
     reportStatus("Listing Files...", false);
-    let data = await fetchData(documentServiceBaseUri + "getFilesByDocumentType", request);
-    reportStatus("Listed", false);
+    let data = await fetchData(documentServiceBaseUri + `getFilesByFilter/${processType}`, request);
+    //reportStatus("Listed", false);
 
 
     fileList.innerHTML = "";
 
     data.forEach(f => {
-        fileList.innerHTML += `<a href="${blobStorageBaseUri + f.filepath}">
-            ${f.filename}
+        fileList.innerHTML += `<a href="${blobStorageBaseUri + f.filePath}">
+            ${f.fileName}
         </a><br/>`;
     });
 };
@@ -141,7 +145,6 @@ const logUpload = async (vendor, asno, asLineNo, filename, fileurl) => {
     let data = await fetchData(loggerServiceBaseUri + "addDocStoreLog", request);
     console.log(data);
 }
-
 
 const getFilePath = (processType, fileName, vendor, documentType, asno, asLineNo) => {
     let filePath = documentType + '/';
