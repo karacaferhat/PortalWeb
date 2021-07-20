@@ -21,7 +21,7 @@ const fetchData = async (uri, request, useAuthorizationHeader = false, tryRefres
             headers.Authorization = "Bearer " + jwt;
         else{
             console.log("You need to login");//Kullaniciyi giris ekranina yonlendir.
-            window.location.href = "login.html";
+            window.location.href = "https://tedarikportalwebapp.azurewebsites.net/Login";
         }
     }
 
