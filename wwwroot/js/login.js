@@ -5,13 +5,40 @@ const passwordInput = $("#passwordInput");
 const rememberMeCheckbox = $("#rememberMeCheckbox");
 const loginSubmitButton = $("#loginSubmitButton");
 
+const status = document.getElementById("status");
+
+const uploadText = $("#login-text");
+const uploadSpinner = $("#login-spinner");
+
+const selectButton = document.getElementById("select-button");
+
+const reportStatus = (message, isSpinning) => {
+    status.innerHTML = `${message}<br/>`;
+
+    if (isSpinning) {
+        uploadText.css("display", "none");
+        uploadSpinner.css("display", "block");
+    } else {
+        uploadText.css("display", "block");
+        uploadSpinner.css("display", "none");
+    }
+
+}
+
+
 const login = async () => {
+    reportStatus("Logging", true)
+
     let email = emailInput.val();
     let password = passwordInput.val();
-    
 
-    if(!(email && password))
+    //email = "mete.arslan8@hotmail.com";
+    //password = "Qwer123!!!";
+
+    if(!(email && password)) {
+        reportStatus("Please, Enter Username And Password ", false);
         return;
+    }
 
     let request = {
         email : email,
@@ -22,8 +49,12 @@ const login = async () => {
     console.log(data);
 
     if(data) {
+        reportStatus("Success", false)
+
         sessionStorage.setItem(jwtTokenKey, data.token);
         sessionStorage.setItem(refreshTokenKey, data.refreshToken);
+        sessionStorage.setItem(vendorNameKey, data.userInfo.vendorname);
+        
 
         if(rememberMeCheckbox.val() === true){
             localStorage.setItem(jwtTokenKey, data.token);
@@ -36,7 +67,10 @@ const login = async () => {
             }
         }
 
-        window.location.href = "https://tedarikportalwebapp.azurewebsites.net/Test";
+        window.location.href = "test.html";
+    }
+    else{
+        reportStatus("Username Or Password is Wrong", false);
     }
 }
 

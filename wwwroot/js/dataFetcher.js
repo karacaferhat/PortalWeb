@@ -3,6 +3,7 @@ const loginUrl = "https://tedarikportalapi.azurewebsites.net/api/v1/identity/";
 
 const jwtTokenKey = "jwtTokenKey";
 const refreshTokenKey = "refreshTokenKey";
+const vendorNameKey = "vendorName";
 
 
 const fetchData = async (uri, request, useAuthorizationHeader = false, tryRefreshToken = true) => {
@@ -21,7 +22,7 @@ const fetchData = async (uri, request, useAuthorizationHeader = false, tryRefres
             headers.Authorization = "Bearer " + jwt;
         else{
             console.log("You need to login");//Kullaniciyi giris ekranina yonlendir.
-            window.location.href = "https://tedarikportalwebapp.azurewebsites.net/Login";
+            window.location.href = "login.html";
         }
     }
 
@@ -85,6 +86,7 @@ const refresh = async ()=>{
     if(data) {
         sessionStorage.setItem(jwtTokenKey, data.token);
         sessionStorage.setItem(refreshTokenKey, data.refreshToken);
+        sessionStorage.setItem(vendorNameKey, data.userInfo.vendorname);
 
         if(localStorage.getItem(jwtTokenKey) && localStorage.getItem(refreshTokenKey)){
             localStorage.setItem(jwtTokenKey, data.token);
@@ -99,4 +101,10 @@ const refresh = async ()=>{
             localStorage.removeItem(refreshTokenKey);
         }
     }
+}
+
+const userNameText = $("#userNameText");
+
+if(userNameText){
+    userNameText.text(sessionStorage.getItem(vendorNameKey));
 }
