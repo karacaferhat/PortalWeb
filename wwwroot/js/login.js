@@ -67,7 +67,7 @@ const login = async () => {
             }
         }
 
-        window.location.href = "test.html";
+        window.location.href = "Test";
     }
     else{
         reportStatus("Username Or Password is Wrong", false);
