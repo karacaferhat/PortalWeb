@@ -8,24 +8,30 @@
     "net5.0": []
   },
   "packageFolders": {
-    "/Users/hurel/.nuget/packages/": {}
+    "C:\\Users\\tugce\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/hurel/Desktop/WORKS/FERHAT/PortalWebUI/PortalWeb/PortalWeb.csproj",
+      "projectUniqueName": "C:\\TedarikPortal\\PortalWeb\\PortalWeb.csproj",
       "projectName": "PortalWeb",
-      "projectPath": "/Users/hurel/Desktop/WORKS/FERHAT/PortalWebUI/PortalWeb/PortalWeb.csproj",
-      "packagesPath": "/Users/hurel/.nuget/packages/",
-      "outputPath": "/Users/hurel/Desktop/WORKS/FERHAT/PortalWebUI/PortalWeb/obj/",
+      "projectPath": "C:\\TedarikPortal\\PortalWeb\\PortalWeb.csproj",
+      "packagesPath": "C:\\Users\\tugce\\.nuget\\packages\\",
+      "outputPath": "C:\\TedarikPortal\\PortalWeb\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "/Users/hurel/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\tugce\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -61,7 +67,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.300/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }
