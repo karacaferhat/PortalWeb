@@ -47,6 +47,9 @@
         @* CUSTOMER *@
         <link rel="stylesheet" href="~/css/customer.css">
         @* END of CUSTOMER *@
+
+        @* Data Fetcher *@
+        <script src="~/js/dataFetcher.js" asp-append-version="true"></script>
     </head>
 
     <body class='@ViewData["Title"]'>
@@ -209,6 +212,7 @@
         <script src="~/js/ncode.js" asp-append-version="true"></script>
         @* END of NCODE *@
         <script src="~/js/customer.js" asp-append-version="true"></script>
+        
         @await RenderSectionAsync("Scripts", required: false)
     </body>
 </html>

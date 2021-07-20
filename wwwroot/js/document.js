@@ -28,33 +28,6 @@ const reportStatus = (message, isSpinning) => {
 
 }
 
-const fetchData = async (uri, request) => {
-    return await fetch( uri, {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(request)
-    })
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            } else
-                throw Error(response);
-        })
-        .then(data => {
-            if (data) {
-                return data;
-            }
-        })
-        .catch(error => {
-            console.error('Couldn\'t Fetch. ' + error);
-            return null;
-        });
-}
-
 const uploadFiles = async () => {
     reportStatus("Uploading files...", true);
 

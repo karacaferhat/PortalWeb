@@ -1,0 +1,15 @@
+﻿@page
+@model IndexModel
+@{
+    ViewBag.Title="main-page dashboard";
+}
+
+<script>
+    const test = async () => {//testler bittikten sonra sil
+        let request = {lang : "turkish"};
+        let data = await fetchData("https://tedarikportalcache.azurewebsites.net/api/v1/cache/getLang/", request, true);
+        console.log(data)
+    }
+</script>
+
+<button id="testButton" class="btn btn-primary" onclick="test()">Test</button>
