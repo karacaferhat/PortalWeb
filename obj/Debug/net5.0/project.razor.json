@@ -15619,6 +15619,11 @@
   "RootNamespace": "PortalWeb",
   "Documents": [
     {
+      "FilePath": "c:\\Users\\MeteARSLAN\\Desktop\\GitHub\\NCode\\PortalWeb\\Pages\\Test.cshtml",
+      "TargetPath": "Pages\\Test.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\MeteARSLAN\\Desktop\\GitHub\\NCode\\PortalWeb\\Pages\\Privacy.cshtml",
       "TargetPath": "Pages\\Privacy.cshtml",
       "FileKind": "mvc"
