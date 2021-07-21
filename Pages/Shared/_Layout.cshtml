@@ -74,40 +74,28 @@
                         <ul class="collapse" id="orders">
                             <li>
                                 <a asp-area="" asp-page="/Orders">
-                                    <span class="nav-link-icon fas fa-inbox"></span>
-                                    <span class="nav-link-title">Gelen Siparişler</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-shipping-fast"></span>
-                                    <span class="nav-link-title">Sevkiyat</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-clipboard-list"></span>
-                                    <span class="nav-link-title">Sevkiyat Listesi</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-paragraph"></span>
-                                    <span class="nav-link-title">DÖF Formları</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a asp-area="" asp-page="/#">
                                     <span class="nav-link-icon fas fa-flag-checkered"></span>
-                                    <span class="nav-link-title">DÖF Raporları</span>
+                                    <span class="nav-link-title">Yeni</span>
                                 </a>
                             </li>
                             <li>
-                                <a asp-area="" asp-page="/Documents">
-                                    <span class="nav-link-icon fas fa-copy"></span>
-                                    <span class="nav-link-title">Belgeler</span>
+                                <a asp-area="" asp-page="/#">
+                                    <span class="nav-link-icon fas fa-box-open"></span>
+                                    <span class="nav-link-title">Hazırlık</span>
                                 </a>
                             </li>
+                            <li>
+                                <a asp-area="" asp-page="/#">
+                                    <span class="nav-link-icon fas fa-clock"></span>
+                                    <span class="nav-link-title">Askıda </span>
+                                </a>
+                            </li>
+                              <li>
+                                <a asp-area="" asp-page="/#">
+                                    <span class="nav-link-icon fas fa-trash-alt"></span>
+                                    <span class="nav-link-title">İptal</span>
+                                </a>
+                            </li>                            
                         </ul>
                     </li>
                     <li>
@@ -115,12 +103,130 @@
                             <span class="nav-link-icon fas fa-blender"></span>
                             <span class="nav-link-title">Sevkiyatlar</span>
                         </a>
+                        <ul class="collapse" id="deliveries">
+                            <li>
+                                <a asp-area="" asp-page="/Orders">
+                                    <span class="nav-link-icon fas fa-flag-checkered"></span>
+                                    <span class="nav-link-title">Sevkiyat Oluştur</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-page="/#">
+                                    <span class="nav-link-icon fas fa-box-open"></span>
+                                    <span class="nav-link-title">Hazırlanan Sevkiyatlar</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-page="/#">
+                                    <span class="nav-link-icon fas fa-clock"></span>
+                                    <span class="nav-link-title">Onaylı Sevkiyatlar </span>
+                                </a>
+                            </li>
+                              <li>
+                                <a asp-area="" asp-page="/#">
+                                    <span class="nav-link-icon fas fa-trash-alt"></span>
+                                    <span class="nav-link-title">Yoldakiler</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-page="/#">
+                                    <span class="nav-link-icon fas fa-trash-alt"></span>
+                                    <span class="nav-link-title">Kabul Edilmiş Sevkiyatlar</span>
+                                </a>
+                            </li>
+                              <li>
+                                <a asp-area="" asp-page="/#">
+                                    <span class="nav-link-icon fas fa-trash-alt"></span>
+                                    <span class="nav-link-title">Red Edilmiş Sevkiyatlar</span>
+                                </a>
+                            </li>                               
+                        </ul>
                     </li>
                     <li>
                         <a asp-area="" asp-page="/#">
                             <span class="nav-link-icon fas fa-bus-alt"></span>
                             <span class="nav-link-title">Belgeler</span>
                         </a>
+                          <ul class="collapse" id="documents">
+                            <li>
+                                <a asp-area="" asp-page="/Orders">
+                                    <span class="nav-link-icon fas fa-flag-checkered"></span>
+                                    <span class="nav-link-title">PPAP</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-page="/#">
+                                    <span class="nav-link-icon fas fa-box-open"></span>
+                                    <span class="nav-link-title">Sözleşme</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-page="/#">
+                                    <span class="nav-link-icon fas fa-clock"></span>
+                                    <span class="nav-link-title">Kalite Sözleşmesi</span>
+                                </a>
+                            </li>
+                              <li>
+                                <a asp-area="" asp-page="/#">
+                                    <span class="nav-link-icon fas fa-trash-alt"></span>
+                                    <span class="nav-link-title">Lojistik Sözleşmesi</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-page="/#">
+                                    <span class="nav-link-icon fas fa-trash-alt"></span>
+                                    <span class="nav-link-title">Kalıp Aparat Sözleşmesi</span>
+                                </a>
+                            </li>
+                              <li>
+                                <a asp-area="" asp-page="/#">
+                                    <span class="nav-link-icon fas fa-trash-alt"></span>
+                                    <span class="nav-link-title">Paketleme Formu</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-page="/#">
+                                    <span class="nav-link-icon fas fa-trash-alt"></span>
+                                    <span class="nav-link-title">Gizlilik Sözleşmesi</span>
+                                </a>
+                            </li>        
+                            <li>
+                                <a asp-area="" asp-page="/#">
+                                    <span class="nav-link-icon fas fa-trash-alt"></span>
+                                    <span class="nav-link-title">Kalite Belgeleri</span>
+                                </a>
+                            </li>
+                             <li>
+                                <a asp-area="" asp-page="/#">
+                                    <span class="nav-link-icon fas fa-trash-alt"></span>
+                                    <span class="nav-link-title">Ön Değerlendirme Formu</span>
+                                </a>
+                            </li> 
+                             <li>
+                                <a asp-area="" asp-page="/#">
+                                    <span class="nav-link-icon fas fa-trash-alt"></span>
+                                    <span class="nav-link-title"> Denetim Raporları</span>
+                                </a>
+                            </li> 
+                             <li>
+                                <a asp-area="" asp-page="/#">
+                                    <span class="nav-link-icon fas fa-trash-alt"></span>
+                                    <span class="nav-link-title">APQP Belgeleri</span>
+                                </a>
+                            </li> 
+                             <li>
+                                <a asp-area="" asp-page="/#">
+                                    <span class="nav-link-icon fas fa-trash-alt"></span>
+                                    <span class="nav-link-title">Yerleşim Yeri Denetimi</span>
+                                </a>
+                            </li>
+                             <li>
+                                <a asp-area="" asp-page="/#">
+                                    <span class="nav-link-icon fas fa-trash-alt"></span>
+                                    <span class="nav-link-title">Ziyaret Notları</span>
+                                </a>
+                            </li>                                        
+                        </ul>
                     </li>
                 </ul>
             </div>
