@@ -8,10 +8,9 @@ const loginSubmitButton = $("#loginSubmitButton");
 const errorStatus = $("#errorStatus");
 
 const loginText = $("#login-text");
-const loginSpinner = $("#login-spinner");
 
 
-const reportStatus = (isSpinning, buttonText = null, status = null) => {
+const reportStatus = (buttonText = null, status = null) => {
     if(status)
         errorStatus.text(status);
     else
@@ -20,19 +19,12 @@ const reportStatus = (isSpinning, buttonText = null, status = null) => {
     if(buttonText)
         loginText.text(buttonText);
 
-    if (isSpinning) {
-        loginText.css("display", "none");
-        loginSpinner.css("display", "block");
-    } else {
-        loginText.css("display", "block");
-        loginSpinner.css("display", "none");
-    }
 
 }
 
 
 const login = async () => {
-    reportStatus(true, "Checking User");
+    reportStatus("Checking User");
 
     let email = emailInput.val();
     let password = passwordInput.val();
@@ -41,7 +33,7 @@ const login = async () => {
     //password = "Qwer123!!!";
 
     if(!(email && password)) {
-        reportStatus(false, "Login", "Please, Enter Username And Password ");
+        reportStatus("Login", "Please, Enter Username And Password ");
         return;
     }
 
@@ -54,7 +46,7 @@ const login = async () => {
     console.log(data);
 
     if(data) {
-        reportStatus(false, "Success");
+        reportStatus("Success");
 
         sessionStorage.setItem(jwtTokenKey, data.token);
         sessionStorage.setItem(refreshTokenKey, data.refreshToken);
@@ -75,7 +67,7 @@ const login = async () => {
         window.location.href = "Test";
     }
     else{
-        reportStatus(false, "Login", "Username Or Password is Wrong");
+        reportStatus("Login", "Username Or Password is Wrong");
     }
 }
 
