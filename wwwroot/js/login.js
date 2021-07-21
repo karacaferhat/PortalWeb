@@ -48,21 +48,14 @@ const login = async () => {
     if(data) {
         reportStatus("Success");
 
-        sessionStorage.setItem(jwtTokenKey, data.token);
-        sessionStorage.setItem(refreshTokenKey, data.refreshToken);
-        sessionStorage.setItem(nameKey, data.userInfo.name);
-        sessionStorage.setItem(surnameKey, data.userInfo.sirname);
-        sessionStorage.setItem(vendorNameKey, data.userInfo.vendorname);
-
+        setKeys(data);
 
         if(rememberMeCheckbox.val() === true){
-            localStorage.setItem(jwtTokenKey, data.token);
-            localStorage.setItem(refreshTokenKey, data.refreshToken);
+            storeKeysAtLocalStorage(data);
         }
         else{
             if(localStorage.getItem(jwtTokenKey)) {
-                localStorage.removeItem(jwtTokenKey);
-                localStorage.removeItem(refreshTokenKey);
+                removeKeysFromLocalStorage();
             }
         }
 

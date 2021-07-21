@@ -36,10 +36,6 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     @* END of BASIC FRAMEWORKS *@
 
-   <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/21.1.4/css/dx.light.css">
-    <!-- DevExtreme library -->
-    <script type="text/javascript" src="https://cdn3.devexpress.com/jslib/21.1.4/js/dx.all.js"></script>
-
     @* EXTENDED FRAMEWORKS *@
     <link rel="stylesheet" href="~/css/hur-preloader.css">
     <link rel="stylesheet" href="~/css/hur-mat.css">
@@ -53,12 +49,16 @@
     <link rel="stylesheet" href="~/css/customer.css">
     @* END of CUSTOMER *@
 
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/21.1.4/css/dx.light.css">
+    <!-- DevExtreme library -->
+    <script type="text/javascript" src="https://cdn3.devexpress.com/jslib/21.1.4/js/dx.all.js"></script>
+
     @* Data Fetcher *@
     <script src="~/js/dataFetcher.js" asp-append-version="true"></script>
 </head>
 
-<body class='@ViewData["Title"] dx-viewport'>
-    <div class="wrapper" >
+<body class='@ViewData["Title"]'>
+    <div class="wrapper">
         <div id="sideMenu" class="side-menu vertical-nav">
             <span class="brand" asp-area="" asp-page="/Index?loggedIn">
                 <img class="icon" src="~/imgs/navimgs/d_icon.svg" alt="Dönmez Icon">
@@ -118,13 +118,13 @@
                 <li>
                     <a asp-area="" asp-page="/#">
                         <span class="nav-link-icon fas fa-blender"></span>
-                        <span class="nav-link-title">Lorem</span>
+                        <span class="nav-link-title">Sevkiyatlar</span>
                     </a>
                 </li>
                 <li>
                     <a asp-area="" asp-page="/#">
                         <span class="nav-link-icon fas fa-bus-alt"></span>
-                        <span class="nav-link-title">Ipsum Dolor Sit Amet</span>
+                        <span class="nav-link-title">Belgeler</span>
                     </a>
                 </li>
             </ul>
@@ -163,70 +163,27 @@
                                         <span class="d-none user-icon fas fa-user"></span>
                                         @* d-none X d-flex Toggle === Resim yüklenmiş/yüklenmemiş *@
                                         @* ~/imgs/navimgs/image-1.jpg *@@* AI Human Face Generator *@
-                                        <img class="d-flex" src="https://thispersondoesnotexist.com/image"
-                                            alt="User Image">
+                                        <img class="d-flex" src="imgs/navimgs/d_icon.svg" alt="User Image">
                                     </span>
                                 </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <div class="user-data">
+                                                @* d-none X d-flex Toggle === Resim yüklenmiş/yüklenmemiş *@
+                                                @* ~/imgs/navimgs/image-1.jpg *@@* AI Human Face Generator *@
+                                                <img class="d-flex" src="imgs/navimgs/d_icon.svg" alt="">
 
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a asp-area="" asp-page="/#">
-                            <span class="nav-link-icon fas fa-blender"></span>
-                            <span class="nav-link-title">Sevkiyatlar</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-area="" asp-page="/#">
-                            <span class="nav-link-icon fas fa-bus-alt"></span>
-                            <span class="nav-link-title">Belgeler</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="hmf-container container-fluid">
-                <header class="header">
-                    <nav class="navbar navbar-expand-sm navbar-toggleable-sm shadow-sm">
-                        <div id="sideMenuCollapser" class="side-menu-collapser">
-                            <div class="bar"></div>
-                            <div class="bar"></div>
-                            <div class="bar"></div>
-                        </div>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="main-navbar navbar-collapse collapse" id="mainNavbar">
-                            <form class="search-group">
-                                <span class="search-icon fas fa-search"></span>
-                                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-                            </form>
-                            <ul class="navbar-nav">
-                                <li class="nav-item icon-only">
-                                    <a class="nav-link far fa-envelope" asp-area="" asp-page="/#"></a>
-                                </li>
-                                <li class="nav-item icon-only">
-                                    <a class="nav-link far fa-bell" asp-area="" asp-page="/#"></a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="user nav-link dropdown-toggle" href="#" id="userMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <span class="user-img">
-                                            @* d-none X d-flex Toggle === Resim yüklenmiş/yüklenmemiş *@
-                                            <span class="d-none user-icon fas fa-user"></span>
-                                            @* d-none X d-flex Toggle === Resim yüklenmiş/yüklenmemiş *@
-                                            @* ~/imgs/navimgs/image-1.jpg *@@* AI Human Face Generator *@
-                                            <img class="d-flex" src="imgs/navimgs/d_icon.svg" alt="User Image">
-                                        </span>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
-                                        <li>
-                                            <a class="dropdown-item" href="#">
-                                                <div class="user-data">
-                                                    @* d-none X d-flex Toggle === Resim yüklenmiş/yüklenmemiş *@
-                                                    @* ~/imgs/navimgs/image-1.jpg *@@* AI Human Face Generator *@
-                                                    <img class="d-flex" src="imgs/navimgs/d_icon.svg" alt="">
-                                                    <div id="userNameText" class="user-name">Jane/John Doe Loremipsum</div>
+                                                <div class="col">
+                                                    <div  class="user-name row">
+                                                        <span id="loginVendorNameText"></span>
+                                                    </div>
+                                                    <div class="user-name row">
+                                                        <b>
+                                                            <span id="loginNameText"></span>
+                                                            <span id="loginSurnameText"></span>
+                                                        </b>      
+                                                        </div>
                                                 </div>
                                             </div>
                                         </a>
@@ -273,6 +230,8 @@
             <div class="ring-item"></div>
         </div>
     </div>
+
+
     @* EXTENDED FRAMEWORKS *@
     <script src="~/js/hur-mat.js" asp-append-version="true"></script>
     @* END of EXTENDED FRAMEWORKS *@
