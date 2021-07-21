@@ -165,7 +165,7 @@
                                                     @* d-none X d-flex Toggle === Resim yüklenmiş/yüklenmemiş *@
                                                     @* ~/imgs/navimgs/image-1.jpg *@@* AI Human Face Generator *@
                                                     <img class="d-flex" src="https://thispersondoesnotexist.com/image" alt="">
-                                                    <div class="user-name">Jane/John Doe Loremipsum</div>
+                                                    <div id="userNameText" class="user-name">Jane/John Doe Loremipsum</div>
                                                 </div>
                                             </a>
                                         </li>
@@ -212,6 +212,8 @@
         <script src="~/js/ncode.js" asp-append-version="true"></script>
         @* END of NCODE *@
         <script src="~/js/customer.js" asp-append-version="true"></script>
+
+        <script src="~/js/setUserInfo.js" asp-append-version="true"></script>
         
         @await RenderSectionAsync("Scripts", required: false)
     </body>

@@ -5,11 +5,16 @@
 }
 <div class="login-group with-branding with-footer">
     <div class="login-form-content">
+        <div class="branding">
+            <img class="login-logo" src="~/imgs/navimgs/d_logo.svg">
+        </div>
 
         <div class="login-form">
             <div class="wellcome-text">
+
                 <p><b>Tedarikçi Portal-Vendor Portal</b></p>
                 <p>Kullanıcı Giriş / User Login</p>
+
             </div>
             <div class="mat-input-group">
                 <div class="mat-input mat-text with-deco-icon">
@@ -25,22 +30,35 @@
                     <span class="input-border"></span>
                 </div>
             </div>
+
+            <div class="m-2">
+                <b><span id="errorStatus" class="text-danger"></span></b>
+            </div>
+
             <div class="submit-group">
                 <label class="mat-input mat-checkbox">
                     <input id="rememberMeCheckbox" type="checkbox">
                     <span class="checkbox"></span>
                     <span class="label-text">Beni Hatırla / Remember me</span>
                 </label>
-                <button id="loginSubmitButton" class="btn btn-primary ripple-fx no-border">Login</button>
+                <button id="loginSubmitButton" class="btn btn-primary ripple-fx no-border">
+                <span id="login-text" style="display: block">
+                    Login
+                </span>
+                </button>
             </div>
 
             <div class="forgot-pass">
                 <a class="a-href-non-shape" href="Forgot">Şifremi unuttum / Forgot Password?</a>
             </div>
         </div>
+
+
+
     </div>
     <div class="login-form-footer">
-        Bu portal <b>Dönmez Debriyaj Sanayi ve Ticaret A.Ş.</b> adına <b>NCode Yazılım Ltd. Şti.</b> tarafından geliştirilmiştir. İletişim için <a href="mailto:info@donmezdebriyaj.com.tr">info@donmezdebriyaj.com.tr</a>
+        Bu portal <b>Dönmez Debriyaj Sanayi ve Ticaret A.Ş.</b> adına <b>NCode Yazılım Ltd. Şti.</b> tarafından
+        geliştirilmiştir. İletişim için <a href="mailto:info@donmezdebriyaj.com.tr">info@donmezdebriyaj.com.tr</a>
     </div>
 </div>
 
