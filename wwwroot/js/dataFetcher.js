@@ -138,4 +138,4 @@ const removeKeysFromLocalStorage = (data) => {
         localStorage.removeItem(surnameKey);
         localStorage.removeItem(vendorNameKey);
     }
-}
+} 
