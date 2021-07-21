@@ -167,25 +167,66 @@
                                             alt="User Image">
                                     </span>
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
-                                    <li>
-                                        <a class="dropdown-item" href="#">
-                                            <div class="user-data">
-                                                @* d-none X d-flex Toggle === Resim yüklenmiş/yüklenmemiş *@
-                                                @* ~/imgs/navimgs/image-1.jpg *@@* AI Human Face Generator *@
-                                                <img class="d-flex" src="https://thispersondoesnotexist.com/image"
-                                                    alt="">
 
-                                                <div class="col">
-                                                    <div id="loginVendorNameText" class="row user-name">Jane/John Doe
-                                                        Loremipsum
-                                                    </div>
-                                                    <div class="row user-name">
-                                                        <b>
-                                                            <span id="loginNameText"></span>
-                                                            <span id="loginSurnameText"></span>
-                                                        </b>
-                                                    </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a asp-area="" asp-page="/#">
+                            <span class="nav-link-icon fas fa-blender"></span>
+                            <span class="nav-link-title">Sevkiyatlar</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-area="" asp-page="/#">
+                            <span class="nav-link-icon fas fa-bus-alt"></span>
+                            <span class="nav-link-title">Belgeler</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="hmf-container container-fluid">
+                <header class="header">
+                    <nav class="navbar navbar-expand-sm navbar-toggleable-sm shadow-sm">
+                        <div id="sideMenuCollapser" class="side-menu-collapser">
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                        </div>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="main-navbar navbar-collapse collapse" id="mainNavbar">
+                            <form class="search-group">
+                                <span class="search-icon fas fa-search"></span>
+                                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                            </form>
+                            <ul class="navbar-nav">
+                                <li class="nav-item icon-only">
+                                    <a class="nav-link far fa-envelope" asp-area="" asp-page="/#"></a>
+                                </li>
+                                <li class="nav-item icon-only">
+                                    <a class="nav-link far fa-bell" asp-area="" asp-page="/#"></a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="user nav-link dropdown-toggle" href="#" id="userMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span class="user-img">
+                                            @* d-none X d-flex Toggle === Resim yüklenmiş/yüklenmemiş *@
+                                            <span class="d-none user-icon fas fa-user"></span>
+                                            @* d-none X d-flex Toggle === Resim yüklenmiş/yüklenmemiş *@
+                                            @* ~/imgs/navimgs/image-1.jpg *@@* AI Human Face Generator *@
+                                            <img class="d-flex" src="imgs/navimgs/d_icon.svg" alt="User Image">
+                                        </span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                <div class="user-data">
+                                                    @* d-none X d-flex Toggle === Resim yüklenmiş/yüklenmemiş *@
+                                                    @* ~/imgs/navimgs/image-1.jpg *@@* AI Human Face Generator *@
+                                                    <img class="d-flex" src="imgs/navimgs/d_icon.svg" alt="">
+                                                    <div id="userNameText" class="user-name">Jane/John Doe Loremipsum</div>
                                                 </div>
                                             </div>
                                         </a>
