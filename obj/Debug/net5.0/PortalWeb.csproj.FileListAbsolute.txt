@@ -120,3 +120,5 @@ C:\TedarikPortal\PortalWeb\obj\Debug\net5.0\ref\PortalWeb.dll
 C:\TedarikPortal\PortalWeb\obj\Debug\net5.0\PortalWeb.pdb
 C:\TedarikPortal\PortalWeb\obj\Debug\net5.0\PortalWeb.genruntimeconfig.cache
 C:\TedarikPortal\PortalWeb\obj\Debug\net5.0\PortalWeb.csproj.CopyComplete
+C:\TedarikPortal\PortalWeb\obj\Debug\net5.0\Razor\Pages\Documents.cshtml.g.cs
+C:\TedarikPortal\PortalWeb\obj\Debug\net5.0\Razor\Pages\Test.cshtml.g.cs
