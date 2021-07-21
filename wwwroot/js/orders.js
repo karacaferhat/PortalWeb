@@ -1,13 +1,20 @@
 const baseUrl = "https://tedarikportalorder.azurewebsites.net/api/v1/orders/";
 
+const beggingDate = $("beggingDate");
+const endDate = $("endDate");
+const orderNo = $("orderNo");
+const sku = $("sku");
+const searchButton = $("searchButton");
+
+
 const getOrdersAndUpdateTable = async()=>{
     let request = {
         "vendor": "701480",
         "state": "WAI",
-        "orderdatefrom": null,
-        "orderdateto": null,
-        "sku": null,
-        "orderno": null
+        "orderdatefrom": beggingDate.val(),
+        "orderdateto": endDate.val(),
+        "sku": sku.val(),
+        "orderno": orderNo.val()
       };    
 
     let data = await fetchData(baseUrl + 'getOrders', request);
@@ -20,3 +27,5 @@ const getOrdersAndUpdateTable = async()=>{
 }
 
 getOrdersAndUpdateTable();
+
+searchButton.on("click", getOrdersAndUpdateTable);
