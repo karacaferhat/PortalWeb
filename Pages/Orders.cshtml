@@ -11,24 +11,24 @@
                 <div class="filter-heading">Filter by Attributes</div>
                 <div class="mat-input-inline-group">
                     <div class="mat-input mat-text">
-                        <input type="date">
+                        <input id="beggingDate" type="date">
                         <span class="placeholder">Tarih Başlangıç</span>
                         <span class="input-border"></span>
                     </div>
                     <div class="mat-input mat-text">
-                        <input type="date">
+                        <input id="endDate" type="date">
                         <span class="placeholder">Tarih Bitiş</span>
                         <span class="input-border"></span>
                     </div>
                 </div>
                 <div class="mat-input mat-text">
-                    <input type="text">
+                    <input id="orderNo" type="text">
                     <span class="placeholder">Sipariş No</span>
                     <span class="input-border"></span>
                 </div>
                 <div class="mat-input mat-text">
-                    <input type="text">
-                    <span class="placeholder">Ürün Adı</span>
+                    <input id="sku" type="text">
+                    <span class="placeholder">SKU</span>
                     <span class="input-border"></span>
                 </div>
             </div>
@@ -57,7 +57,7 @@
             </div>
         </div>
         <div class="action-footer">
-            <button class="btn btn-sm btn-outline-primary rounded-pill ripple-fx">
+            <button id ="searchButton" class="btn btn-sm btn-outline-primary rounded-pill ripple-fx">
                 <span class="btn-icon fas fa-tasks"></span>
                 <span class="btn-title">Tamam</span>
             </button>
@@ -104,143 +104,8 @@
     </div>
 
     <div class="table-section">
-        <table class="table table-responsive table-bordered table-hover m-0">
-            <thead class="bg-secondary text-light">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>&#64;mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>&#64;fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>&#64;twitter</td>
-                </tr>
-                <tr>
-                    <th scope="row">4</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>&#64;mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">5</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>&#64;fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">6</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>&#64;twitter</td>
-                </tr>
-                <tr>
-                    <th scope="row">7</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>&#64;mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">8</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>&#64;fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">9</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>&#64;twitter</td>
-                </tr>
-                <tr>
-                    <th scope="row">10</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>&#64;mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">11</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>&#64;fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">12</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>&#64;twitter</td>
-                </tr>
-                <tr>
-                    <th scope="row">13</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>&#64;mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">14</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>&#64;fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">15</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>&#64;twitter</td>
-                </tr>
-                <tr>
-                    <th scope="row">16</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>&#64;mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">17</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>&#64;fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">18</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>&#64;twitter</td>
-                </tr>
-                <tr>
-                    <th scope="row">19</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>&#64;mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">20</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>&#64;fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">21</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>&#64;twitter</td>
-                </tr>
-            </tbody>
-        </table>
+        <div id="gridContainer"></div>
     </div>
 </div>
+
+<script src="~/js/orders.js" asp-append-version = "true"></script>
