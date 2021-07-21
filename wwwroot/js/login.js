@@ -50,6 +50,8 @@ const login = async () => {
 
         sessionStorage.setItem(jwtTokenKey, data.token);
         sessionStorage.setItem(refreshTokenKey, data.refreshToken);
+        sessionStorage.setItem(nameKey, data.userInfo.name);
+        sessionStorage.setItem(surnameKey, data.userInfo.sirname);
         sessionStorage.setItem(vendorNameKey, data.userInfo.vendorname);
 
 
@@ -64,7 +66,7 @@ const login = async () => {
             }
         }
 
-        window.location.href = "Test";
+        window.location.href = "Index";
     }
     else{
         reportStatus("Login", "Username Or Password is Wrong");

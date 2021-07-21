@@ -3,7 +3,10 @@ const loginUrl = "https://tedarikportalapi.azurewebsites.net/api/v1/identity/";
 
 const jwtTokenKey = "jwtTokenKey";
 const refreshTokenKey = "refreshTokenKey";
+const nameKey = "nameKey";
+const surnameKey = "surnameKey";
 const vendorNameKey = "vendorName";
+
 
 
 const fetchData = async (uri, request, useAuthorizationHeader = false, tryRefreshToken = true) => {
