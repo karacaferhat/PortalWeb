@@ -15,6 +15,8 @@ namespace PortalWeb.Pages
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
+
+            
         }
 
         public void OnGet()
