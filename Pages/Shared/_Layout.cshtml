@@ -60,76 +60,116 @@
 
 <body class='@ViewData["Title"]'>
     <div class="wrapper">
-        <div id="sideMenu" class="side-menu vertical-nav">
-            <span class="brand" asp-area="" asp-page="/Index?loggedIn">
-                <img class="icon" src="~/imgs/navimgs/d_icon.svg" alt="Dönmez Icon">
-                <img class="full" src="~/imgs/navimgs/d_logo.svg" alt="Dönmez Logo">
-            </span>
-            <ul>
-                <li class="active">
-                    <a href="/Index?loggedIn">
-                        <span class="nav-link-icon fas fa-tachometer-alt"></span>
-                        <span class="nav-link-title">Ana Menü</span>
-                    </a>
-                </li>
+       <div id="sideMenu" class="side-menu vertical-nav">
+    <span class="brand" asp-area="" asp-page="/Index?loggedIn">
+        <img class="icon" src="~/imgs/navimgs/d_icon.svg" alt="Dönmez Icon">
+        <img class="full" src="~/imgs/navimgs/d_logo.svg" alt="Dönmez Logo">
+    </span>
+    <ul>
+        <li class="active">
+            <a href="/Index?loggedIn">
+                <span class="nav-link-icon fas fa-tachometer-alt"></span>
+                <span class="nav-link-title">Panel</span>
+            </a>
+        </li>
+        <li>
+            <a class="collapser collapsed" data-bs-toggle="collapse" href="#orders">
+                <span class="nav-link-icon fas fa-list-alt"></span>
+                <span class="nav-link-title">Siparişler</span>
+            </a>
+            <ul class="collapse" id="orders">
                 <li>
-                    <a class="collapser collapsed" data-bs-toggle="collapse" href="#orders">
-                        <span class="nav-link-icon fas fa-list-alt"></span>
-                        <span class="nav-link-title">Siparişler</span>
-                    </a>
-                    <ul class="collapse" id="orders">
-                        <li>
-                            <a asp-area="" asp-page="/Orders">
-                                <span class="nav-link-icon fas fa-inbox"></span>
-                                <span class="nav-link-title">Gelen Siparişler</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a asp-area="" asp-page="/#">
-                                <span class="nav-link-icon fas fa-shipping-fast"></span>
-                                <span class="nav-link-title">Sevkiyat</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a asp-area="" asp-page="/#">
-                                <span class="nav-link-icon fas fa-clipboard-list"></span>
-                                <span class="nav-link-title">Sevkiyat Listesi</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a asp-area="" asp-page="/#">
-                                <span class="nav-link-icon fas fa-paragraph"></span>
-                                <span class="nav-link-title">DÖF Formları</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a asp-area="" asp-page="/#">
-                                <span class="nav-link-icon fas fa-flag-checkered"></span>
-                                <span class="nav-link-title">DÖF Raporları</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a asp-area="" asp-page="/Documents">
-                                <span class="nav-link-icon fas fa-copy"></span>
-                                <span class="nav-link-title">Belgeler</span>
-                            </a>
-                        </li>
-                    </ul>
+                    <a class="collapser collapsed" data-bs-toggle="collapse">
+                        <span class="nav-link-icon fas fa-inbox"></span>
+                        <span class="nav-link-title">Bekleyen Siparişler</span>
+                    </a>                   
                 </li>
                 <li>
                     <a asp-area="" asp-page="/#">
-                        <span class="nav-link-icon fas fa-blender"></span>
-                        <span class="nav-link-title">Sevkiyatlar</span>
+                        <span class="nav-link-icon fas fa-shipping-fast"></span>
+                        <span class="nav-link-title">İptal Siparişler</span>
                     </a>
                 </li>
                 <li>
                     <a asp-area="" asp-page="/#">
-                        <span class="nav-link-icon fas fa-bus-alt"></span>
-                        <span class="nav-link-title">Belgeler</span>
+                        <span class="nav-link-icon fas fa-clipboard-list"></span>
+                        <span class="nav-link-title">Sevkiyat Hazır Sİparişler</span>
                     </a>
                 </li>
+                <li>
+                    <a asp-area="" asp-page="/#">
+                        <span class="nav-link-icon fas fa-paragraph"></span>
+                        <span class="nav-link-title">Askıya Alınan Siparişler</span>
+                    </a>
+                </li>               
             </ul>
-        </div>
+        </li>
+        <li>
+            <a class="collapser collapsed" data-bs-toggle="collapse" href="#deliveries">
+                <span class="nav-link-icon fas fa-list-alt"></span>
+                <span class="nav-link-title">Sevkiyat</span>
+            </a>
+            <ul class="collapse" id="deliveries">
+                <li>
+                    <a class="collapser collapsed" data-bs-toggle="collapse">
+                        <span class="nav-link-icon fas fa-inbox"></span>
+                        <span class="nav-link-title">Sevkiyat İşlemleri</span>
+                    </a>                   
+                </li>
+                <li>
+                    <a asp-area="" asp-page="/#">
+                        <span class="nav-link-icon fas fa-shipping-fast"></span>
+                        <span class="nav-link-title">Hazırlanan Sevkiyatlar</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="" asp-page="/#">
+                        <span class="nav-link-icon fas fa-clipboard-list"></span>
+                        <span class="nav-link-title">Yoldaki Sevkiyatlar</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="" asp-page="/#">
+                        <span class="nav-link-icon fas fa-paragraph"></span>
+                        <span class="nav-link-title">İade Sevkiyatlar</span>
+                    </a>
+                </li>               
+            </ul>
+        </li>
+         <li>
+            <a class="collapser collapsed" data-bs-toggle="collapse" href="#documents">
+                <span class="nav-link-icon fas fa-list-alt"></span>
+                <span class="nav-link-title">Belgeler</span>
+            </a>
+            <ul class="collapse" id="documents">
+                <li>
+                    <a class="collapser collapsed" data-bs-toggle="collapse">
+                        <span class="nav-link-icon fas fa-inbox"></span>
+                        <span class="nav-link-title">PPAP</span>
+                    </a>                   
+                </li>
+                <li>
+                    <a asp-area="" asp-page="/#">
+                        <span class="nav-link-icon fas fa-shipping-fast"></span>
+                        <span class="nav-link-title">Kalite</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="" asp-page="/#">
+                        <span class="nav-link-icon fas fa-clipboard-list"></span>
+                        <span class="nav-link-title">Yoldaki Sevkiyatlar</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="" asp-page="/#">
+                        <span class="nav-link-icon fas fa-paragraph"></span>
+                        <span class="nav-link-title">İade Sevkiyatlar</span>
+                    </a>
+                </li>               
+            </ul>
+        </li>
+    </ul>
+</div>
 
         <div class="hmf-container container-fluid">
             <header class="header">
