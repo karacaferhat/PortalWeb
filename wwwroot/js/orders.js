@@ -196,6 +196,8 @@ const sendData = async (button, method, reason = null) => {
   let data = await fetchData(baseUrl + method, request, false);
   btnTitle.text(text);
 
+  $("div.modal").modal("hide");
+  getOrdersAndUpdateTable();
 }
 
 
@@ -205,18 +207,20 @@ suspendButton.on("click", () => { sendData(suspendButton, "suspend", suspendReas
 
 searchButton.on("click", getOrdersAndUpdateTable);
 
-getOrdersAndUpdateTable();
-
-
 
 const toggleModal = id => {
   let array = getSelectedKeys();
   if (array.length === 0) return;
 
   $(id).find(".container").text("Siparisler:" + array);
-  $(id).modal("show")
+  $(id).modal("show");
 }
 
 $("#acceptModalToggleButton").on("click", ()=> {toggleModal("#acceptModal")});
 $("#cancelModalToggleButton").on("click", ()=> {toggleModal("#cancelModal")});
 $("#suspendModalToggleButton").on("click", ()=> {toggleModal("#suspendModal")});
+
+$("button.close").on('click', ()=>$("div.modal").modal("hide"));
+
+
+getOrdersAndUpdateTable();
