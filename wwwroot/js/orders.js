@@ -193,11 +193,21 @@ const sendData = async (button, method, reason = null) => {
 
   let text = btnTitle.text();
   btnTitle.text("Islem Gerceklestiriliyor");
+
   let data = await fetchData(baseUrl + method, request, false);
   btnTitle.text(text);
 
-  $("div.modal").modal("hide");
-  getOrdersAndUpdateTable();
+
+  if(data){
+    button.parents().find("div.modal").modal("hide");
+    getOrdersAndUpdateTable();
+  }
+  else{
+    button.parents("div.modal:first").find(".container").html(
+      /*html*/ 
+      `<span class="text-danger"><b>Islem Basarisiz</b></span>`
+      );
+  }
 }
 
 
@@ -219,8 +229,6 @@ const toggleModal = id => {
 $("#acceptModalToggleButton").on("click", ()=> {toggleModal("#acceptModal")});
 $("#cancelModalToggleButton").on("click", ()=> {toggleModal("#cancelModal")});
 $("#suspendModalToggleButton").on("click", ()=> {toggleModal("#suspendModal")});
-
-$("button.close").on('click', ()=>$("div.modal").modal("hide"));
 
 
 getOrdersAndUpdateTable();
