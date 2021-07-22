@@ -5,30 +5,82 @@
 }
 
 <div id="modals">
- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#acceptModal">
-  Launch static backdrop modal
-</button>
-
-
-    <div class="modal fade" id="acceptModal" role="dialog" tabindex="-1"
-        data-backdrop="static" data-keyboard="false"
+    <div class="modal fade" id="acceptModal" role="dialog" tabindex="-1" data-backdrop="static" data-keyboard="false"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Sipariş Kabul</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <div class="container">
+
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button id="acceptButton" class="btn btn-sm btn-primary rounded-pill ripple-fx no-border">
                         <span class="btn-icon fas fa-bookmark"></span>
                         <span class="btn-title">Sipariş Kabul</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="cancelModal" role="dialog" tabindex="-1" data-backdrop="static" data-keyboard="false"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Sipariş Kabul</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                    </div>
+                    <span>Neden: </span>
+                    <input type="text" id="cancelReasonText" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="cancelButton" class="btn btn-sm btn-danger rounded-pill ripple-fx no-border">
+                        <span class="btn-icon fas fa-ban"></span>
+                        <span class="btn-title">Sipariş İptal</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="suspendModal" role="dialog" tabindex="-1" data-backdrop="static" data-keyboard="false"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Sipariş Kabul</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                    </div>
+                    <span>Neden: </span>
+                    <input type="text" id="suspendReasonText" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="suspendButton" class="btn btn-sm btn-secondary rounded-pill ripple-fx no-border">
+                        <span class="btn-icon fas fa-hourglass"></span>
+                        <span class="btn-title">Askıya Al</span>
+
                     </button>
                 </div>
             </div>
@@ -79,16 +131,15 @@
     </div>
 
     <div class="action-section">
-        <button button type="button" class="btn btn-sm btn-primary rounded-pill ripple-fx no-border"
-         data-toggle="modal" data-target="#exampleModalLong">
+        <button id="acceptModalToggleButton" class="btn btn-sm btn-primary rounded-pill ripple-fx no-border">
             <span class="btn-icon fas fa-bookmark"></span>
             <span class="btn-title">Sipariş Kabul</span>
         </button>
-        <button id="cancelButton" class="btn btn-sm btn-danger rounded-pill ripple-fx no-border">
+        <button id="cancelModalToggleButton" class="btn btn-sm btn-danger rounded-pill ripple-fx no-border">
             <span class="btn-icon fas fa-ban"></span>
             <span class="btn-title">Sipariş İptal</span>
         </button>
-        <button id="suspendButton" class="btn btn-sm btn-secondary rounded-pill ripple-fx no-border">
+        <button id="suspendModalToggleButton" class="btn btn-sm btn-secondary rounded-pill ripple-fx no-border">
             <span class="btn-icon fas fa-hourglass"></span>
             <span class="btn-title">Askıya Al</span>
         </button>
