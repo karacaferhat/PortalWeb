@@ -1,0 +1,159 @@
+﻿@page
+@model OrdersModel
+@{
+    ViewBag.Title = "orders";
+}
+
+<div id="modals">
+    <div class="modal fade" id="acceptModal" role="dialog" tabindex="-1" data-backdrop="static" data-keyboard="false"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Sipariş Kabul</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="acceptButton" class="btn btn-sm btn-primary rounded-pill ripple-fx no-border">
+                        <span class="btn-icon fas fa-bookmark"></span>
+                        <span class="btn-title">Sipariş Kabul</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="cancelModal" role="dialog" tabindex="-1" data-backdrop="static" data-keyboard="false"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Sipariş Kabul</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                    </div>
+                    <span>Neden: </span>
+                    <input type="text" id="cancelReasonText" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="cancelButton" class="btn btn-sm btn-danger rounded-pill ripple-fx no-border">
+                        <span class="btn-icon fas fa-ban"></span>
+                        <span class="btn-title">Sipariş İptal</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="suspendModal" role="dialog" tabindex="-1" data-backdrop="static" data-keyboard="false"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Sipariş Kabul</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                    </div>
+                    <span>Neden: </span>
+                    <input type="text" id="suspendReasonText" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="suspendButton" class="btn btn-sm btn-secondary rounded-pill ripple-fx no-border">
+                        <span class="btn-icon fas fa-hourglass"></span>
+                        <span class="btn-title">Askıya Al</span>
+
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="orders-content">
+    <div class="filter-section">
+        <div class="filter-form">
+            <div class="text-inputs-field">
+                <div class="filter-heading">Arama Kriterleri</div>
+                <div class="mat-input-inline-group">
+                    <div class="mat-input dx-field">
+                        <div class="dx-field-label">Baslangic Tarihi</div>
+                        <div class="dx-field-value">
+                            <div id="beggingDate"></div>
+                        </div>
+                    </div>
+                    <div class="mat-input dx-field">
+                        <div class="dx-field-label">Bitis Tarihi</div>
+                        <div class="dx-field-value">
+                            <div id="endDate"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mat-input mat-text">
+                    <input id="orderNo" type="text">
+                    <span class="placeholder">Sipariş No</span>
+                    <span class="input-border"></span>
+                </div>
+                <div class="mat-input mat-text">
+                    <input id="sku" type="text">
+                    <span class="placeholder">SKU</span>
+                    <span class="input-border"></span>
+                </div>
+            </div>
+
+        </div>
+        <div class="action-footer">
+            <button id="searchButton" class="btn btn-sm btn-outline-primary rounded-pill ripple-fx">
+                <span class="btn-icon fas fa-tasks"></span>
+                <span class="btn-title">Tamam</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="action-section">
+        <button id="acceptModalToggleButton" class="btn btn-sm btn-primary rounded-pill ripple-fx no-border">
+            <span class="btn-icon fas fa-bookmark"></span>
+            <span class="btn-title">Sipariş Kabul</span>
+        </button>
+        <button id="cancelModalToggleButton" class="btn btn-sm btn-danger rounded-pill ripple-fx no-border">
+            <span class="btn-icon fas fa-ban"></span>
+            <span class="btn-title">Sipariş İptal</span>
+        </button>
+        <button id="suspendModalToggleButton" class="btn btn-sm btn-secondary rounded-pill ripple-fx no-border">
+            <span class="btn-icon fas fa-hourglass"></span>
+            <span class="btn-title">Askıya Al</span>
+        </button>
+
+    </div>
+
+    <div class="table-section">
+        <div id="gridContainer"></div>
+    </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.0/polyfill.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/3.3.1/exceljs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>
+
+<script src="~/js/orders.js" asp-append-version="true"></script>
