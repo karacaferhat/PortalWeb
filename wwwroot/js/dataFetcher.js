@@ -1,5 +1,6 @@
 const loginUrl = "https://tedarikportalapi.azurewebsites.net/api/v1/identity/";
 
+const dateFormat = "yyyy-MM-dd";
 
 const jwtTokenKey = "jwtTokenKey";
 const refreshTokenKey = "refreshTokenKey";
