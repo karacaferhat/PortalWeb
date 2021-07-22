@@ -194,3 +194,5 @@ suspendButton.on("click", ()=>{sendData("suspend", reasonText.val())});
 searchButton.on("click", getOrdersAndUpdateTable);
 
 getOrdersAndUpdateTable();
+
+$("#acceptModal").modal("show");
