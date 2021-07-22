@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\TedarikPortal\\PortalWeb\\PortalWeb.csproj": {}
+    "C:\\Users\\MeteARSLAN\\Desktop\\GitHub\\NCode\\PortalWeb\\PortalWeb.csproj": {}
   },
   "projects": {
-    "C:\\TedarikPortal\\PortalWeb\\PortalWeb.csproj": {
+    "C:\\Users\\MeteARSLAN\\Desktop\\GitHub\\NCode\\PortalWeb\\PortalWeb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\TedarikPortal\\PortalWeb\\PortalWeb.csproj",
+        "projectUniqueName": "C:\\Users\\MeteARSLAN\\Desktop\\GitHub\\NCode\\PortalWeb\\PortalWeb.csproj",
         "projectName": "PortalWeb",
-        "projectPath": "C:\\TedarikPortal\\PortalWeb\\PortalWeb.csproj",
-        "packagesPath": "C:\\Users\\tugce\\.nuget\\packages\\",
-        "outputPath": "C:\\TedarikPortal\\PortalWeb\\obj\\",
+        "projectPath": "C:\\Users\\MeteARSLAN\\Desktop\\GitHub\\NCode\\PortalWeb\\PortalWeb.csproj",
+        "packagesPath": "C:\\Users\\MeteARSLAN\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\MeteARSLAN\\Desktop\\GitHub\\NCode\\PortalWeb\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\tugce\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\MeteARSLAN\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -42,6 +42,12 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

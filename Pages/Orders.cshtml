@@ -3,61 +3,75 @@
 @{
     ViewBag.Title = "orders";
 }
-<div class="orders-content">
 
+<div id="modals">
+ <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#acceptModal">
+  Launch static backdrop modal
+</button>
+
+
+    <div class="modal fade" id="acceptModal" role="dialog" tabindex="-1"
+        data-backdrop="static" data-keyboard="false"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="acceptButton" class="btn btn-sm btn-primary rounded-pill ripple-fx no-border">
+                        <span class="btn-icon fas fa-bookmark"></span>
+                        <span class="btn-title">Sipariş Kabul</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="orders-content">
     <div class="filter-section">
         <div class="filter-form">
-            <div class="text-inputs-field col">
-                <div class="filter-heading">Filter by Attributes</div>
+            <div class="text-inputs-field">
+                <div class="filter-heading">Arama Kriterleri</div>
                 <div class="mat-input-inline-group">
-                    <div class="mat-input mat-text">
-                        <input type="date">
-                        <span class="placeholder">Tarih Başlangıç</span>
-                        <span class="input-border"></span>
+                    <div class="mat-input dx-field">
+                        <div class="dx-field-label">Baslangic Tarihi</div>
+                        <div class="dx-field-value">
+                            <div id="beggingDate"></div>
+                        </div>
                     </div>
-                    <div class="mat-input mat-text">
-                        <input type="date">
-                        <span class="placeholder">Tarih Bitiş</span>
-                        <span class="input-border"></span>
+                    <div class="mat-input dx-field">
+                        <div class="dx-field-label">Bitis Tarihi</div>
+                        <div class="dx-field-value">
+                            <div id="endDate"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="mat-input mat-text">
-                    <input type="text">
+                    <input id="orderNo" type="text">
                     <span class="placeholder">Sipariş No</span>
                     <span class="input-border"></span>
                 </div>
                 <div class="mat-input mat-text">
-                    <input type="text">
-                    <span class="placeholder">Ürün Adı</span>
+                    <input id="sku" type="text">
+                    <span class="placeholder">SKU</span>
                     <span class="input-border"></span>
                 </div>
             </div>
-            <div class="checkboxes-field col-auto">
-                <div class="filter-heading">Filter by Status</div>
-                <label class="mat-input mat-checkbox">
-                    <input type="checkbox">
-                    <span class="checkbox"></span>
-                    <span class="label-text">Yeni</span>
-                </label>
-                <label class="mat-input mat-checkbox">
-                    <input type="checkbox">
-                    <span class="checkbox"></span>
-                    <span class="label-text">Beklemede</span>
-                </label>
-                <label class="mat-input mat-checkbox">
-                    <input type="checkbox">
-                    <span class="checkbox"></span>
-                    <span class="label-text">İptal</span>
-                </label>
-                <label class="mat-input mat-checkbox">
-                    <input type="checkbox">
-                    <span class="checkbox"></span>
-                    <span class="label-text">Kabul</span>
-                </label>
-            </div>
+
         </div>
         <div class="action-footer">
-            <button class="btn btn-sm btn-outline-primary rounded-pill ripple-fx">
+            <button id="searchButton" class="btn btn-sm btn-outline-primary rounded-pill ripple-fx">
                 <span class="btn-icon fas fa-tasks"></span>
                 <span class="btn-title">Tamam</span>
             </button>
@@ -65,182 +79,30 @@
     </div>
 
     <div class="action-section">
-        <button class="btn btn-sm btn-primary rounded-pill ripple-fx no-border">
+        <button button type="button" class="btn btn-sm btn-primary rounded-pill ripple-fx no-border"
+         data-toggle="modal" data-target="#exampleModalLong">
             <span class="btn-icon fas fa-bookmark"></span>
             <span class="btn-title">Sipariş Kabul</span>
         </button>
-        <button class="btn btn-sm btn-danger rounded-pill ripple-fx no-border">
+        <button id="cancelButton" class="btn btn-sm btn-danger rounded-pill ripple-fx no-border">
             <span class="btn-icon fas fa-ban"></span>
             <span class="btn-title">Sipariş İptal</span>
         </button>
-        <button class="btn btn-sm btn-secondary rounded-pill ripple-fx no-border">
+        <button id="suspendButton" class="btn btn-sm btn-secondary rounded-pill ripple-fx no-border">
             <span class="btn-icon fas fa-hourglass"></span>
-            <span class="btn-title">Beklemeye Al</span>
+            <span class="btn-title">Askıya Al</span>
         </button>
-        <button class="btn btn-sm btn-success rounded-pill ripple-fx no-border">
-            <span class="btn-icon fas fa-check"></span>
-            <span class="btn-title">Sevk Hazır</span>
-        </button>
-        <button class="btn btn-sm btn-warning rounded-pill ripple-fx no-border">
-            <span class="btn-icon fas fa-exclamation-triangle"></span>
-            <span class="btn-title">Warning Button</span>
-        </button>
-        <button class="btn btn-sm btn-info rounded-pill ripple-fx no-border">
-            <span class="btn-icon fas fa-info-circle"></span>
-            <span class="btn-title">Info Button</span>
-        </button>
-        <button class="btn btn-sm btn-light rounded-pill ripple-fx no-border">
-            <span class="btn-icon far fa-moon"></span>
-            <span class="btn-title">Light Button</span>
-        </button>
-        <button class="btn btn-sm btn-dark rounded-pill ripple-fx no-border">
-            <span class="btn-icon fas fa-moon"></span>
-            <span class="btn-title">Dark Button</span>
-        </button>
-        <button class="btn btn-sm btn-link rounded-pill ripple-fx no-border">
-            <span class="btn-icon fas fa-link"></span>
-            <span class="btn-title">Link Button</span>
-        </button>
+
     </div>
 
     <div class="table-section">
-        <table class="table table-responsive table-bordered table-hover m-0">
-            <thead class="bg-secondary text-light">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>&#64;mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>&#64;fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>&#64;twitter</td>
-                </tr>
-                <tr>
-                    <th scope="row">4</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>&#64;mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">5</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>&#64;fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">6</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>&#64;twitter</td>
-                </tr>
-                <tr>
-                    <th scope="row">7</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>&#64;mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">8</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>&#64;fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">9</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>&#64;twitter</td>
-                </tr>
-                <tr>
-                    <th scope="row">10</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>&#64;mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">11</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>&#64;fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">12</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>&#64;twitter</td>
-                </tr>
-                <tr>
-                    <th scope="row">13</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>&#64;mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">14</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>&#64;fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">15</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>&#64;twitter</td>
-                </tr>
-                <tr>
-                    <th scope="row">16</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>&#64;mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">17</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>&#64;fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">18</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>&#64;twitter</td>
-                </tr>
-                <tr>
-                    <th scope="row">19</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>&#64;mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">20</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>&#64;fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">21</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>&#64;twitter</td>
-                </tr>
-            </tbody>
-        </table>
+        <div id="gridContainer"></div>
     </div>
 </div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.0/polyfill.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/3.3.1/exceljs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>
+
+<script src="~/js/orders.js" asp-append-version="true"></script>

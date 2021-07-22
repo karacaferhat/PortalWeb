@@ -1,15 +1,35 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewBag.Title="main-page dashboard";
+    ViewBag.Title = "main-page dashboard";
 }
 
-<script>
-    const test = async () => {//testler bittikten sonra sil
-        let request = {lang : "turkish"};
-        let data = await fetchData("https://tedarikportalcache.azurewebsites.net/api/v1/cache/getLang/", request, true);
-        console.log(data)
-    }
-</script>
+<button id="denemeB" type="button" class="btn btn-primary" data-toggle="modal" data-target="#acceptModal">
+    Launch static backdrop modal
+</button>
 
-<button id="testButton" class="btn btn-primary" onclick="test()">Test</button>
+  <div class="modal fade" id="ErrorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hata Detayları</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Kapat">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id="ErrorModalBody" class="modal-body">
+      
+      </div>
+      <div class="modal-footer">
+        <button id="btnKapat" type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+        <button id="btnHataBildir"  type="button" class="btn btn-primary">Hata Bildir</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    $("#denemeB").on("click",_=>{
+        $("#ErrorModal").modal("show")
+    });
+</script>

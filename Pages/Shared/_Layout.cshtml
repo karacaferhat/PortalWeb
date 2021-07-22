@@ -1,326 +1,253 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-    <head>
-        @*<title>@ViewData["Title"] - PortalWeb</title>*@
-        <title>Dönmez Debriyaj - PortalWeb</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        @* FAVICON PACKAGE *@
-        <meta name="msapplication-TileColor" content="#fff">
-        <meta name="msapplication-TileImage" content="~/favicon/ms-icon-144x144.png">
-        <meta name="theme-color" content="#fff">
-        <link rel="apple-touch-icon" sizes="57x57" href="~/favicon/apple-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="~/favicon/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="~/favicon/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="~/favicon/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="~/favicon/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="~/favicon/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="~/favicon/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="~/favicon/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="~/favicon/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192"  href="~/favicon/android-icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="~/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="~/favicon/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="~/favicon/favicon-16x16.png">
-        <link rel="manifest" href="~/favicon/manifest.json">
-        @* END of FAVICON PACKAGE *@
+<head>
+    @*<title>@ViewData["Title"] - PortalWeb</title>*@
+    <title>Dönmez Debriyaj - PortalWeb</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        @* BASIC FRAMEWORKS *@
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-utilities.min.css">
-        <link rel="stylesheet" href="~/fonts/fa.css">
-        <link rel="stylesheet" href="~/fonts/os.css">
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        @* END of BASIC FRAMEWORKS *@
+    @* FAVICON PACKAGE *@
+    <meta name="msapplication-TileColor" content="#fff">
+    <meta name="msapplication-TileImage" content="~/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#fff">
+    <link rel="apple-touch-icon" sizes="57x57" href="~/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="~/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="~/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="~/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="~/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/favicon/favicon-16x16.png">
+    <link rel="manifest" href="~/favicon/manifest.json">
+    @* END of FAVICON PACKAGE *@
 
-        @* EXTENDED FRAMEWORKS *@
-        <link rel="stylesheet" href="~/css/hur-preloader.css">
-        <link rel="stylesheet" href="~/css/hur-mat.css">
-        @* END of EXTENDED FRAMEWORKS *@
+    @* BASIC FRAMEWORKS *@
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-utilities.min.css">
+    <link rel="stylesheet" href="~/fonts/fa.css">
+    <link rel="stylesheet" href="~/fonts/os.css">
 
-        @* ncode *@
-        <link rel="stylesheet" href="~/css/ncode.css">
-        @* END of ncode *@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @* END of BASIC FRAMEWORKS *@
 
-        @* CUSTOMER *@
-        <link rel="stylesheet" href="~/css/customer.css">
-        @* END of CUSTOMER *@
+    @* EXTENDED FRAMEWORKS *@
+    <link rel="stylesheet" href="~/css/hur-preloader.css">
+    <link rel="stylesheet" href="~/css/hur-mat.css">
+    @* END of EXTENDED FRAMEWORKS *@
 
-        @* Data Fetcher *@
-        <script src="~/js/dataFetcher.js" asp-append-version="true"></script>
-    </head>
+    @* ncode *@
+    <link rel="stylesheet" href="~/css/ncode.css">
+    @* END of ncode *@
 
-    <body class='@ViewData["Title"]'>
-        <div class="wrapper">
-            <div id="sideMenu" class="side-menu vertical-nav">
-                <span class="brand" asp-area="" asp-page="/Index?loggedIn">
-                    <img class="icon" src="~/imgs/navimgs/d_icon.svg" alt="Dönmez Icon">
-                    <img class="full" src="~/imgs/navimgs/d_logo.svg" alt="Dönmez Logo">
-                </span>
-                <ul>
-                    <li class="active">
-                        <a href="/Index?loggedIn">
-                            <span class="nav-link-icon fas fa-tachometer-alt"></span>
-                            <span class="nav-link-title">Ana Menü</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="collapser collapsed" data-bs-toggle="collapse" href="#orders">
-                            <span class="nav-link-icon fas fa-list-alt"></span>
-                            <span class="nav-link-title">Siparişler</span>
-                        </a>
-                        <ul class="collapse" id="orders">
-                            <li>
-                                <a asp-area="" asp-page="/Orders">
-                                    <span class="nav-link-icon fas fa-flag-checkered"></span>
-                                    <span class="nav-link-title">Yeni</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-box-open"></span>
-                                    <span class="nav-link-title">Hazırlık</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-clock"></span>
-                                    <span class="nav-link-title">Askıda </span>
-                                </a>
-                            </li>
-                              <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-trash-alt"></span>
-                                    <span class="nav-link-title">İptal</span>
-                                </a>
-                            </li>                            
-                        </ul>
-                    </li>
-                    <li>
-                        <a asp-area="" asp-page="/#">
-                            <span class="nav-link-icon fas fa-blender"></span>
-                            <span class="nav-link-title">Sevkiyatlar</span>
-                        </a>
-                        <ul class="collapse" id="deliveries">
-                            <li>
-                                <a asp-area="" asp-page="/Orders">
-                                    <span class="nav-link-icon fas fa-flag-checkered"></span>
-                                    <span class="nav-link-title">Sevkiyat Oluştur</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-box-open"></span>
-                                    <span class="nav-link-title">Hazırlanan Sevkiyatlar</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-clock"></span>
-                                    <span class="nav-link-title">Onaylı Sevkiyatlar </span>
-                                </a>
-                            </li>
-                              <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-trash-alt"></span>
-                                    <span class="nav-link-title">Yoldakiler</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-trash-alt"></span>
-                                    <span class="nav-link-title">Kabul Edilmiş Sevkiyatlar</span>
-                                </a>
-                            </li>
-                              <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-trash-alt"></span>
-                                    <span class="nav-link-title">Red Edilmiş Sevkiyatlar</span>
-                                </a>
-                            </li>                               
-                        </ul>
-                    </li>
-                    <li>
-                        <a asp-area="" asp-page="/#">
-                            <span class="nav-link-icon fas fa-bus-alt"></span>
-                            <span class="nav-link-title">Belgeler</span>
-                        </a>
-                          <ul class="collapse" id="documents">
-                            <li>
-                                <a asp-area="" asp-page="/Orders">
-                                    <span class="nav-link-icon fas fa-flag-checkered"></span>
-                                    <span class="nav-link-title">PPAP</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-box-open"></span>
-                                    <span class="nav-link-title">Sözleşme</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-clock"></span>
-                                    <span class="nav-link-title">Kalite Sözleşmesi</span>
-                                </a>
-                            </li>
-                              <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-trash-alt"></span>
-                                    <span class="nav-link-title">Lojistik Sözleşmesi</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-trash-alt"></span>
-                                    <span class="nav-link-title">Kalıp Aparat Sözleşmesi</span>
-                                </a>
-                            </li>
-                              <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-trash-alt"></span>
-                                    <span class="nav-link-title">Paketleme Formu</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-trash-alt"></span>
-                                    <span class="nav-link-title">Gizlilik Sözleşmesi</span>
-                                </a>
-                            </li>        
-                            <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-trash-alt"></span>
-                                    <span class="nav-link-title">Kalite Belgeleri</span>
-                                </a>
-                            </li>
-                             <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-trash-alt"></span>
-                                    <span class="nav-link-title">Ön Değerlendirme Formu</span>
-                                </a>
-                            </li> 
-                             <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-trash-alt"></span>
-                                    <span class="nav-link-title"> Denetim Raporları</span>
-                                </a>
-                            </li> 
-                             <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-trash-alt"></span>
-                                    <span class="nav-link-title">APQP Belgeleri</span>
-                                </a>
-                            </li> 
-                             <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-trash-alt"></span>
-                                    <span class="nav-link-title">Yerleşim Yeri Denetimi</span>
-                                </a>
-                            </li>
-                             <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-trash-alt"></span>
-                                    <span class="nav-link-title">Ziyaret Notları</span>
-                                </a>
-                            </li>                                        
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+    @* CUSTOMER *@
+    <link rel="stylesheet" href="~/css/customer.css">
+    @* END of CUSTOMER *@
 
-            <div class="hmf-container container-fluid">
-                <header class="header">
-                    <nav class="navbar navbar-expand-sm navbar-toggleable-sm shadow-sm">
-                        <div id="sideMenuCollapser" class="side-menu-collapser">
-                            <div class="bar"></div>
-                            <div class="bar"></div>
-                            <div class="bar"></div>
-                        </div>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="main-navbar navbar-collapse collapse" id="mainNavbar">
-                            <form class="search-group">
-                                <span class="search-icon fas fa-search"></span>
-                                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-                            </form>
-                            <ul class="navbar-nav">
-                                <li class="nav-item icon-only">
-                                    <a class="nav-link far fa-envelope" asp-area="" asp-page="/#"></a>
-                                </li>
-                                <li class="nav-item icon-only">
-                                    <a class="nav-link far fa-bell" asp-area="" asp-page="/#"></a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="user nav-link dropdown-toggle" href="#" id="userMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <span class="user-img">
-                                            @* d-none X d-flex Toggle === Resim yüklenmiş/yüklenmemiş *@
-                                            <span class="d-none user-icon fas fa-user"></span>
-                                            @* d-none X d-flex Toggle === Resim yüklenmiş/yüklenmemiş *@
-                                            @* ~/imgs/navimgs/image-1.jpg *@@* AI Human Face Generator *@
-                                            <img class="d-flex" src="imgs/navimgs/d_icon.svg" alt="User Image">
-                                        </span>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
-                                        <li>
-                                            <a class="dropdown-item" href="#">
-                                                <div class="user-data">
-                                                    @* d-none X d-flex Toggle === Resim yüklenmiş/yüklenmemiş *@
-                                                    @* ~/imgs/navimgs/image-1.jpg *@@* AI Human Face Generator *@
-                                                    <img class="d-flex" src="imgs/navimgs/d_icon.svg" alt="">
-                                                    <div id="userNameText" class="user-name">Jane/John Doe Loremipsum</div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li>
-                                            <a class="dropdown-item" href="#">
-                                                <span class="dd-icon far fa-thumbs-up"></span>
-                                                <span class="dd-title">Action</span>
-                                            </a>
-                                        </li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li>
-                                            <a class="dropdown-item" href="#">
-                                                <span class="dd-icon fas fa-sign-out-alt"></span>
-                                                <span class="dd-title">Sign out</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                </header>
-                <main class="main content" role="main">@RenderBody()</main>
-                <footer class="footer">
-                    <div class="d-flex text-secondary">
-                        <small class="my-auto"><small><b>&copy; 2021 - PortalWeb</b> <i>(Bu portal Dönmez Debriyaj Sanayi ve Ticaret A.Ş. adına ncode Yazılım Ltd. Şti. tarafından geliştirilmiştir.)</i></small></small>
-                    </div>
-                </footer>
-            </div>@* END of CONTAINER *@
-        </div>@* END of WRAPPER *@
-        <div class="fs-preloader">
-            <div class="sring">
-                <div class="ring-item"></div>
-                <div class="ring-item"></div>
-                <div class="ring-item"></div>
-                <div class="ring-item"></div>
-            </div>
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/21.1.4/css/dx.light.css">
+    <!-- DevExtreme library -->
+    <script type="text/javascript" src="https://cdn3.devexpress.com/jslib/21.1.4/js/dx.all.js"></script>
+
+    @* Data Fetcher *@
+    <script src="~/js/dataFetcher.js" asp-append-version="true"></script>
+</head>
+
+<body class='@ViewData["Title"]'>
+    <div class="wrapper">
+        <div id="sideMenu" class="side-menu vertical-nav">
+            <span class="brand" asp-area="" asp-page="/Index?loggedIn">
+                <img class="icon" src="~/imgs/navimgs/d_icon.svg" alt="Dönmez Icon">
+                <img class="full" src="~/imgs/navimgs/d_logo.svg" alt="Dönmez Logo">
+            </span>
+            <ul>
+                <li class="active">
+                    <a href="/Index?loggedIn">
+                        <span class="nav-link-icon fas fa-tachometer-alt"></span>
+                        <span class="nav-link-title">Ana Menü</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="collapser collapsed" data-bs-toggle="collapse" href="#orders">
+                        <span class="nav-link-icon fas fa-list-alt"></span>
+                        <span class="nav-link-title">Siparişler</span>
+                    </a>
+                    <ul class="collapse" id="orders">
+                        <li>
+                            <a asp-area="" asp-page="/Orders">
+                                <span class="nav-link-icon fas fa-inbox"></span>
+                                <span class="nav-link-title">Gelen Siparişler</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-page="/#">
+                                <span class="nav-link-icon fas fa-shipping-fast"></span>
+                                <span class="nav-link-title">Sevkiyat</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-page="/#">
+                                <span class="nav-link-icon fas fa-clipboard-list"></span>
+                                <span class="nav-link-title">Sevkiyat Listesi</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-page="/#">
+                                <span class="nav-link-icon fas fa-paragraph"></span>
+                                <span class="nav-link-title">DÖF Formları</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-page="/#">
+                                <span class="nav-link-icon fas fa-flag-checkered"></span>
+                                <span class="nav-link-title">DÖF Raporları</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-page="/Documents">
+                                <span class="nav-link-icon fas fa-copy"></span>
+                                <span class="nav-link-title">Belgeler</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a asp-area="" asp-page="/#">
+                        <span class="nav-link-icon fas fa-blender"></span>
+                        <span class="nav-link-title">Sevkiyatlar</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="" asp-page="/#">
+                        <span class="nav-link-icon fas fa-bus-alt"></span>
+                        <span class="nav-link-title">Belgeler</span>
+                    </a>
+                </li>
+            </ul>
         </div>
-        @* EXTENDED FRAMEWORKS *@
-        <script src="~/js/hur-mat.js" asp-append-version="true"></script>
-        @* END of EXTENDED FRAMEWORKS *@
-        @* NCODE *@
-        <script src="~/js/ncode.js" asp-append-version="true"></script>
-        @* END of NCODE *@
-        <script src="~/js/customer.js" asp-append-version="true"></script>
 
-        <script src="~/js/setUserInfo.js" asp-append-version="true"></script>
-        
-        @await RenderSectionAsync("Scripts", required: false)
-    </body>
+        <div class="hmf-container container-fluid">
+            <header class="header">
+                <nav class="navbar navbar-expand-sm navbar-toggleable-sm shadow-sm">
+                    <div id="sideMenuCollapser" class="side-menu-collapser">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+                        aria-controls="navbarToggleExternalContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="main-navbar navbar-collapse collapse" id="mainNavbar">
+                        <form class="search-group">
+                            <span class="search-icon fas fa-search"></span>
+                            <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                        </form>
+                        <ul class="navbar-nav">
+                            <li class="nav-item icon-only">
+                                <a class="nav-link far fa-envelope" asp-area="" asp-page="/#"></a>
+                            </li>
+                            <li class="nav-item icon-only">
+                                <a class="nav-link far fa-bell" asp-area="" asp-page="/#"></a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="user nav-link dropdown-toggle" href="#" id="userMenu" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="user-img">
+                                        @* d-none X d-flex Toggle === Resim yüklenmiş/yüklenmemiş *@
+                                        <span class="d-none user-icon fas fa-user"></span>
+                                        @* d-none X d-flex Toggle === Resim yüklenmiş/yüklenmemiş *@
+                                        @* ~/imgs/navimgs/image-1.jpg *@@* AI Human Face Generator *@
+                                        <img class="d-flex" src="imgs/navimgs/d_icon.svg" alt="User Image">
+                                    </span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <div class="user-data">
+                                                @* d-none X d-flex Toggle === Resim yüklenmiş/yüklenmemiş *@
+                                                @* ~/imgs/navimgs/image-1.jpg *@@* AI Human Face Generator *@
+                                                <img class="d-flex" src="imgs/navimgs/d_icon.svg" alt="">
+
+                                                <div class="col">
+                                                    <div class="user-name row">
+                                                        <span id="loginVendorNameText"></span>
+
+                                                    </div>
+                                                    <div class="user-name row">
+                                                        <b>
+                                                            <span id="loginNameText"></span>
+                                                            <span id="loginSurnameText"></span>
+                                                        </b>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <span class="dd-icon far fa-thumbs-up"></span>
+                                            <span class="dd-title">Action</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <span class="dd-icon fas fa-sign-out-alt"></span>
+                                            <span class="dd-title">Sign out</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <main class="main content" role="main">
+                @RenderBody()</main>
+            <footer class="footer">
+                <div class="d-flex text-secondary">
+                    <small class="my-auto"><small><b>&copy; 2021 - PortalWeb</b> <i>(Bu portal Dönmez Debriyaj Sanayi ve
+                                Ticaret A.Ş. adına ncode Yazılım Ltd. Şti. tarafından
+                                geliştirilmiştir.)</i></small></small>
+                </div>
+            </footer>
+        </div>@* END of CONTAINER *@
+    </div>@* END of WRAPPER *@
+    <div class="fs-preloader">
+        <div class="sring">
+            <div class="ring-item"></div>
+            <div class="ring-item"></div>
+            <div class="ring-item"></div>
+            <div class="ring-item"></div>
+        </div>
+    </div>
+
+
+    @* EXTENDED FRAMEWORKS *@
+    <script src="~/js/hur-mat.js" asp-append-version="true"></script>
+    @* END of EXTENDED FRAMEWORKS *@
+
+
+    @* NCODE *@
+    <script src="~/js/ncode.js" asp-append-version="true"></script>
+    @* END of NCODE *@
+    <script src="~/js/customer.js" asp-append-version="true"></script>
+
+    <script src="~/js/setUserInfo.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
 </html>

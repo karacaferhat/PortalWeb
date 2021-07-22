@@ -1,8 +1,24 @@
 {
   "version": 2,
-  "dgSpecHash": "6fq2oYIQcVQiMG1ml3x9b10XqU5mZdXltN3/6jg8Xz+Kc2M/4+bTrxE6Tz4sGC0auMDm7qn5+AnfywlSAPJ6ZQ==",
+  "dgSpecHash": "9jvmef1By6lvg6bPcoaciEV4aojCy763bXhKk6jYU1zHHzS49g1HGJi+EzG2IkqqqfYR4XP0iuxzwHLxU/HGWw==",
   "success": true,
-  "projectFilePath": "C:\\TedarikPortal\\PortalWeb\\PortalWeb.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\MeteARSLAN\\Desktop\\GitHub\\NCode\\PortalWeb\\PortalWeb.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\MeteARSLAN\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\5.0.8\\microsoft.aspnetcore.mvc.razor.extensions.5.0.8.nupkg.sha512",
+    "C:\\Users\\MeteARSLAN\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\5.0.8\\microsoft.aspnetcore.mvc.razor.runtimecompilation.5.0.8.nupkg.sha512",
+    "C:\\Users\\MeteARSLAN\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\5.0.8\\microsoft.aspnetcore.razor.language.5.0.8.nupkg.sha512",
+    "C:\\Users\\MeteARSLAN\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.0.0\\microsoft.codeanalysis.analyzers.3.0.0.nupkg.sha512",
+    "C:\\Users\\MeteARSLAN\\.nuget\\packages\\microsoft.codeanalysis.common\\3.8.0\\microsoft.codeanalysis.common.3.8.0.nupkg.sha512",
+    "C:\\Users\\MeteARSLAN\\.nuget\\packages\\microsoft.codeanalysis.csharp\\3.8.0\\microsoft.codeanalysis.csharp.3.8.0.nupkg.sha512",
+    "C:\\Users\\MeteARSLAN\\.nuget\\packages\\microsoft.codeanalysis.razor\\5.0.8\\microsoft.codeanalysis.razor.5.0.8.nupkg.sha512",
+    "C:\\Users\\MeteARSLAN\\.nuget\\packages\\microsoft.extensions.dependencymodel\\5.0.0\\microsoft.extensions.dependencymodel.5.0.0.nupkg.sha512",
+    "C:\\Users\\MeteARSLAN\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.2\\microsoft.netcore.platforms.2.1.2.nupkg.sha512",
+    "C:\\Users\\MeteARSLAN\\.nuget\\packages\\system.collections.immutable\\5.0.0\\system.collections.immutable.5.0.0.nupkg.sha512",
+    "C:\\Users\\MeteARSLAN\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
+    "C:\\Users\\MeteARSLAN\\.nuget\\packages\\system.reflection.metadata\\5.0.0\\system.reflection.metadata.5.0.0.nupkg.sha512",
+    "C:\\Users\\MeteARSLAN\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.7.1\\system.runtime.compilerservices.unsafe.4.7.1.nupkg.sha512",
+    "C:\\Users\\MeteARSLAN\\.nuget\\packages\\system.text.encoding.codepages\\4.5.1\\system.text.encoding.codepages.4.5.1.nupkg.sha512",
+    "C:\\Users\\MeteARSLAN\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512"
+  ],
   "logs": []
 }
