@@ -73,6 +73,7 @@ const getOrdersAndUpdateTable = async () => {
       { dataField: "sku", caption: "SKU" }
     ],
     showBorders: true,
+    noDataText:"Kayıt bulunamadı", 
     allowColumnResizing: true,
     rowAlternationEnabled: true,
     columnAutoWidth: true,

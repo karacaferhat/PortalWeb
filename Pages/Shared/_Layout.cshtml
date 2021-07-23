@@ -77,28 +77,28 @@
                 <span class="nav-link-icon fas fa-list-alt"></span>
                 <span class="nav-link-title">Siparişler</span>
             </a>
-            <ul class="collapse" id="orders">
-                <li>
-                    <a class="collapser collapsed" data-bs-toggle="collapse">
-                        <span class="nav-link-icon fas fa-inbox"></span>
-                        <span class="nav-link-title">Bekleyen Siparişler</span>
-                    </a>                   
-                </li>
-                <li>
-                    <a asp-area="" asp-page="/#">
+            <ul class="collapse" id="orders">             
+                 <li>
+                    <a asp-area="" asp-page="/waitingorders">
                         <span class="nav-link-icon fas fa-shipping-fast"></span>
-                        <span class="nav-link-title">İptal Siparişler</span>
+                        <span class="nav-link-title">Bekleyen Siparişler</span>
                     </a>
                 </li>
                 <li>
-                    <a asp-area="" asp-page="/#">
+                    <a asp-area="" asp-page="/cancelledorders">
+                        <span class="nav-link-icon fas fa-shipping-fast"></span>
+                        <span class="nav-link-title">İptal Edilen Siparişler</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="" asp-page="/#readyorders">
                         <span class="nav-link-icon fas fa-clipboard-list"></span>
-                        <span class="nav-link-title">Sevkiyat Hazır Sİparişler</span>
+                        <span class="nav-link-title">Kabul Edilen Siparişler</span>
                     </a>
 
                 </li>
                 <li>
-                    <a asp-area="" asp-page="/#">
+                    <a asp-area="" asp-page="/suspendedorders">
                         <span class="nav-link-icon fas fa-paragraph"></span>
                         <span class="nav-link-title">Askıya Alınan Siparişler</span>
                     </a>
