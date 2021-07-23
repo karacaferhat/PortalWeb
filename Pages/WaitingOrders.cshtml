@@ -1,17 +1,17 @@
 ﻿@page
-@model OrdersModel
+@model WaitingOrders
 @{
     ViewBag.Title = "orders";
 }
 
 <div id="modals">
-    <div class="modal fade" id="acceptModal" role="dialog" tabindex="-1" data-backdrop="static" data-keyboard="false"
+    <div class="modal fade" id="acceptModal" role="dialog" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Sipariş Kabul</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary close" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
                     <button id="acceptButton" class="btn btn-sm btn-primary rounded-pill ripple-fx no-border">
                         <span class="btn-icon fas fa-bookmark"></span>
                         <span class="btn-title">Sipariş Kabul</span>
@@ -32,13 +32,13 @@
     </div>
 
 
-    <div class="modal fade" id="cancelModal" role="dialog" tabindex="-1" data-backdrop="static" data-keyboard="false"
+    <div class="modal fade" id="cancelModal" role="dialog" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Sipariş Kabul</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -49,7 +49,7 @@
                     <input type="text" id="cancelReasonText" />
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary close" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
                     <button id="cancelButton" class="btn btn-sm btn-danger rounded-pill ripple-fx no-border">
                         <span class="btn-icon fas fa-ban"></span>
                         <span class="btn-title">Sipariş İptal</span>
@@ -59,13 +59,13 @@
         </div>
     </div>
 
-    <div class="modal fade" id="suspendModal" role="dialog" tabindex="-1" data-backdrop="static" data-keyboard="false"
+    <div class="modal fade" id="suspendModal" role="dialog" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Sipariş Kabul</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -76,7 +76,7 @@
                     <input type="text" id="suspendReasonText" />
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary close" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
                     <button id="suspendButton" class="btn btn-sm btn-secondary rounded-pill ripple-fx no-border">
                         <span class="btn-icon fas fa-hourglass"></span>
                         <span class="btn-title">Askıya Al</span>
@@ -90,6 +90,9 @@
 </div>
 
 
+<div class="my-3 container-fluid d-flex justify-content-center">
+    <div><h3>Bekleyen Siparişler</h3></div>
+</div>
 <div class="orders-content">
     <div class="filter-section">
         <div class="filter-form">

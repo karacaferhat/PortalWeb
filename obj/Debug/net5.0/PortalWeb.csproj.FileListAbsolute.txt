@@ -151,7 +151,6 @@ C:\Users\MeteARSLAN\Desktop\GitHub\NCode\PortalWeb\obj\Debug\net5.0\Razor\Pages\
 C:\Users\MeteARSLAN\Desktop\GitHub\NCode\PortalWeb\obj\Debug\net5.0\Razor\Pages\Error.cshtml.g.cs
 C:\Users\MeteARSLAN\Desktop\GitHub\NCode\PortalWeb\obj\Debug\net5.0\Razor\Pages\Index.cshtml.g.cs
 C:\Users\MeteARSLAN\Desktop\GitHub\NCode\PortalWeb\obj\Debug\net5.0\Razor\Pages\Login.cshtml.g.cs
-C:\Users\MeteARSLAN\Desktop\GitHub\NCode\PortalWeb\obj\Debug\net5.0\Razor\Pages\Orders.cshtml.g.cs
 C:\Users\MeteARSLAN\Desktop\GitHub\NCode\PortalWeb\obj\Debug\net5.0\Razor\Pages\Privacy.cshtml.g.cs
 C:\Users\MeteARSLAN\Desktop\GitHub\NCode\PortalWeb\obj\Debug\net5.0\Razor\Pages\Shared\_Layout.cshtml.g.cs
 C:\Users\MeteARSLAN\Desktop\GitHub\NCode\PortalWeb\obj\Debug\net5.0\Razor\Pages\Shared\_ValidationScriptsPartial.cshtml.g.cs
@@ -800,3 +799,4 @@ C:\TedarikPortal\PortalWeb\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.CSharp.res
 C:\TedarikPortal\PortalWeb\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
 C:\TedarikPortal\PortalWeb\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
 C:\TedarikPortal\PortalWeb\obj\Debug\net5.0\PortalWeb.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\MeteARSLAN\Desktop\GitHub\NCode\PortalWeb\obj\Debug\net5.0\Razor\Pages\WaitingOrders.cshtml.g.cs
