@@ -800,3 +800,4 @@ C:\TedarikPortal\PortalWeb\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.CShar
 C:\TedarikPortal\PortalWeb\obj\Debug\net5.0\PortalWeb.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\MeteARSLAN\Desktop\GitHub\NCode\PortalWeb\obj\Debug\net5.0\Razor\Pages\WaitingOrders.cshtml.g.cs
 C:\TedarikPortal\PortalWeb\obj\Debug\net5.0\Razor\Pages\WaitingOrders.cshtml.g.cs
+C:\Users\MeteARSLAN\Desktop\GitHub\NCode\PortalWeb\obj\Debug\net5.0\Razor\Pages\CanceledOrders.cshtml.g.cs

@@ -14,7 +14,7 @@ let last_request_uri = null;
 
 
 const fetchData = async (uri, request, useAuthorizationHeader = false, tryRefreshToken = true) => {
-    if(last_request_uri === uri) return;//Prevent spamming at same uri
+    if(last_request_uri === uri && tryRefreshToken) return;//Prevent spamming at same uri
  
     last_request_uri = uri
 
