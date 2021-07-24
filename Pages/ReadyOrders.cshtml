@@ -1,11 +1,10 @@
 ﻿@page
-@model WaitingOrders
+@model ReadyOrders
 @{
     ViewBag.Title = "orders";
 }
 
 <div id="modals">
-    <partial name="~/Pages/Shared/PartialViews/OrderModals/_AcceptModal.cshtml" />
     <partial name="~/Pages/Shared/PartialViews/OrderModals/_CancelModal.cshtml" />
     <partial name="~/Pages/Shared/PartialViews/OrderModals/_SuspendModal.cshtml" />
 </div>
@@ -13,17 +12,14 @@
 
 <div class="my-3 container-fluid d-flex justify-content-center">
     <div>
-        <h3>Bekleyen Siparişler</h3>
+        <h3>Kabul Edilen Siparişler</h3>
     </div>
 </div>
 <div class="orders-content">
     <partial name="~/Pages/Shared/PartialViews/_OrderFilterSectionPartialView.cshtml"/>
 
     <div class="action-section">
-        <button id="acceptModalToggleButton" class="btn btn-sm btn-primary rounded-pill ripple-fx no-border">
-            <span class="btn-icon fas fa-bookmark"></span>
-            <span class="btn-title">Sipariş Kabul</span>
-        </button>
+
         <button id="cancelModalToggleButton" class="btn btn-sm btn-danger rounded-pill ripple-fx no-border">
             <span class="btn-icon fas fa-ban"></span>
             <span class="btn-title">Sipariş İptal</span>
@@ -36,7 +32,6 @@
             <span class="btn-icon fas fa-sync"></span>
             <span class="btn-title">Tabloyu Yenile</span>
         </button>
-
     </div>
 
     <div class="table-section">
@@ -50,4 +45,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>
 
 <script src="~/js/orders/orders.js" asp-append-version="true"></script>
-<script src="~/js/orders/waitingOrders.js" asp-append-version="true"></script>
+<script src="~/js/orders/readyOrders.js" asp-append-version="true"></script>

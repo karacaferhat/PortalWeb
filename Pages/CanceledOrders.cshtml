@@ -5,82 +5,24 @@
 }
 
 <div id="modals">
-    <div class="modal fade" id="waitingModal" role="dialog" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Bekleme Durumuna Al</h5>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">
-                        <span class="fa fa-times"></span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                    </div>
-                    <span>Neden: </span>
-                    <input type="text" id="waitingReasonText" />
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
-                    <button id="waitingButton" class="btn btn-sm btn-primary rounded-pill ripple-fx no-border">
-                        <span class="btn-icon fas fa-fa-bookmark"></span>
-                        <span class="btn-title">Bekleme Durumuna Al</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <partial name="~/Pages/Shared/PartialViews/OrderModals/_WaitingModal.cshtml" />
 </div>
 
 
 <div class="my-3 container-fluid d-flex justify-content-center">
-    <div><h3>İptal Edilmiş Siparişler</h3></div>
+    <div>
+        <h3>İptal Edilmiş Siparişler</h3>
+    </div>
 </div>
 <div class="orders-content">
-    <div class="filter-section">
-        <div class="filter-form">
-            <div class="text-inputs-field">
-                <div class="filter-heading">Arama Kriterleri</div>
-                <div class="mat-input-inline-group">
-                    <div class="mat-input dx-field">
-                        <div class="dx-field-label">Baslangic Tarihi</div>
-                        <div class="dx-field-value">
-                            <div id="beggingDate"></div>
-                        </div>
-                    </div>
-                    <div class="mat-input dx-field">
-                        <div class="dx-field-label">Bitis Tarihi</div>
-                        <div class="dx-field-value">
-                            <div id="endDate"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="mat-input mat-text">
-                    <input id="orderNo" type="text">
-                    <span class="placeholder">Sipariş No</span>
-                    <span class="input-border"></span>
-                </div>
-                <div class="mat-input mat-text">
-                    <input id="sku" type="text">
-                    <span class="placeholder">SKU</span>
-                    <span class="input-border"></span>
-                </div>
-            </div>
+    <partial name="~/Pages/Shared/PartialViews/_OrderFilterSectionPartialView.cshtml" />
 
-        </div>
-        <div class="action-footer">
-            <button id="searchButton" class="btn btn-sm btn-outline-primary rounded-pill ripple-fx">
-                <span class="btn-icon fas fa-tasks"></span>
-                <span class="btn-title">Tamam</span>
-            </button>
-        </div>
-    </div>
 
     <div class="action-section">
         <button id="waitingModalToggleButton" class="btn btn-sm btn-primary rounded-pill ripple-fx no-border">
             <span class="btn-icon fas fa-bookmark"></span>
             <span class="btn-title">Bekleme Durumuna Al</span>
+        </button>
         <button id="refreshGridButton" class="btn btn-sm btn-success rounded-pill ripple-fx no-border">
             <span class="btn-icon fas fa-sync"></span>
             <span class="btn-title">Tabloyu Yenile</span>
@@ -98,4 +40,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/3.3.1/exceljs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>
 
-<script src="~/js/canceledOrders.js" asp-append-version="true"></script>
+<script src="~/js/orders/orders.js" asp-append-version="true"></script>
+<script src="~/js/orders/canceledOrders.js" asp-append-version="true"></script>

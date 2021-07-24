@@ -1,36 +1,32 @@
 ﻿@page
-@model WaitingOrders
+@model SuspendedOrders
 @{
     ViewBag.Title = "orders";
 }
 
 <div id="modals">
-    <partial name="~/Pages/Shared/PartialViews/OrderModals/_AcceptModal.cshtml" />
+    <partial name="~/Pages/Shared/PartialViews/OrderModals/_WaitingModal.cshtml" />
     <partial name="~/Pages/Shared/PartialViews/OrderModals/_CancelModal.cshtml" />
-    <partial name="~/Pages/Shared/PartialViews/OrderModals/_SuspendModal.cshtml" />
+
 </div>
 
 
 <div class="my-3 container-fluid d-flex justify-content-center">
     <div>
-        <h3>Bekleyen Siparişler</h3>
+        <h3>Askıya Alınan Siparişler</h3>
     </div>
 </div>
 <div class="orders-content">
     <partial name="~/Pages/Shared/PartialViews/_OrderFilterSectionPartialView.cshtml"/>
 
     <div class="action-section">
-        <button id="acceptModalToggleButton" class="btn btn-sm btn-primary rounded-pill ripple-fx no-border">
+        <button id="waitingModalToggleButton" class="btn btn-sm btn-primary rounded-pill ripple-fx no-border">
             <span class="btn-icon fas fa-bookmark"></span>
-            <span class="btn-title">Sipariş Kabul</span>
+            <span class="btn-title">Bekleme Durumuna Al</span>
         </button>
         <button id="cancelModalToggleButton" class="btn btn-sm btn-danger rounded-pill ripple-fx no-border">
             <span class="btn-icon fas fa-ban"></span>
             <span class="btn-title">Sipariş İptal</span>
-        </button>
-        <button id="suspendModalToggleButton" class="btn btn-sm btn-secondary rounded-pill ripple-fx no-border">
-            <span class="btn-icon fas fa-hourglass"></span>
-            <span class="btn-title">Askıya Al</span>
         </button>
         <button id="refreshGridButton" class="btn btn-sm btn-success rounded-pill ripple-fx no-border">
             <span class="btn-icon fas fa-sync"></span>
@@ -50,4 +46,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>
 
 <script src="~/js/orders/orders.js" asp-append-version="true"></script>
-<script src="~/js/orders/waitingOrders.js" asp-append-version="true"></script>
+<script src="~/js/orders/suspendedOrders.js" asp-append-version="true"></script>
