@@ -25,8 +25,6 @@ const cancelButton = $("#cancelButton");
 const suspendButton = $("#suspendButton");
 const refreshGridButton = $("#refreshGridButton");
 
-const confirmationModal = $("confirmationModal");
-
 const cancelReasonText = $("#cancelReasonText");
 const suspendReasonText = $("#suspendReasonText");
 

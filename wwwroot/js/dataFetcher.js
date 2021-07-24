@@ -8,7 +8,7 @@ const nameKey = "nameKey";
 const surnameKey = "surnameKey";
 const vendorNameKey = "vendorName";
 
-var last_request_uri = null;
+let last_request_uri = null;
 
 
 
