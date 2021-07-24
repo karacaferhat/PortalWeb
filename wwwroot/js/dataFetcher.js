@@ -8,9 +8,11 @@ const nameKey = "nameKey";
 const surnameKey = "surnameKey";
 const vendorNameKey = "vendorName";
 
-
+var dataFetcher_lock = false;
 
 const fetchData = async (uri, request, useAuthorizationHeader = false, tryRefreshToken = true) => {
+
+
     let headers = {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -29,6 +31,10 @@ const fetchData = async (uri, request, useAuthorizationHeader = false, tryRefres
             window.location.href = "login.html";
         }
     }
+
+
+    while(dataFetcher_lock){await sleep(1000);}
+    dataFetcher_lock = true;
 
 
     return await fetch(uri, {
@@ -52,11 +58,15 @@ const fetchData = async (uri, request, useAuthorizationHeader = false, tryRefres
                 throw Error(response);
         })
         .then(data => {
+            dataFetcher_lock = false;
+
             if (data) {
                 return data;
             }
         })
         .catch(error => {
+            dataFetcher_lock = false;
+
             console.error('Couldn\'t Fetch. ' + error);
             if (useAuthorizationHeader && tryRefreshToken)
                 console.log("Trying to refresh tokens");
