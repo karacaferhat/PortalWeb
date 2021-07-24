@@ -31,7 +31,7 @@ $(function(){
         oranges: 0
     }, {
         day: "Kasım",
-        oranges: 0
+        oranges: 0 
     }, {
         day: "Aralık",
         oranges: 0
