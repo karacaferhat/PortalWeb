@@ -108,7 +108,6 @@ C:\TedarikPortal\PortalWeb\obj\Debug\net5.0\Razor\Pages\Index.cshtml.g.cs
 C:\TedarikPortal\PortalWeb\obj\Debug\net5.0\Razor\Pages\Login.cshtml.g.cs
 C:\TedarikPortal\PortalWeb\obj\Debug\net5.0\Razor\Pages\Privacy.cshtml.g.cs
 C:\TedarikPortal\PortalWeb\obj\Debug\net5.0\Razor\Pages\Shared\_Layout.cshtml.g.cs
-C:\TedarikPortal\PortalWeb\obj\Debug\net5.0\Razor\Pages\Shared\_ValidationScriptsPartial.cshtml.g.cs
 C:\TedarikPortal\PortalWeb\obj\Debug\net5.0\Razor\Pages\_ViewImports.cshtml.g.cs
 C:\TedarikPortal\PortalWeb\obj\Debug\net5.0\Razor\Pages\_ViewStart.cshtml.g.cs
 C:\TedarikPortal\PortalWeb\obj\Debug\net5.0\PortalWeb.RazorTargetAssemblyInfo.cache

@@ -736,23 +736,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\MeteARSLAN\\.nuget\\packages\\": {},
+    "C:\\Users\\tugce\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MeteARSLAN\\Desktop\\GitHub\\NCode\\PortalWeb\\PortalWeb.csproj",
+      "projectUniqueName": "C:\\TedarikPortal\\PortalWeb\\PortalWeb.csproj",
       "projectName": "PortalWeb",
-      "projectPath": "C:\\Users\\MeteARSLAN\\Desktop\\GitHub\\NCode\\PortalWeb\\PortalWeb.csproj",
-      "packagesPath": "C:\\Users\\MeteARSLAN\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MeteARSLAN\\Desktop\\GitHub\\NCode\\PortalWeb\\obj\\",
+      "projectPath": "C:\\TedarikPortal\\PortalWeb\\PortalWeb.csproj",
+      "packagesPath": "C:\\Users\\tugce\\.nuget\\packages\\",
+      "outputPath": "C:\\TedarikPortal\\PortalWeb\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\MeteARSLAN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\tugce\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
