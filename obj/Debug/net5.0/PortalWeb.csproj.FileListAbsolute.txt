@@ -801,3 +801,12 @@ C:\TedarikPortal\PortalWeb\obj\Debug\net5.0\PortalWeb.MvcApplicationPartsAssembl
 C:\Users\MeteARSLAN\Desktop\GitHub\NCode\PortalWeb\obj\Debug\net5.0\Razor\Pages\WaitingOrders.cshtml.g.cs
 C:\TedarikPortal\PortalWeb\obj\Debug\net5.0\Razor\Pages\WaitingOrders.cshtml.g.cs
 C:\Users\MeteARSLAN\Desktop\GitHub\NCode\PortalWeb\obj\Debug\net5.0\Razor\Pages\CanceledOrders.cshtml.g.cs
+C:\TedarikPortal\PortalWeb\obj\Debug\net5.0\Razor\Pages\CanceledOrders.cshtml.g.cs
+C:\TedarikPortal\PortalWeb\obj\Debug\net5.0\Razor\Pages\ReadyOrders.cshtml.g.cs
+C:\TedarikPortal\PortalWeb\obj\Debug\net5.0\Razor\Pages\Shared\PartialViews\OrderModals\_AcceptModal.cshtml.g.cs
+C:\TedarikPortal\PortalWeb\obj\Debug\net5.0\Razor\Pages\Shared\PartialViews\OrderModals\_CancelModal.cshtml.g.cs
+C:\TedarikPortal\PortalWeb\obj\Debug\net5.0\Razor\Pages\Shared\PartialViews\OrderModals\_SuspendModal.cshtml.g.cs
+C:\TedarikPortal\PortalWeb\obj\Debug\net5.0\Razor\Pages\Shared\PartialViews\OrderModals\_WaitingModal.cshtml.g.cs
+C:\TedarikPortal\PortalWeb\obj\Debug\net5.0\Razor\Pages\Shared\PartialViews\_OrderFilterSectionPartialView.cshtml.g.cs
+C:\TedarikPortal\PortalWeb\obj\Debug\net5.0\Razor\Pages\Shared\PartialViews\_ValidationScriptsPartial.cshtml.g.cs
+C:\TedarikPortal\PortalWeb\obj\Debug\net5.0\Razor\Pages\SuspendedOrders.cshtml.g.cs
