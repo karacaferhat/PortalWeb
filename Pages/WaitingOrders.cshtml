@@ -5,94 +5,9 @@
 }
 
 <div id="modals">
-<<<<<<< HEAD
-    <div class="modal fade" id="acceptModal" role="dialog" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Sipariş Kabul</h5>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">
-                        <span class="fa fa-times"></span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
-                    <button id="acceptButton" class="btn btn-sm btn-primary rounded-pill ripple-fx no-border">
-                        <span class="btn-icon fas fa-bookmark"></span>
-                        <span class="btn-title">Sipariş Kabul</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="modal fade" id="cancelModal" role="dialog" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Sipariş Kabul</h5>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">
-                        <span class="fa fa-times"></span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                    </div>
-                    <span>Neden: </span>
-                    <input type="text" id="cancelReasonText" />
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
-                    <button id="cancelButton" class="btn btn-sm btn-danger rounded-pill ripple-fx no-border">
-                        <span class="btn-icon fas fa-ban"></span>
-                        <span class="btn-title">Sipariş İptal</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="suspendModal" role="dialog" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Sipariş Kabul</h5>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">
-                        <span class="fa fa-times"></span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                    </div>
-                    <span>Neden: </span>
-                    <input type="text" id="suspendReasonText" />
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
-                    <button id="suspendButton" class="btn btn-sm btn-secondary rounded-pill ripple-fx no-border">
-                        <span class="btn-icon fas fa-hourglass"></span>
-                        <span class="btn-title">Askıya Al</span>
-
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-=======
     <partial name="~/Pages/Shared/PartialViews/OrderModals/_AcceptModal.cshtml" />
     <partial name="~/Pages/Shared/PartialViews/OrderModals/_CancelModal.cshtml" />
     <partial name="~/Pages/Shared/PartialViews/OrderModals/_SuspendModal.cshtml" />
->>>>>>> f55499158d646dbe90d5e056aa20a2e609cafca2
 </div>
 
 
@@ -134,9 +49,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/3.3.1/exceljs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>
 
-<<<<<<< HEAD
-<script src="~/js/waitingOrders.js" asp-append-version="true"></script>
-=======
 <script src="~/js/orders/orders.js" asp-append-version="true"></script>
 <script src="~/js/orders/waitingOrders.js" asp-append-version="true"></script>
->>>>>>> f55499158d646dbe90d5e056aa20a2e609cafca2

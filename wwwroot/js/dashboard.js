@@ -10,7 +10,7 @@ $(function(){
         oranges: 100
     }, {
         day: "Nisan",
-        oranges: 75
+        oranges: 75 
     }, {
         day: "Mayıs",
         oranges: 100
