@@ -5,6 +5,7 @@
 }
 
 <div id="modals">
+<<<<<<< HEAD
     <div class="modal fade" id="waitingModal" role="dialog" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -31,10 +32,14 @@
             </div>
         </div>
     </div>
+=======
+    <partial name="~/Pages/Shared/PartialViews/OrderModals/_WaitingModal.cshtml" />
+>>>>>>> f55499158d646dbe90d5e056aa20a2e609cafca2
 </div>
 
 
 <div class="my-3 container-fluid d-flex justify-content-center">
+<<<<<<< HEAD
     <div><h3>İptal Edilmiş Siparişler</h3></div>
 </div>
 <div class="orders-content">
@@ -76,11 +81,24 @@
             </button>
         </div>
     </div>
+=======
+    <div>
+        <h3>İptal Edilmiş Siparişler</h3>
+    </div>
+</div>
+<div class="orders-content">
+    <partial name="~/Pages/Shared/PartialViews/_OrderFilterSectionPartialView.cshtml" />
+
+>>>>>>> f55499158d646dbe90d5e056aa20a2e609cafca2
 
     <div class="action-section">
         <button id="waitingModalToggleButton" class="btn btn-sm btn-primary rounded-pill ripple-fx no-border">
             <span class="btn-icon fas fa-bookmark"></span>
             <span class="btn-title">Bekleme Durumuna Al</span>
+<<<<<<< HEAD
+=======
+        </button>
+>>>>>>> f55499158d646dbe90d5e056aa20a2e609cafca2
         <button id="refreshGridButton" class="btn btn-sm btn-success rounded-pill ripple-fx no-border">
             <span class="btn-icon fas fa-sync"></span>
             <span class="btn-title">Tabloyu Yenile</span>
@@ -98,4 +116,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/3.3.1/exceljs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>
 
+<<<<<<< HEAD
 <script src="~/js/canceledOrders.js" asp-append-version="true"></script>
+=======
+<script src="~/js/orders/orders.js" asp-append-version="true"></script>
+<script src="~/js/orders/canceledOrders.js" asp-append-version="true"></script>
+>>>>>>> f55499158d646dbe90d5e056aa20a2e609cafca2
