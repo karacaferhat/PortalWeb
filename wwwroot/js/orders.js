@@ -74,7 +74,7 @@ const getOrdersAndUpdateTable = async () => {
       { dataField: "sku", caption: "SKU" }
     ],
     showBorders: true,
-    noDataText:"Kayıt Bulunamadı", 
+    noDataText: "Kayıt Bulunamadı",
     allowColumnResizing: true,
     rowAlternationEnabled: true,
     columnAutoWidth: true,
@@ -172,7 +172,7 @@ function formatDate(mydate) {
 }
 
 
-const getSelectedKeys = _=>{
+const getSelectedKeys = _ => {
   let gridInstance = gridContainer.dxDataGrid("instance");
   return gridInstance.getSelectedRowKeys();
 }
@@ -191,24 +191,31 @@ const sendData = async (button, method, reason = null) => {
 
   if (reason) request["reason"] = reason;
 
-  let btnTitle = button.find(".btn-title");
 
-  let text = btnTitle.text();
-  btnTitle.text("Islem Gerceklestiriliyor");
+  let text = button.html();
+  button.html(
+    /*html*/
+    `         
+      <div class="spinner-border text-white" role="status">
+        <span class= "sr-only"> Loading...</span>
+      </div>
+     `
+    );
 
   let data = await fetchData(baseUrl + method, request, false);
-  btnTitle.text(text);
+  
+  button.html(text);
 
 
-  if(data){
+  if (data) {
     button.parents().find("div.modal").modal("hide");
     getOrdersAndUpdateTable();
   }
-  else{
+  else {
     button.parents("div.modal:first").find(".container").html(
-      /*html*/ 
+      /*html*/
       `<span class="text-danger"><b>Islem Basarisiz</b></span>`
-      );
+    );
   }
 }
 
@@ -218,38 +225,46 @@ cancelButton.on("click", () => { sendData(cancelButton, "cancel", cancelReasonTe
 suspendButton.on("click", () => { sendData(suspendButton, "suspend", suspendReasonText.val()) });
 
 
-const refreshButtonAction = async (button)=>{
+const refreshButtonAction = async (button) => {
   let text = button.html();
-  
-  button.html("İşlem Gerçekleştiriliyor");
-  getOrdersAndUpdateTable().then(()=>button.html(text));
+
+  button.html(
+    /*html*/
+    `         
+      <div class="spinner-border text-white" role="status">
+        <span class= "sr-only"> Loading...</span>
+      </div>
+     `
+    );
+getOrdersAndUpdateTable().then(() => button.html(text));
 }
 
-searchButton.on("click", ()=>refreshButtonAction(searchButton));
-refreshGridButton.on("click", ()=>refreshButtonAction(refreshGridButton));
+searchButton.on("click", () => refreshButtonAction(searchButton));
+refreshGridButton.on("click", () => refreshButtonAction(refreshGridButton));
 
 const toggleModal = id => {
-  let array =  gridContainer.dxDataGrid("instance").getSelectedRowsData();
+  let array = gridContainer.dxDataGrid("instance").getSelectedRowsData();
   if (array.length === 0) return;
 
   var s = "";
 
 
-  for(let i = 0; i< array.length; i++){
-    if(i != array.length - 1)
+  for (let i = 0; i < array.length; i++) {
+    if (i != array.length - 1)
       s += array[i].orderno + ", ";
     else
       s += array[i].orderno + " ";
   }
-  
 
-  $(id).find(".container").html(s + "no'lu siparişler seçildi.");
+  let plu = array.length > 1 ? 'ler' : '';
+
+  $(id).find(".container").html(s + `sipariş numaralı sipariş${plu} seçildi.`);
   $(id).modal("show");
 }
 
-$("#acceptModalToggleButton").on("click", ()=> {toggleModal("#acceptModal")});
-$("#cancelModalToggleButton").on("click", ()=> {toggleModal("#cancelModal")});
-$("#suspendModalToggleButton").on("click", ()=> {toggleModal("#suspendModal")});
+$("#acceptModalToggleButton").on("click", () => { toggleModal("#acceptModal") });
+$("#cancelModalToggleButton").on("click", () => { toggleModal("#cancelModal") });
+$("#suspendModalToggleButton").on("click", () => { toggleModal("#suspendModal") });
 
 
 getOrdersAndUpdateTable();
