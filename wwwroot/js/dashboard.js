@@ -1,34 +1,49 @@
 $(function(){
     var dataSource = [{
-        day: "Monday",
-        oranges: 3
+        day: "Ocak",
+        oranges: 100
     }, {
-        day: "Tuesday",
-        oranges: 2
+        day: "Şubat",
+        oranges: 90
     }, {
-        day: "Wednesday",
-        oranges: 3
+        day: "Mart",
+        oranges: 100
     }, {
-        day: "Thursday",
-        oranges: 4
+        day: "Nisan",
+        oranges: 75
     }, {
-        day: "Friday",
-        oranges: 6
+        day: "Mayıs",
+        oranges: 100
     }, {
-        day: "Saturday",
-        oranges: 11
+        day: "Haziran",
+        oranges: 100
     }, {
-        day: "Sunday",
-        oranges: 4
+        day: "Temmuz",
+        oranges: 0
+    }, {
+        day: "Ağustos",
+        oranges: 0
+    }, {
+        day: "Eylül",
+        oranges: 0
+    }, {
+        day: "Ekim",
+        oranges: 0
+    }, {
+        day: "Kazım",
+        oranges: 0
+    }, {
+        day: "Aralık",
+        oranges: 0
     }];
     $("#chart").dxChart({
         dataSource: dataSource, 
         series: {
             argumentField: "day",
             valueField: "oranges",
-            name: "My oranges",
+            name: "Puan",
             type: "bar",
-            color: '#ffaa66'
+            color: '#0dcaf0'
         }
     });
 });
