@@ -19,17 +19,14 @@ const endDate = $("#endDate").dxDateBox("instance");
 const orderNo = $("#orderNo");
 const sku = $("#sku");
 
+const waitingButton = $("#waitingButton");
 const searchButton = $("#searchButton");
-const acceptButton = $("#acceptButton");
-const cancelButton = $("#cancelButton");
-const suspendButton = $("#suspendButton");
 const refreshGridButton = $("#refreshGridButton");
 
-const cancelReasonText = $("#cancelReasonText");
-const suspendReasonText = $("#suspendReasonText");
-
+const waitingReasonText = $("#waitingReasonText");
 
 const gridContainer = $("#gridContainer");
+
 
 
 const getOrdersAndUpdateTable = async () => {
@@ -43,7 +40,7 @@ const getOrdersAndUpdateTable = async () => {
 
   let request = {
     "vendor": "701480",
-    "state": "WAI",
+    "state": "CAN",
     "orderdatefrom": formatDate(bDate),
     "orderdateto": formatDate(eDate),
     "sku": sku.val().trim(),
@@ -134,7 +131,6 @@ const getOrdersAndUpdateTable = async () => {
   });
 
   gridContainer.dxDataGrid("columnOption", "pkey", "visible", false);
-
 }
 
 
@@ -182,7 +178,7 @@ const sendData = async (button, method, reason = null) => {
 
   let request = {
     orderKeys: array,
-    isCancel: false,
+    isCancel: true,
     username: "string",
     lang: "string"
   };
@@ -218,9 +214,7 @@ const sendData = async (button, method, reason = null) => {
 }
 
 
-acceptButton.on("click", () => { sendData(acceptButton, "accept") });
-cancelButton.on("click", () => { sendData(cancelButton, "cancel", cancelReasonText.val()) });
-suspendButton.on("click", () => { sendData(suspendButton, "suspend", suspendReasonText.val()) });
+waitingButton.on("click", () => { sendData(waitingButton, "cancel", waitingReasonText.val()) });
 
 
 const refreshButtonAction = async (button) => {
@@ -260,9 +254,7 @@ const toggleModal = id => {
   $(id).modal("show");
 }
 
-$("#acceptModalToggleButton").on("click", () => { toggleModal("#acceptModal") });
-$("#cancelModalToggleButton").on("click", () => { toggleModal("#cancelModal") });
-$("#suspendModalToggleButton").on("click", () => { toggleModal("#suspendModal") });
+$("#waitingModalToggleButton").on("click", () => { toggleModal("#waitingModal") });
 
 
 getOrdersAndUpdateTable();
