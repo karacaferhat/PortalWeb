@@ -30,7 +30,7 @@ $(function(){
         day: "Ekim",
         oranges: 0
     }, {
-        day: "Kazım",
+        day: "Kasım",
         oranges: 0
     }, {
         day: "Aralık",
