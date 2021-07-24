@@ -23,6 +23,7 @@ const searchButton = $("#searchButton");
 const acceptButton = $("#acceptButton");
 const cancelButton = $("#cancelButton");
 const suspendButton = $("#suspendButton");
+const refreshGridButton = $("#refreshGridButton");
 
 const confirmationModal = $("confirmationModal");
 
@@ -73,7 +74,7 @@ const getOrdersAndUpdateTable = async () => {
       { dataField: "sku", caption: "SKU" }
     ],
     showBorders: true,
-    noDataText:"Kayıt bulunamadı", 
+    noDataText:"Kayıt Bulunamadı", 
     allowColumnResizing: true,
     rowAlternationEnabled: true,
     columnAutoWidth: true,
@@ -114,7 +115,7 @@ const getOrdersAndUpdateTable = async () => {
         exportAll: "Tümü",
         exportSelectedRows: "Seçimi Aktar",
         exportTo: "excel"
-      }
+      },
     },
     onExporting: function (e) {
       var workbook = new ExcelJS.Workbook();
@@ -216,14 +217,33 @@ acceptButton.on("click", () => { sendData(acceptButton, "accept") });
 cancelButton.on("click", () => { sendData(cancelButton, "cancel", cancelReasonText.val()) });
 suspendButton.on("click", () => { sendData(suspendButton, "suspend", suspendReasonText.val()) });
 
-searchButton.on("click", getOrdersAndUpdateTable);
 
+const refreshButtonAction = async (button)=>{
+  let text = button.html();
+  
+  button.html("İşlem Gerçekleştiriliyor");
+  getOrdersAndUpdateTable().then(()=>button.html(text));
+}
+
+searchButton.on("click", ()=>refreshButtonAction(searchButton));
+refreshGridButton.on("click", ()=>refreshButtonAction(refreshGridButton));
 
 const toggleModal = id => {
-  let array = getSelectedKeys();
+  let array =  gridContainer.dxDataGrid("instance").getSelectedRowsData();
   if (array.length === 0) return;
 
-  $(id).find(".container").text("Siparisler:" + array);
+  var s = "";
+
+
+  for(let i = 0; i< array.length; i++){
+    if(i != array.length - 1)
+      s += array[i].orderno + ", ";
+    else
+      s += array[i].orderno + " ";
+  }
+  
+
+  $(id).find(".container").html(s + "no'lu siparişler seçildi.");
   $(id).modal("show");
 }
 
