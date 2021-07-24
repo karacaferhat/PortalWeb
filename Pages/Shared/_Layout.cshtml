@@ -40,6 +40,8 @@
     @* EXTENDED FRAMEWORKS *@
     <link rel="stylesheet" href="~/css/hur-preloader.css">
     <link rel="stylesheet" href="~/css/hur-mat.css">
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
     @* END of EXTENDED FRAMEWORKS *@
 
     @* ncode *@
@@ -107,7 +109,7 @@
         </li>
         <li>
             <a class="collapser collapsed" data-bs-toggle="collapse" href="#deliveries">
-                <span class="nav-link-icon fas fa-list-alt"></span>
+                <span class="nav-link-icon fas fa-shipping-fast"></span>
                 <span class="nav-link-title">Sevkiyat</span>
             </a>
             <ul class="collapse" id="deliveries">             
@@ -125,13 +127,13 @@
                 </li>
                 <li>
                     <a asp-area="" asp-page="/#">
-                        <span class="nav-link-icon fas fa-clipboard-list"></span>
+                        <span class="nav-link-icon fas fa-shipping-fast"></span>
                         <span class="nav-link-title">Yoldaki Sevkiyatlar</span>
                     </a>
                 </li>
                 <li>
                     <a asp-area="" asp-page="/#">
-                        <span class="nav-link-icon fas fa-paragraph"></span>
+                        <span class="nav-link-icon fas fa-shipping-fast"></span>
                         <span class="nav-link-title">İade Sevkiyatlar</span>
                     </a>
                 </li>               
@@ -242,8 +244,7 @@
                     </button>
                     <div class="main-navbar navbar-collapse collapse" id="mainNavbar">
                         <form class="search-group">
-                            <span class="search-icon fas fa-search"></span>
-                            <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                            <h1><span id="vendorHeaderName" >Test</span></h1>
                         </form>
                         <ul class="navbar-nav">
                             <li class="nav-item icon-only">
