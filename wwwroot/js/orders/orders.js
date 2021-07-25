@@ -1,5 +1,3 @@
-const baseUrl = "https://tedarikportalorder.azurewebsites.net/api/v1/orders/";
-
 $("#beggingDate").dxDateBox({
     showClearButton: true,
     useMaskBehavior: true,
@@ -71,11 +69,11 @@ const toggleModal = id => {
     $(id).modal("show");
 }
 
-
-
 class OrderGrid{
 
-    constructor(state, columns){
+    constructor(baseUrl, getMethod, state, columns){
+        this.baseUrl = baseUrl;
+        this.getMethod = getMethod;
         this.state = state;
         this.columns = columns;
 
@@ -103,7 +101,7 @@ class OrderGrid{
         };
 
 
-        let data = await fetchData(baseUrl + 'getOrders', request);
+        let data = await fetchData(this.baseUrl + this.getMethod, request);
 
         for (let i = 0; i < data.orders; i++) {
             data.orders[i].orderdate = new Date(data.orders[i].orderdate).formatDate("yyyy-MM-dd").toString();

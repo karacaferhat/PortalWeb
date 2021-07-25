@@ -1,4 +1,6 @@
-const orderGrid = new OrderGrid("SUS",  [
+const baseUrl = "https://tedarikportalorder.azurewebsites.net/api/v1/orders/";
+
+const orderGrid = new OrderGrid(baseUrl, 'getOrders', "SUS",  [
     { dataField: "vendor", caption: "Tedarikçi" },
     { dataField: "orderno", caption: "Siparis No" },
     { dataField: "orderlineno", caption: "Siparis Sira No" },
