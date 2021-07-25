@@ -132,7 +132,7 @@ function formatDate(mydate) {
     try {
         var dateObj = new Date(mydate);
 
-        var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        var monthNames = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
         var curr_date = dateObj.getDate();
         var curr_month = dateObj.getMonth();
         curr_month = curr_month + 1;
