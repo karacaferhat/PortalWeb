@@ -1,17 +1,26 @@
-const state = "CAN";
+const orderGrid = new OrderGrid("CAN",  [
+    { dataField: "vendor", caption: "Tedarikçi" },
+    { dataField: "orderno", caption: "Siparis No" },
+    { dataField: "orderlineno", caption: "Siparis Sira No" },
+    { dataField: "orderdate", caption: "Siparis Tarihi" },
+    { dataField: "orduser", caption: "Siparisi Veren Kullanici" },
+    { dataField: "ordunit", caption: "Siparis Birimi" },
+    { dataField: "sku", caption: "SKU" }
+]);
+
 const waitingButton = $("#waitingButton");
 
 const searchButton = $("#searchButton");
 const refreshGridButton = $("#refreshGridButton");
 
 
-waitingButton.on("click", () => {sendData(waitingButton, "cancel", state, $("waitingReasonText").val(), true);});
+waitingButton.on("click", () => {orderGrid.sendData(waitingButton, "cancel", $("waitingReasonText").val(), true);});
 
-searchButton.on("click", () => refreshButtonAction(searchButton, state));
-refreshGridButton.on("click", () => refreshButtonAction(refreshGridButton, state));
+searchButton.on("click", () => orderGrid.refreshButtonAction(searchButton));
+refreshGridButton.on("click", () => orderGrid.refreshButtonAction(refreshGridButton));
 
 
 $("#waitingModalToggleButton").on("click", () => { toggleModal("#waitingModal") });
 
 
-getOrdersAndUpdateTable(state);
+orderGrid.getOrdersAndUpdateTable();

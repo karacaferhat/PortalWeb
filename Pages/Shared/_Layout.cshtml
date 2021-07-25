@@ -62,172 +62,172 @@
 
 <body class='@ViewData["Title"]'>
     <div class="wrapper">
-       <div id="sideMenu" class="side-menu vertical-nav">
-    <span class="brand" asp-area="" asp-page="/Index?loggedIn">
-        <img class="icon" src="~/imgs/navimgs/d_icon.svg" alt="Dönmez Icon">
-        <img class="full" src="~/imgs/navimgs/d_logo.svg" alt="Dönmez Logo">
-    </span>
-    <ul>
-        <li class="active">
-            <a href="/Index?loggedIn">
-                <span class="nav-link-icon fas fa-tachometer-alt"></span>
-                <span class="nav-link-title">Panel</span>
-            </a>
-        </li>
-        <li>
-            <a class="collapser collapsed" data-bs-toggle="collapse" href="#orders">
-                <span class="nav-link-icon fas fa-list-alt"></span>
-                <span class="nav-link-title">Siparişler</span>
-            </a>
-            <ul class="collapse" id="orders">             
-                 <li>
-                    <a asp-area="" asp-page="/waitingorders">
-                        <span class="nav-link-icon fas fa-shipping-fast"></span>
-                        <span class="nav-link-title">Bekleyen Siparişler</span>
+        <div id="sideMenu" class="side-menu vertical-nav">
+            <span class="brand" asp-area="" asp-page="/Index?loggedIn">
+                <img class="icon" src="~/imgs/navimgs/d_icon.svg" alt="Dönmez Icon">
+                <img class="full" src="~/imgs/navimgs/d_logo.svg" alt="Dönmez Logo">
+            </span>
+            <ul>
+                <li class="active">
+                    <a href="/Index?loggedIn">
+                        <span class="nav-link-icon fas fa-tachometer-alt"></span>
+                        <span class="nav-link-title">Panel</span>
                     </a>
                 </li>
                 <li>
-                    <a asp-area="" asp-page="/canceledorders">
-                        <span class="nav-link-icon fas fa-shipping-fast"></span>
-                        <span class="nav-link-title">İptal Edilen Siparişler</span>
+                    <a class="collapser collapsed" data-bs-toggle="collapse" href="#orders">
+                        <span class="nav-link-icon fas fa-list-alt"></span>
+                        <span class="nav-link-title">Siparişler</span>
                     </a>
-                </li>
-                <li>
-                    <a asp-area="" asp-page="/readyorders">
-                        <span class="nav-link-icon fas fa-clipboard-list"></span>
-                        <span class="nav-link-title">Kabul Edilen Siparişler</span>
-                    </a>
+                    <ul class="collapse" id="orders">
+                        <li>
+                            <a asp-area="" asp-page="/waitingorders">
+                                <span class="nav-link-icon fas fa-shipping-fast"></span>
+                                <span class="nav-link-title">Bekleyen Siparişler</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-page="/canceledorders">
+                                <span class="nav-link-icon fas fa-shipping-fast"></span>
+                                <span class="nav-link-title">İptal Edilen Siparişler</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-page="/readyorders">
+                                <span class="nav-link-icon fas fa-clipboard-list"></span>
+                                <span class="nav-link-title">Kabul Edilen Siparişler</span>
+                            </a>
 
+                        </li>
+                        <li>
+                            <a asp-area="" asp-page="/suspendedorders">
+                                <span class="nav-link-icon fas fa-paragraph"></span>
+                                <span class="nav-link-title">Askıya Alınan Siparişler</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
-                    <a asp-area="" asp-page="/suspendedorders">
-                        <span class="nav-link-icon fas fa-paragraph"></span>
-                        <span class="nav-link-title">Askıya Alınan Siparişler</span>
+                    <a class="collapser collapsed" data-bs-toggle="collapse" href="#deliveries">
+                        <span class="nav-link-icon fas fa-shipping-fast"></span>
+                        <span class="nav-link-title">Sevkiyat</span>
                     </a>
-                </li>               
+                    <ul class="collapse" id="deliveries">
+                        <li>
+                            <a asp-area="" asp-page="/#">
+                                <span class="nav-link-icon fas fa-shipping-fast"></span>
+                                <span class="nav-link-title">Sevkiyat İşlemleri</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-page="/#">
+                                <span class="nav-link-icon fas fa-shipping-fast"></span>
+                                <span class="nav-link-title">Hazırlanan Sevkiyatlar</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-page="/#">
+                                <span class="nav-link-icon fas fa-shipping-fast"></span>
+                                <span class="nav-link-title">Yoldaki Sevkiyatlar</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-page="/#">
+                                <span class="nav-link-icon fas fa-shipping-fast"></span>
+                                <span class="nav-link-title">İade Sevkiyatlar</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="collapser collapsed" data-bs-toggle="collapse" href="#documents">
+                        <span class="nav-link-icon fas fa-list-alt"></span>
+                        <span class="nav-link-title">Belgeler</span>
+                    </a>
+                    <ul class="collapse" id="documents">
+                        <li>
+                            <a class="collapser collapsed" data-bs-toggle="collapse">
+                                <span class="nav-link-icon fas fa-inbox"></span>
+                                <span class="nav-link-title">PPAP</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a asp-area="" asp-page="/#">
+                                <span class="nav-link-icon fas fa-box-open"></span>
+                                <span class="nav-link-title">Sözleşme</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-page="/#">
+                                <span class="nav-link-icon fas fa-clock"></span>
+                                <span class="nav-link-title">Kalite Sözleşmesi</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-page="/#">
+                                <span class="nav-link-icon fas fa-trash-alt"></span>
+                                <span class="nav-link-title">Lojistik Sözleşmesi</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-page="/#">
+                                <span class="nav-link-icon fas fa-trash-alt"></span>
+                                <span class="nav-link-title">Kalıp Aparat Sözleşmesi</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-page="/#">
+                                <span class="nav-link-icon fas fa-trash-alt"></span>
+                                <span class="nav-link-title">Paketleme Formu</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-page="/#">
+                                <span class="nav-link-icon fas fa-trash-alt"></span>
+                                <span class="nav-link-title">Gizlilik Sözleşmesi</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-page="/#">
+                                <span class="nav-link-icon fas fa-trash-alt"></span>
+                                <span class="nav-link-title">Kalite Belgeleri</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-page="/#">
+                                <span class="nav-link-icon fas fa-trash-alt"></span>
+                                <span class="nav-link-title">Ön Değerlendirme Formu</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-page="/#">
+                                <span class="nav-link-icon fas fa-trash-alt"></span>
+                                <span class="nav-link-title">Denetim Raporları</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-page="/#">
+                                <span class="nav-link-icon fas fa-trash-alt"></span>
+                                <span class="nav-link-title">APQP Belgeleri</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-page="/#">
+                                <span class="nav-link-icon fas fa-trash-alt"></span>
+                                <span class="nav-link-title">Yerleşim Yeri Denetimi</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-page="/#">
+                                <span class="nav-link-icon fas fa-trash-alt"></span>
+                                <span class="nav-link-title">Ziyaret Notları</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
-        </li>
-        <li>
-            <a class="collapser collapsed" data-bs-toggle="collapse" href="#deliveries">
-                <span class="nav-link-icon fas fa-shipping-fast"></span>
-                <span class="nav-link-title">Sevkiyat</span>
-            </a>
-            <ul class="collapse" id="deliveries">             
-                <li>
-                    <a asp-area="" asp-page="/#">
-                        <span class="nav-link-icon fas fa-shipping-fast"></span>
-                        <span class="nav-link-title">Sevkiyat İşlemleri</span>
-                    </a>
-                </li>
-                <li>
-                    <a asp-area="" asp-page="/#">
-                        <span class="nav-link-icon fas fa-shipping-fast"></span>
-                        <span class="nav-link-title">Hazırlanan Sevkiyatlar</span>
-                    </a>
-                </li>
-                <li>
-                    <a asp-area="" asp-page="/#">
-                        <span class="nav-link-icon fas fa-shipping-fast"></span>
-                        <span class="nav-link-title">Yoldaki Sevkiyatlar</span>
-                    </a>
-                </li>
-                <li>
-                    <a asp-area="" asp-page="/#">
-                        <span class="nav-link-icon fas fa-shipping-fast"></span>
-                        <span class="nav-link-title">İade Sevkiyatlar</span>
-                    </a>
-                </li>               
-            </ul>
-        </li>
-         <li>
-            <a class="collapser collapsed" data-bs-toggle="collapse" href="#documents">
-                <span class="nav-link-icon fas fa-list-alt"></span>
-                <span class="nav-link-title">Belgeler</span>
-            </a>
-            <ul class="collapse" id="documents">
-                <li>
-                    <a class="collapser collapsed" data-bs-toggle="collapse">
-                        <span class="nav-link-icon fas fa-inbox"></span>
-                        <span class="nav-link-title">PPAP</span>
-                    </a>                   
-                </li>
-             
-                            <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-box-open"></span>
-                                    <span class="nav-link-title">Sözleşme</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-clock"></span>
-                                    <span class="nav-link-title">Kalite Sözleşmesi</span>
-                                </a>
-                            </li>
-                              <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-trash-alt"></span>
-                                    <span class="nav-link-title">Lojistik Sözleşmesi</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-trash-alt"></span>
-                                    <span class="nav-link-title">Kalıp Aparat Sözleşmesi</span>
-                                </a>
-                            </li>
-                              <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-trash-alt"></span>
-                                    <span class="nav-link-title">Paketleme Formu</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-trash-alt"></span>
-                                    <span class="nav-link-title">Gizlilik Sözleşmesi</span>
-                                </a>
-                            </li>        
-                            <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-trash-alt"></span>
-                                    <span class="nav-link-title">Kalite Belgeleri</span>
-                                </a>
-                            </li>
-                             <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-trash-alt"></span>
-                                    <span class="nav-link-title">Ön Değerlendirme Formu</span>
-                                </a>
-                            </li> 
-                             <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-trash-alt"></span>
-                                    <span class="nav-link-title">Denetim Raporları</span>
-                                </a>
-                            </li> 
-                             <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-trash-alt"></span>
-                                    <span class="nav-link-title">APQP Belgeleri</span>
-                                </a>
-                            </li> 
-                             <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-trash-alt"></span>
-                                    <span class="nav-link-title">Yerleşim Yeri Denetimi</span>
-                                </a>
-                            </li>
-                             <li>
-                                <a asp-area="" asp-page="/#">
-                                    <span class="nav-link-icon fas fa-trash-alt"></span>
-                                    <span class="nav-link-title">Ziyaret Notları</span>
-                                </a>
-                            </li>              
-            </ul>
-        </li>
-    </ul>
-</div>
+        </div>
 
         <div class="hmf-container container-fluid">
             <header class="header">
@@ -244,7 +244,7 @@
                     </button>
                     <div class="main-navbar navbar-collapse collapse" id="mainNavbar">
                         <form class="search-group">
-                            <h1><span id="vendorHeaderName" >Test</span></h1>
+                            <h1><span id="vendorHeaderName">Test</span></h1>
                         </form>
                         <ul class="navbar-nav">
                             <li class="nav-item icon-only">
@@ -312,12 +312,15 @@
                 </nav>
             </header>
             <main class="main content" role="main">
-                @RenderBody()</main>
+                @RenderBody()
+            </main>
             <footer class="footer">
                 <div class="d-flex text-secondary">
-                    <small class="my-auto"><small><b>&copy; 2021 - PortalWeb</b> <i>(Bu portal Dönmez Debriyaj Sanayi ve
-                                Ticaret A.Ş. adına ncode Yazılım Ltd. Şti. tarafından
-                                geliştirilmiştir.)</i></small></small>
+                    <small class="my-auto">
+                        <b> &copy; 2021 - PortalWeb</b> <i>(Bu portal Dönmez Debriyaj Sanayi ve
+                            Ticaret A.Ş. adına ncode Yazılım Ltd. Şti. tarafından
+                            geliştirilmiştir.)</i>
+                    </small>
                 </div>
             </footer>
         </div>@* END of CONTAINER *@

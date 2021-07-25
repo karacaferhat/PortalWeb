@@ -20,111 +20,6 @@ const sku = $("#sku");
 
 const gridContainer = $("#gridContainer");
 
-const getOrdersAndUpdateTable = async (state) => {
-    let bDate = null;
-    if (beggingDate)
-        bDate = beggingDate.option("value");
-
-    let eDate = null;
-    if (endDate)
-        eDate = endDate.option("value");
-
-    let request = {
-        "vendor": "701480",
-        "state": state,
-        "orderdatefrom": formatDate(bDate),
-        "orderdateto": formatDate(eDate),
-        "sku": sku.val().trim(),
-        "orderno": orderNo.val().trim()
-    };
-
-
-    let data = await fetchData(baseUrl + 'getOrders', request);
-
-    for (let i = 0; i < data.orders; i++) {
-        data.orders[i].orderdate = new Date(data.orders[i].orderdate).formatDate("yyyy-MM-dd").toString();
-    }
-
-
-    gridContainer.dxDataGrid({
-        dataSource: data.orders,
-        keyExpr: "pkey",
-        columns: [
-            "pkey",
-            { dataField: "vendor", caption: "Tedarikçi" },
-            { dataField: "orderno", caption: "Siparis No" },
-            { dataField: "orderlineno", caption: "Siparis Sira No" },
-            { dataField: "orderdate", caption: "Siparis Tarihi" },
-            { dataField: "orduser", caption: "Siparisi Veren Kullanici" },
-            { dataField: "ordunit", caption: "Siparis Birimi" },
-            { dataField: "sku", caption: "SKU" }
-        ],
-        showBorders: true,
-        noDataText: "Kayıt Bulunamadı",
-        allowColumnResizing: true,
-        rowAlternationEnabled: true,
-        columnAutoWidth: true,
-        filterRow: {
-            visible: true,
-            applyFilter: "auto"
-        },
-        searchPanel: {
-            visible: true,
-            width: 240,
-            placeholder: "Ara..."
-        },
-        scrolling: {
-            mode: "standart"
-        },
-        paging: {
-            enabled: true
-        },
-        headerFilter: {
-            visible: true
-        },
-        selection: {
-            mode: 'multiple'
-        },
-        columnChooser: {
-            enabled: true,
-            mode: "select",
-            title: "Kolon Seçimi"
-        },
-        groupPanel: {
-            visible: true,
-            emptyPanelText: "Gruplamak için buraya sürükleyin"
-        },
-        export: {
-            enabled: true,
-            allowExportSelectedData: true,
-            texts: {
-                exportAll: "Tümü",
-                exportSelectedRows: "Seçimi Aktar",
-                exportTo: "excel"
-            },
-        },
-        onExporting: function (e) {
-            var workbook = new ExcelJS.Workbook();
-            var worksheet = workbook.addWorksheet('Data');
-
-            DevExpress.excelExporter.exportDataGrid({
-                component: e.component,
-                worksheet: worksheet,
-                autoFilterEnabled: true
-            }).then(function () {
-                workbook.xlsx.writeBuffer().then(function (buffer) {
-                    saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'Data.xlsx');
-                });
-            });
-            e.cancel = true;
-        }
-
-    });
-
-    gridContainer.dxDataGrid("columnOption", "pkey", "visible", false);
-
-}
-
 function formatDate(mydate) {
     if (mydate === null)
         return null;
@@ -156,68 +51,7 @@ function formatDate(mydate) {
     }
 }
 
-const getSelectedKeys = _ => {
-    let gridInstance = gridContainer.dxDataGrid("instance");
-    return gridInstance.getSelectedRowKeys();
-}
-
-const sendData = async (button, method, state, reason = null, isCancel = false) => {
-    let array = getSelectedKeys();
-    if (array.length === 0) return;
-
-    let request = {
-        orderKeys: array,
-        isCancel: isCancel,
-        username: "string",
-        lang: "string"
-    };
-
-    if (reason) request["reason"] = reason;
-
-
-    let text = button.html();
-    button.html(
-        /*html*/
-        `         
-        <div class="spinner-border text-white" role="status">
-          <span class= "sr-only"> Loading...</span>
-        </div>
-       `
-    );
-
-    let data = await fetchData(baseUrl + method, request, false);
-
-    button.html(text);
-
-
-    if (data) {
-        button.parents().find("div.modal").modal("hide");
-        getOrdersAndUpdateTable(state);
-    }
-    else {
-        button.parents("div.modal:first").find(".container").html(
-            /*html*/
-            `<span class="text-danger"><b>Islem Basarisiz</b></span>`
-        );
-    }
-}
-
-const refreshButtonAction = async (button, state) => {
-    let text = button.html();
-
-    button.html(
-        /*html*/
-        `         
-        <div class="spinner-border text-white" role="status">
-          <span class= "sr-only"> Loading...</span>
-        </div>
-       `
-    );
-    getOrdersAndUpdateTable(state).then(() => button.html(text));
-}
-
 const toggleModal = id => {
-
     let array = gridContainer.dxDataGrid("instance").getSelectedRowsData();
     if (array.length === 0) return;
 
@@ -235,4 +69,171 @@ const toggleModal = id => {
 
     $(id).find(".container").html(s + `sipariş numaralı sipariş${plu} seçildi.`);
     $(id).modal("show");
+}
+
+
+
+class OrderGrid{
+
+    constructor(state, columns){
+        this.state = state;
+        this.columns = columns;
+    }
+
+    async getOrdersAndUpdateTable (){
+        let bDate = null;
+        if (beggingDate)
+            bDate = beggingDate.option("value");
+
+        let eDate = null;
+        if (endDate)
+            eDate = endDate.option("value");
+
+
+        let request = {
+            "vendor": sessionStorage[vendorKey],
+            "state": this.state,
+            "orderdatefrom": formatDate(bDate),
+            "orderdateto": formatDate(eDate),
+            "sku": sku.val().trim(),
+            "orderno": orderNo.val().trim()
+        };
+
+
+        let data = await fetchData(baseUrl + 'getOrders', request);
+
+        for (let i = 0; i < data.orders; i++) {
+            data.orders[i].orderdate = new Date(data.orders[i].orderdate).formatDate("yyyy-MM-dd").toString();
+        }
+
+
+        gridContainer.dxDataGrid({
+            dataSource: data.orders,
+            keyExpr: "pkey",
+            columns: this.columns,
+            showBorders: true,
+            noDataText: "Kayıt Bulunamadı",
+            allowColumnResizing: true,
+            rowAlternationEnabled: true,
+            columnAutoWidth: true,
+            filterRow: {
+                visible: true,
+                applyFilter: "auto"
+            },
+            searchPanel: {
+                visible: true,
+                width: 240,
+                placeholder: "Ara..."
+            },
+            scrolling: {
+                mode: "standart"
+            },
+            paging: {
+                enabled: true
+            },
+            headerFilter: {
+                visible: true
+            },
+            selection: {
+                mode: 'multiple'
+            },
+            columnChooser: {
+                enabled: true,
+                mode: "select",
+                title: "Kolon Seçimi"
+            },
+            groupPanel: {
+                visible: true,
+                emptyPanelText: "Gruplamak için buraya sürükleyin"
+            },
+            export: {
+                enabled: true,
+                allowExportSelectedData: true,
+                texts: {
+                    exportAll: "Tümü",
+                    exportSelectedRows: "Seçimi Aktar",
+                    exportTo: "excel"
+                },
+            },
+            onExporting: function (e) {
+                var workbook = new ExcelJS.Workbook();
+                var worksheet = workbook.addWorksheet('Data');
+
+                DevExpress.excelExporter.exportDataGrid({
+                    component: e.component,
+                    worksheet: worksheet,
+                    autoFilterEnabled: true
+                }).then(function () {
+                    workbook.xlsx.writeBuffer().then(function (buffer) {
+                        saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'Data.xlsx');
+                    });
+                });
+                e.cancel = true;
+            }
+
+        });
+
+        gridContainer.dxDataGrid("columnOption", "pkey", "visible", false);
+
+    }
+
+    getSelectedKeys(){
+        let gridInstance = gridContainer.dxDataGrid("instance");
+        return gridInstance.getSelectedRowKeys();
+    }
+
+    async sendData (button, method, reason = null, isCancel = false){
+        let array = this.getSelectedKeys();
+        if (array.length === 0) return;
+
+        let request = {
+            orderKeys: array,
+            isCancel: isCancel,
+            username: "string",
+            lang: "string"
+        };
+
+        if (reason) request["reason"] = reason;
+
+
+        let text = button.html();
+        button.html(
+            /*html*/
+            `         
+            <div class="spinner-border text-white" role="status">
+            <span class= "sr-only"> Loading...</span>
+            </div>
+        `
+        );
+
+        let data = await fetchData(baseUrl + method, request, false);
+
+        button.html(text);
+
+
+        if (data) {
+            button.parents().find("div.modal").modal("hide");
+            this.getOrdersAndUpdateTable();
+        }
+        else {
+            button.parents("div.modal:first").find(".container").html(
+                /*html*/
+                `<span class="text-danger"><b>Islem Basarisiz</b></span>`
+            );
+        }
+    }
+
+    async refreshButtonAction(button) {
+        let text = button.html();
+
+        button.html(
+            /*html*/
+            `         
+            <div class="spinner-border text-white" role="status">
+            <span class= "sr-only"> Loading...</span>
+            </div>
+        `
+        );
+        this.getOrdersAndUpdateTable().then(() => button.html(text));
+    }
 }
