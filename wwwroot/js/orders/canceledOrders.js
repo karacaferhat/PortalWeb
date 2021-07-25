@@ -1,6 +1,4 @@
-const baseUrl = "https://tedarikportalorder.azurewebsites.net/api/v1/orders/";
-
-const orderGrid = new OrderGrid(baseUrl, 'getOrders',"CAN",  [
+const orderGrid = new OrderGrid("CAN",  [
     { dataField: "vendor", caption: "Tedarikçi" },
     { dataField: "orderno", caption: "Siparis No" },
     { dataField: "orderlineno", caption: "Siparis Sira No" },
@@ -22,4 +20,7 @@ searchButton.on("click", () => orderGrid.refreshButtonAction(searchButton));
 refreshGridButton.on("click", () => orderGrid.refreshButtonAction(refreshGridButton));
 
 
-$("#waitingModalToggleButton").on("click", () => { toggleModal("#waitingModal") });
+$("#waitingModalToggleButton").on("click", () => { orderGrid.showModal("#waitingModal") });
+
+
+orderGrid.updateGrid();
