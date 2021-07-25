@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\MeteARSLAN\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\MeteARSLAN\\.nuget\\packages",
+      "C:\\Users\\tugce\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\tugce\\.nuget\\packages",
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
     ]
   }

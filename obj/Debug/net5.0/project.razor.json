@@ -15617,6 +15617,102 @@
     "CSharpLanguageVersion": 900
   },
   "RootNamespace": "PortalWeb",
-  "Documents": [],
+  "Documents": [
+    {
+      "FilePath": "c:\\TedarikPortal\\PortalWeb\\Pages\\_ViewImports.cshtml",
+      "TargetPath": "Pages\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\TedarikPortal\\PortalWeb\\Pages\\_ViewStart.cshtml",
+      "TargetPath": "Pages\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\TedarikPortal\\PortalWeb\\Pages\\Privacy.cshtml",
+      "TargetPath": "Pages\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\TedarikPortal\\PortalWeb\\Pages\\Shared\\_Layout.cshtml",
+      "TargetPath": "Pages\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\TedarikPortal\\PortalWeb\\Pages\\CanceledOrders.cshtml",
+      "TargetPath": "Pages\\CanceledOrders.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\TedarikPortal\\PortalWeb\\Pages\\Shared\\PartialViews\\OrderModals\\_WaitingModal.cshtml",
+      "TargetPath": "Pages\\Shared\\PartialViews\\OrderModals\\_WaitingModal.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\TedarikPortal\\PortalWeb\\Pages\\Shared\\PartialViews\\OrderModals\\_CancelModal.cshtml",
+      "TargetPath": "Pages\\Shared\\PartialViews\\OrderModals\\_CancelModal.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\TedarikPortal\\PortalWeb\\Pages\\Shared\\PartialViews\\OrderModals\\_SuspendModal.cshtml",
+      "TargetPath": "Pages\\Shared\\PartialViews\\OrderModals\\_SuspendModal.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\TedarikPortal\\PortalWeb\\Pages\\Index.cshtml",
+      "TargetPath": "Pages\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\TedarikPortal\\PortalWeb\\Pages\\Test.cshtml",
+      "TargetPath": "Pages\\Test.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\TedarikPortal\\PortalWeb\\Pages\\ReadyOrders.cshtml",
+      "TargetPath": "Pages\\ReadyOrders.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\TedarikPortal\\PortalWeb\\Pages\\Login.cshtml",
+      "TargetPath": "Pages\\Login.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\TedarikPortal\\PortalWeb\\Pages\\Shared\\PartialViews\\_OrderFilterSectionPartialView.cshtml",
+      "TargetPath": "Pages\\Shared\\PartialViews\\_OrderFilterSectionPartialView.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\TedarikPortal\\PortalWeb\\Pages\\Error.cshtml",
+      "TargetPath": "Pages\\Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\TedarikPortal\\PortalWeb\\Pages\\Documents.cshtml",
+      "TargetPath": "Pages\\Documents.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\TedarikPortal\\PortalWeb\\Pages\\Shared\\PartialViews\\OrderModals\\_AcceptModal.cshtml",
+      "TargetPath": "Pages\\Shared\\PartialViews\\OrderModals\\_AcceptModal.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\TedarikPortal\\PortalWeb\\Pages\\WaitingOrders.cshtml",
+      "TargetPath": "Pages\\WaitingOrders.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\TedarikPortal\\PortalWeb\\Pages\\SuspendedOrders.cshtml",
+      "TargetPath": "Pages\\SuspendedOrders.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\TedarikPortal\\PortalWeb\\Pages\\Shared\\PartialViews\\_ValidationScriptsPartial.cshtml",
+      "TargetPath": "Pages\\Shared\\PartialViews\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    }
+  ],
   "SerializationFormat": "0.2"
 }
