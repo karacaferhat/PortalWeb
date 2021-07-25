@@ -80,7 +80,7 @@ const refresh = async () => {
     let jwt = sessionStorage.getItem(jwtTokenKey);
     let refreshToken = sessionStorage.getItem(refreshTokenKey);
 
-    if (!(jwt && refreshToken)) {
+    if (jwt == null || refreshToken == null) {
         jwt = localStorage.getItem(jwtTokenKey);
         refreshToken = localStorage.getItem(refreshTokenKey);
     }
