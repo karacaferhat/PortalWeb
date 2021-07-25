@@ -78,6 +78,9 @@ class OrderGrid{
     constructor(state, columns){
         this.state = state;
         this.columns = columns;
+
+        
+        this.getOrdersAndUpdateTable();
     }
 
     async getOrdersAndUpdateTable (){

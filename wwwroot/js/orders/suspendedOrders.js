@@ -26,5 +26,3 @@ refreshGridButton.on("click", () => orderGrid.refreshButtonAction(refreshGridBut
 $("#waitingModalToggleButton").on("click", () => { toggleModal("#waitingModal") });
 $("#cancelModalToggleButton").on("click", () => { toggleModal("#cancelModal") });
 
-
-orderGrid.getOrdersAndUpdateTable();
