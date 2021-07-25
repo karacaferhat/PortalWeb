@@ -6,13 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace PortalWeb.Pages
+namespace PortalWeb.Pages.Orders
 {
-    public class SuspendedOrders : PageModel
+    public class ReadyOrders : PageModel
     {
-        private readonly ILogger<SuspendedOrders> _logger;
+        private readonly ILogger<ReadyOrders> _logger;
 
-        public SuspendedOrders(ILogger<SuspendedOrders> logger)
+        public ReadyOrders(ILogger<ReadyOrders> logger)
         {
             _logger = logger;
         }

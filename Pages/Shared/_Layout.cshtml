@@ -40,7 +40,14 @@
     @* EXTENDED FRAMEWORKS *@
     <link rel="stylesheet" href="~/css/hur-preloader.css">
     <link rel="stylesheet" href="~/css/hur-mat.css">
+    
+
+    @*Login Ekranini Bozuyor*@
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
+    @*Login Ekranini Bozuyor*@
+
+    
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
     @* END of EXTENDED FRAMEWORKS *@
 
@@ -58,6 +65,7 @@
 
     @* Data Fetcher *@
     <script src="~/js/dataFetcher.js" asp-append-version="true"></script>
+
 </head>
 
 <body class='@ViewData["Title"]'>
@@ -81,26 +89,26 @@
                     </a>
                     <ul class="collapse" id="orders">
                         <li>
-                            <a asp-area="" asp-page="/waitingorders">
+                            <a asp-area="" asp-page="/orders/waitingorders">
                                 <span class="nav-link-icon fas fa-shipping-fast"></span>
                                 <span class="nav-link-title">Bekleyen Siparişler</span>
                             </a>
                         </li>
                         <li>
-                            <a asp-area="" asp-page="/canceledorders">
+                            <a asp-area="" asp-page="/orders/canceledorders">
                                 <span class="nav-link-icon fas fa-shipping-fast"></span>
                                 <span class="nav-link-title">İptal Edilen Siparişler</span>
                             </a>
                         </li>
                         <li>
-                            <a asp-area="" asp-page="/readyorders">
+                            <a asp-area="" asp-page="/orders/readyorders">
                                 <span class="nav-link-icon fas fa-clipboard-list"></span>
                                 <span class="nav-link-title">Kabul Edilen Siparişler</span>
                             </a>
 
                         </li>
                         <li>
-                            <a asp-area="" asp-page="/suspendedorders">
+                            <a asp-area="" asp-page="/orders/suspendedorders">
                                 <span class="nav-link-icon fas fa-paragraph"></span>
                                 <span class="nav-link-title">Askıya Alınan Siparişler</span>
                             </a>
@@ -261,7 +269,7 @@
                                         <span class="d-none user-icon fas fa-user"></span>
                                         @* d-none X d-flex Toggle === Resim yüklenmiş/yüklenmemiş *@
                                         @* ~/imgs/navimgs/image-1.jpg *@@* AI Human Face Generator *@
-                                        <img class="d-flex" src="imgs/navimgs/d_icon.svg" alt="User Image">
+                                        <img class="d-flex" src="~/imgs/navimgs/d_icon.svg" alt="User Image">
                                     </span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
@@ -270,7 +278,7 @@
                                             <div class="user-data">
                                                 @* d-none X d-flex Toggle === Resim yüklenmiş/yüklenmemiş *@
                                                 @* ~/imgs/navimgs/image-1.jpg *@@* AI Human Face Generator *@
-                                                <img class="d-flex" src="imgs/navimgs/d_icon.svg" alt="">
+                                                <img class="d-flex" src="~/imgs/navimgs/d_icon.svg" alt="">
 
                                                 <div class="col">
                                                     <div class="user-name row">
@@ -345,7 +353,7 @@
     @* END of NCODE *@
     <script src="~/js/customer.js" asp-append-version="true"></script>
 
-    <script src="~/js/setUserInfo.js" asp-append-version="true"></script>
+    <script src="~/js/login/setUserInfo.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

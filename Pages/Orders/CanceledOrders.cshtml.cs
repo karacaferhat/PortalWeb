@@ -6,20 +6,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace PortalWeb.Pages
+namespace PortalWeb.Pages.Orders
 {
-    public class TestModel : PageModel
+    public class CanceledOrders : PageModel
     {
-        private readonly ILogger<TestModel> _logger;
+        private readonly ILogger<CanceledOrders> _logger;
 
-        public TestModel(ILogger<TestModel> logger)
+        public CanceledOrders(ILogger<CanceledOrders> logger)
         {
             _logger = logger;
         }
 
         public void OnGet()
         {
-
         }
     }
 }
