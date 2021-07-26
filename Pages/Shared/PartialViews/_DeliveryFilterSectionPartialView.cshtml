@@ -29,17 +29,9 @@
                             </button>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
-    </div>
-    <div class="action-footer">
-        <button id="searchButton" class="btn btn-sm btn-outline-primary rounded-pill ripple-fx">
-            <span class="btn-icon fas fa-tasks"></span>
-            <span class="btn-title">Tamam</span>
-        </button>
     </div>
 </div>
 
@@ -56,7 +48,10 @@
                             <span class="input-border"></span>
                         </div>
                         <div class="col">
-                            <button id="selectProductButton" class="btn btn-primary">Urun Sec</button>
+                            <button class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#chooseProductsModal">
+                                Urun Sec
+                            </button>
                         </div>
                     </div>
                     <div class="row">
@@ -72,10 +67,11 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="mat-input mat-file">
-                            <input type="file" id="fileAttachment">
-                            <span class="placeholder">Dosya Eki</span>
-                            <span class="input-border"></span>
+                        <div class="m-2">
+                            <button id="fileAttachmentButton" class="btn btn-primary">
+                                Dosya Eklerini Sec
+                            </button>
+                            <input type="file" id="fileAttachment" style="display: none;" multiple />
                         </div>
                     </div>
                 </div>
