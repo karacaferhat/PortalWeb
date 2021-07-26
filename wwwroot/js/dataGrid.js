@@ -31,7 +31,7 @@ function formatDate(mydate) {
 
 class DataGrid{
 
-    constructor(baseUrl, getMethod, keyColumn, columns){
+    constructor(baseUrl, getMethod, keyColumn, columns, gridContainerId = "#gridContainer"){
         if(this.constructor == DataGrid)
             throw new Error("Abstract classes can't be instantiated.");
 
@@ -40,7 +40,7 @@ class DataGrid{
         this.getMethod = getMethod;
         this.keyColumn = keyColumn;
         this.columns = columns;
-        this.gridContainer = $("#gridContainer");
+        this.gridContainer = $(gridContainerId);
     }
 
 

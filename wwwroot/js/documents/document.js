@@ -82,7 +82,7 @@ const uploadFiles = async () => {
 
 const listFiles = async () => {
     const request = {
-        vendor: "701480",
+        vendor: sessionStorage[vendorKey],
         documentType: "asdfg",
         asNo : "123456789",
         asLineNo : "123456"

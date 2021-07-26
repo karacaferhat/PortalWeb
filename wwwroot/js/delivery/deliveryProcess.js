@@ -8,6 +8,16 @@ const deliveryGrid = new DeliveryGrid("WAI", [
     { dataField: "tcvkn", caption: "TCVKN"}
 ]);
 
+const orderGrid = new OrderGrid("PRC",  [
+    { dataField: "vendor", caption: "Tedarikçi" },
+    { dataField: "orderno", caption: "Siparis No" },
+    { dataField: "orderlineno", caption: "Siparis Sira No" },
+    { dataField: "orderdate", caption: "Siparis Tarihi" },
+    { dataField: "orduser", caption: "Siparisi Veren Kullanici" },
+    { dataField: "ordunit", caption: "Siparis Birimi" },
+    { dataField: "sku", caption: "SKU" }
+]);
+
 
 const searchButton = $("#searchButton");
 const refreshGridButton = $("#refreshGridButton");
@@ -19,3 +29,4 @@ refreshGridButton.on("click", () => deliveryGrid.refreshButtonAction(refreshGrid
 
 
 deliveryGrid.updateGrid();
+$("#chooseProductsModal").on('shown', ()=>orderGrid.updateGrid());
