@@ -1,21 +1,61 @@
-const deliveryGrid = new DeliveryGrid("WAI", [
-    { dataField: "asn", caption: "ASN" },
-    { dataField: "vendor", caption: "Tedarikçi" },
-    { dataField: "vendorname", caption: "Tedarikçi Adi" },
-    { dataField: "fromPartner", caption: "Gelen Ortak" },
-    { dataField: "toPartner", caption: "Giden Ortak" },
-    { dataField: "plate", caption: "Son Teslim Tarihi" },
-    { dataField: "tcvkn", caption: "TCVKN"}
+const deliveryGrid = new DeliveryGrid("WAI", [{
+    dataField: "asn",
+    caption: "ASN"
+  },
+  {
+    dataField: "vendor",
+    caption: "Tedarikçi"
+  },
+  {
+    dataField: "vendorname",
+    caption: "Tedarikçi Adi"
+  },
+  {
+    dataField: "fromPartner",
+    caption: "Gelen Ortak"
+  },
+  {
+    dataField: "toPartner",
+    caption: "Giden Ortak"
+  },
+  {
+    dataField: "plate",
+    caption: "Son Teslim Tarihi"
+  },
+  {
+    dataField: "tcvkn",
+    caption: "TCVKN"
+  }
 ]);
 
-const orderGrid = new OrderGrid("PRC",  [
-    { dataField: "vendor", caption: "Tedarikçi" },
-    { dataField: "orderno", caption: "Siparis No" },
-    { dataField: "orderlineno", caption: "Siparis Sira No" },
-    { dataField: "orderdate", caption: "Siparis Tarihi" },
-    { dataField: "orduser", caption: "Siparisi Veren Kullanici" },
-    { dataField: "ordunit", caption: "Siparis Birimi" },
-    { dataField: "sku", caption: "SKU" }
+const orderGrid = new OrderGrid("PRC", [{
+    dataField: "vendor",
+    caption: "Tedarikçi"
+  },
+  {
+    dataField: "orderno",
+    caption: "Siparis No"
+  },
+  {
+    dataField: "orderlineno",
+    caption: "Siparis Sira No"
+  },
+  {
+    dataField: "orderdate",
+    caption: "Siparis Tarihi"
+  },
+  {
+    dataField: "orduser",
+    caption: "Siparisi Veren Kullanici"
+  },
+  {
+    dataField: "ordunit",
+    caption: "Siparis Birimi"
+  },
+  {
+    dataField: "sku",
+    caption: "SKU"
+  }
 ]);
 
 
@@ -37,86 +77,115 @@ refreshGridButton.on("click", () => deliveryGrid.refreshButtonAction(refreshGrid
 
 
 deliveryGrid.updateGrid();
-chooseProductsModal.on('shown.bs.modal', ()=>orderGrid.updateGrid());
-chooseProductsButton.on('click', ()=>{chooseProductsModal.modal('toggle')});
+chooseProductsModal.on('shown.bs.modal', () => orderGrid.updateGrid());
+chooseProductsButton.on('click', () => {
+  chooseProductsModal.modal('toggle')
+});
 
 
-createDeliveryButton.on('click', async ()=>{
-    if(orderGrid.selectedKeys.length === 0)
-        return;
-    
+createDeliveryButton.on('click', async () => {
+  if (orderGrid.selectedKeys.length === 0)
+    return;
 
-    let request = {
-        "vendor": "701480",
-        "asn": asn.val(),
-        "updUser": "701480",
-        "delivery": {
-          "id": asn.val(),
-          "pkey": asn.val(),
+
+  let request = {
+    "vendor": "701480",
+    "asn": asn.val(),
+    "updUser": "701480",
+    "delivery": {
+      "id": asn.val(),
+      "pkey": asn.val(),
+      "asn": asn.val(),
+      "vendor": "701480",
+      "vendorname": "string",
+      "crdate": "string",
+      "cruser": "string",
+      "issdate": "string",
+      "fromPartner": "string",
+      "toPartner": "string",
+      "state": "WAI",
+      "items": [ /////////
+        {
           "asn": asn.val(),
-          "vendor": "701480",
-          "vendorname": "string",
+          "asnline": asn.val(),
           "crdate": "string",
-          "cruser": "string",
-          "issdate": "string",
-          "fromPartner": "string",
-          "toPartner": "string",
-          "state": "WAI",
-          "items": [/////////
-            {
-              "asn": asn.val(),
-              "asnline": asn.val(),
-              "crdate": "string",
-              "order": "string",
-              "orderline": "string",
-              "sku": "string",
-              "lot": lot.val(),
-              "package": "string",
-              "skuname": "string",
-              "ordqty": quantity.val(),
-              "ordunit": "string",
-              "dlvqty": 0,
-              "dlvunit": "string",
-              "lastdlvdate": "string",
-              "revno": "string",
-              "drwno": "string",
-              "drwspecno": "string",
-              "drwrevisionno": "string",
-              "lineattachments": [
-                {
-                  "doctype": "string",
-                  "filename": "string",
-                  "fileurl": "string"
-                }
-              ],
-              "linenotes": [
-                "string"
-              ]
-            }
-          ],
-          "attachments": [
-            {
-              "doctype": "string",
-              "filename": "string",
-              "fileurl": "string"
-            }
-          ],
-          "edispatchno": "string",
-          "edispatchfile": "string",
-          "transporttype": "string",
-          "transportcompany": "string",
-          "plate": "string",
-          "tcvkn": "string",
-          "notes": [
+          "order": "string",
+          "orderline": "string",
+          "sku": "string",
+          "lot": lot.val(),
+          "package": "string",
+          "skuname": "string",
+          "ordqty": quantity.val(),
+          "ordunit": "string",
+          "dlvqty": 0,
+          "dlvunit": "string",
+          "lastdlvdate": "string",
+          "revno": "string",
+          "drwno": "string",
+          "drwspecno": "string",
+          "drwrevisionno": "string",
+          "lineattachments": [{
+            "doctype": "string",
+            "filename": "string",
+            "fileurl": "string"
+          }],
+          "linenotes": [
             "string"
           ]
         }
+      ],
+      "attachments": [{
+        "doctype": "string",
+        "filename": "string",
+        "fileurl": "string"
+      }],
+      "edispatchno": "string",
+      "edispatchfile": "string",
+      "transporttype": "string",
+      "transportcompany": "string",
+      "plate": "string",
+      "tcvkn": "string",
+      "notes": [
+        "string"
+      ]
     }
+  }
 
-    let data = await fetchData(baseUrl + "upsert", request);
-    console.log(data);
+  let data = await fetchData(baseUrl + "upsert", request);
+  console.log(data);
 
-    deliveryGrid.updateGrid();
+  deliveryGrid.updateGrid();
 });
 
-fileAttachment.on('click', uploadFiles);
+
+fileAttachmentButton.on('click', () => {
+  fileAttachment.trigger('click')
+});
+fileAttachment.on('change', async () => {
+  let vendor = sessionStorage[vendorKey];
+  let documentType = "byDeliveryLine";
+  let processType = "fromDeliveryProcess";
+  let asn = "12345";
+  let asnLine = "1";
+
+  let files = fileAttachment.prop("files");
+
+  let result = await uploadFiles(files, documentType, processType, asn, asnLine);
+  if (Number.isInteger(result)) {
+    if (result === 0) {
+      let filePath = vendor + '/' + getFilePath(processType, files[0].name, vendor, documentType, asn, asnLine);
+
+      let request = {
+        vendor: vendor,
+        asn: asn,
+        asnline : asnLine,
+        updUser : vendor,
+        filename: files[0].name,
+        fileurl : filePath
+      }
+      let data = await fetchData(baseUrl + 'additemAttachment', request);
+      console.log(data);
+    }
+  }
+
+});
