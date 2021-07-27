@@ -82,6 +82,12 @@ $("#asnDate").dxDateBox({
   displayFormat: dateFormat,
   type: "date",
 });
+
+
+const package = $("#package");
+const newPackageButton = $("#newPackageButton");
+
+
 const asnDate = $("#asnDate").dxDateBox("instance");
 const asn = $("#asn");
 const newAsnButton = $("#newAsnButton");
@@ -121,7 +127,7 @@ createDeliveryButton.on('click', async () => {
   let request = {
     "vendor": sessionStorage[vendorKey],
     "asn": asn.val(),
-    "updUser": "701480",
+    "updUser": sessionStorage[vendorNameKey],
     "delivery": {
       "id": asn.val(),
       "pkey": asn.val(),
@@ -191,17 +197,6 @@ createDeliveryButton.on('click', async () => {
 fileAttachmentButton.on('click', () => {
   fileAttachment.trigger('click')
 });
-fileAttachment.on('change', async () => {
-
-
-});
-/*
-    let documentType = "byDeliveryLine";
-    let processType = "fromDeliveryProcess";
-    let asn = "12345";
-    let asnLine = "1";
-   */
-
 
 newAsnButton.on("click", async () => {
   let request = {
@@ -215,6 +210,20 @@ newAsnButton.on("click", async () => {
     asn.val(data.asn);
   }
 });
+
+newPackageButton.on("click", async () => {
+  let request = {
+    vendor: sessionStorage[vendorKey],
+    updUser: sessionStorage[vendorNameKey]
+  }
+
+  let data = await fetchData(baseUrl + "generatePackage", request);
+
+  if (data && data.resultType) {
+    package.val(data.package);
+  }
+});
+
 
 chooseAsnButton.on("click", () => {
   if (miniDeliveryGrid.selectedKeys.length === 0)

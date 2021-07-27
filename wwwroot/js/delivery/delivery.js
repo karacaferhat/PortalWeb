@@ -30,27 +30,3 @@ class DeliveryGrid extends DataGrid {
     }
 
 }
-
-
-const uploadAttachment = async (documentType, processType, asn, asnLine)=>{
-    let vendor = sessionStorage[vendorKey];  
-    let files = fileAttachment.prop("files");
-  
-    let result = await uploadFiles(files, documentType, processType, asn, asnLine);
-    if (Number.isInteger(result)) {
-      if (result === 0) {
-        let filePath = vendor + '/' + getFilePath(processType, files[0].name, vendor, documentType, asn, asnLine);
-  
-        let request = {
-          vendor: vendor,
-          asn: asn,
-          asnline: asnLine,
-          updUser: vendor,
-          filename: files[0].name,
-          fileurl: filePath
-        }
-        let data = await fetchData(baseUrl + 'additemAttachment', request);
-        console.log(data);
-      }
-    }
-}
