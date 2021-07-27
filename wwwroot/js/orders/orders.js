@@ -20,16 +20,26 @@ const sku = $("#sku");
 
 class OrderGrid extends DataGrid {
 
-    constructor(state, columns, gridContainerId = "#orderGridContainer") {
+    constructor(state, columns, {
+        enableGrouping = true,
+        selectionMode = "multiple",
+        gridContainerId = "#orderGridContainer"
+    } = {}) {
+
         super("https://tedarikportalorder.azurewebsites.net/api/v1/orders/",
-        'getOrders', "pkey", columns, gridContainerId);
+            'getOrders', "pkey", columns, {
+                enableGrouping : enableGrouping,
+                selectionMode : selectionMode,
+                gridContainerId : gridContainerId
+            }
+        );
 
         this.state = state;
     }
 
-    
 
-    async getUpdateArray(){
+
+    async getUpdateArray() {
         let bDate = null;
         let eDate = null;
         let s = null;
@@ -40,14 +50,14 @@ class OrderGrid extends DataGrid {
 
         if (endDate)
             eDate = endDate.option("value");
-        
-        if(sku && sku.val())
-            s = sku.val().trim();
-        if(orderNo && orderNo.val())
-            ono = orderNo.val().trim();
-        
 
-        let updateRequest =         {
+        if (sku && sku.val())
+            s = sku.val().trim();
+        if (orderNo && orderNo.val())
+            ono = orderNo.val().trim();
+
+
+        let updateRequest = {
             "vendor": sessionStorage[vendorKey],
             "state": this.state,
             "orderdatefrom": formatDate(bDate),
