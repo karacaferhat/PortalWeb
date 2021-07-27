@@ -1,8 +1,3 @@
-//!!!!ONEMLI!!!! azure dan cors u duzelt
-const documentServiceBaseUri = "https://tederikportaldocumentservice.azurewebsites.net/api/v1/deliverydocument/";
-const loggerServiceBaseUri = "https://tedarikportallogger.azurewebsites.net/api/v1/log/";
-const blobStorageBaseUri = "https://tedarikportalstorage.blob.core.windows.net/";
-
 const status = document.getElementById("status");
 const selectButton = document.getElementById("select-button");
 const fileInput = document.getElementById("file-input");
@@ -29,13 +24,12 @@ const reportStatus = (message, isSpinning) => {
 }
 
 
-
 const listFiles = async () => {
     const request = {
         vendor: sessionStorage[vendorKey],
         documentType: "asdfg",
-        asNo : "123456789",
-        asLineNo : "123456"
+        asNo: "123456789",
+        asLineNo: "123456"
     };
 
     let processType = processTypeInput.value.toString();
@@ -54,59 +48,30 @@ const listFiles = async () => {
     });
 };
 
-const logUpload = async (vendor, asno, asLineNo, filename, fileurl) => {
-    let request = {
-        vendor: vendor,
-        asn: asno,
-        asnline: asLineNo,
-        filename : filename,
-        fileurl : fileurl,
-        resultType : "Success",
-        resultMessage : "Document has been succesfully uploaded."
-    };
-
-    let data = await fetchData(loggerServiceBaseUri + "addDocStoreLog", request);
-    console.log(data);
-}
-
-const getFilePath = (processType, fileName, vendor, documentType, asno, asLineNo) => {
-    let filePath = documentType + '/';
-    if (processType === "documentByType")
-        filePath += fileName;
-    else if (processType === "deliveryDocument")
-        filePath += asno + '/' + fileName;
-    else if (processType === "deliveryLineDocument")
-        filePath += asno + '/' + asLineNo + '/' + fileName;
-
-    return filePath;
-}
-
-const checkIfFileExists = async (processType, fileName, vendor, documentType, asno, asLineNo) => {
-    let filePath = getFilePath(processType, fileName, vendor, documentType, asno, asLineNo);
-
-    let request = {
-        containerName : vendor,
-        filePath : filePath
-    };
-
-    let data = false;
-    try {
-        data = await fetchData(documentServiceBaseUri + "checkIfFileExists", request);
-    }
-    catch (error){
-        return false
-    }
-
-    return data.result;
-}
-
 
 
 selectButton.addEventListener("click", () => fileInput.click());
-fileInput.addEventListener("change", ()=>
-    uploadFiles(processTypeInput.value.toString(), "asdfg", "123456789", "123456")
-    );
+fileInput.addEventListener("change", async () => {
+    reportStatus("Uploading files...", true);
+
+    let result = await uploadFiles(
+        fileInput.files, processTypeInput.value.toString(),
+         "asdfg", "123456789", "123456");
+
+    if (Number.isInteger(result)) {
+        if (result === 0)
+            reportStatus("Done.", false);
+        else if (result > 0)
+            reportStatus(`${result} Files Already Exists. Couldn't Upload.`);
+    } else
+        reportStatus(result, false);
+    
+
+    await listFiles();
+});
 
 listButton.addEventListener("click", listFiles);
+processTypeInput.addEventListener('change', listFiles);
+
 
 listFiles();
