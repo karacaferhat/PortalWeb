@@ -1,5 +1,6 @@
 const baseUrl = "https://tedarikportaldelivery.azurewebsites.net/api/v1/delivery/";
 
+const asn = $("#asn");
 
 class DeliveryGrid extends DataGrid {
 
@@ -16,17 +17,21 @@ class DeliveryGrid extends DataGrid {
         });
 
         this.state = state;
+        this._asn = "";
     }
 
     async getUpdateArray() {
         let request = {
             vendor: sessionStorage[vendorKey],
             state: this.state,
-            asn: "701480-2021-00001" //asn.val()
+            asn: this._asn
         }
         let data = await fetchData(this.baseUrl + this.getMethod, request);
 
         return data.data;
     }
 
+    setAsn(asn){
+        this._asn.val()
+    }
 }
