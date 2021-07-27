@@ -29,22 +29,23 @@ function formatDate(mydate) {
     }
 }
 
-class DataGrid{
+class DataGrid {
 
-    constructor(baseUrl, getMethod, keyColumn, columns, gridContainerId = "#gridContainer"){
-        if(this.constructor == DataGrid)
+    constructor(baseUrl, getMethod, keyColumn, columns, {enableGrouping =  true, selectionMode = "multiple", gridContainerId = "#gridContainer"} = {}) {
+        if (this.constructor == DataGrid)
             throw new Error("Abstract classes can't be instantiated.");
-
 
         this.baseUrl = baseUrl;
         this.getMethod = getMethod;
         this.keyColumn = keyColumn;
         this.columns = columns;
         this.gridContainer = $(gridContainerId);
+        this.options = {enableGrouping : enableGrouping,
+                        selectionMode : selectionMode};
     }
 
 
-    async getUpdateArray(){
+    async getUpdateArray() {
         throw new Error("This method must be implemented");
     }
 
@@ -55,7 +56,7 @@ class DataGrid{
 
 
     async updateGrid() {
-        this.gridContainer.dxDataGrid({
+        let settings = {
             dataSource: await this.getUpdateArray(),
             keyExpr: this.keyColumn,
             columns: this.columns,
@@ -83,16 +84,7 @@ class DataGrid{
                 visible: true
             },
             selection: {
-                mode: 'multiple'
-            },
-            columnChooser: {
-                enabled: true,
-                mode: "select",
-                title: "Kolon Seçimi"
-            },
-            groupPanel: {
-                visible: true,
-                emptyPanelText: "Gruplamak için buraya sürükleyin"
+                mode: this.options.selectionMode
             },
             export: {
                 enabled: true,
@@ -121,7 +113,22 @@ class DataGrid{
                 e.cancel = true;
             }
 
-        });
+        };
+
+        if (this.options.enableGrouping){
+            settings["columnChooser"] = {
+                enabled: true,
+                mode: "select",
+                title: "Kolon Seçimi"
+            };
+            settings["groupPanel"] = {
+                visible: true,
+                emptyPanelText: "Gruplamak için buraya sürükleyin"
+            };
+        }
+
+
+        this.gridContainer.dxDataGrid(settings);
     }
 
     async refreshButtonAction(button) {

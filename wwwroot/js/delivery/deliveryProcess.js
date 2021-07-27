@@ -28,46 +28,78 @@ const deliveryGrid = new DeliveryGrid("WAI", [{
   }
 ]);
 
-const orderGrid = new OrderGrid("PRC", [{
+const miniDeliveryGrid = new DeliveryGrid("WAI", [{
+    dataField: "asn",
+    caption: "ASN"
+  },
+  {
     dataField: "vendor",
     caption: "Tedarikçi"
-  },
-  {
-    dataField: "orderno",
-    caption: "Siparis No"
-  },
-  {
-    dataField: "orderlineno",
-    caption: "Siparis Sira No"
-  },
-  {
-    dataField: "orderdate",
-    caption: "Siparis Tarihi"
-  },
-  {
-    dataField: "orduser",
-    caption: "Siparisi Veren Kullanici"
-  },
-  {
-    dataField: "ordunit",
-    caption: "Siparis Birimi"
-  },
-  {
-    dataField: "sku",
-    caption: "SKU"
   }
-]);
+], {
+  enableGrouping: false,
+  selectionMode: "single",
+  gridContainerId: "#miniDeliveryGrid"
+});
+
+const orderGrid = new OrderGrid("PRC",
+  [{
+      dataField: "vendor",
+      caption: "Tedarikçi"
+    },
+    {
+      dataField: "orderno",
+      caption: "Siparis No"
+    },
+    {
+      dataField: "orderlineno",
+      caption: "Siparis Sira No"
+    },
+    {
+      dataField: "orderdate",
+      caption: "Siparis Tarihi"
+    },
+    {
+      dataField: "orduser",
+      caption: "Siparisi Veren Kullanici"
+    },
+    {
+      dataField: "ordunit",
+      caption: "Siparis Birimi"
+    },
+    {
+      dataField: "sku",
+      caption: "SKU"
+    }
+  ], {
+    enableGrouping: false
+  });
 
 
-const productName = $("#productName");
-const chooseProductsButton = $("#chooseProductsButton");
+$("#asnDate").dxDateBox({
+  showClearButton: true,
+  useMaskBehavior: true,
+  displayFormat: dateFormat,
+  type: "date",
+});
+const asnDate = $("#asnDate").dxDateBox("instance");
+const asn = $("#asn");
+const newAsnButton = $("#newAsnButton");
+const chooseAsnModal = $("#chooseAsnModal");
+const chooseAsnButton = $("#chooseAsnButton")
+
+
+const products = $("#products");
 const chooseProductsModal = $("#chooseProductsModal");
+const chooseProductsButton = $("#chooseProductsButton")
 
-const quantity = $("#quantity");
-const lot = $("#lot");
 
 const fileAttachment = $("#fileAttachment");
 const fileAttachmentButton = $("#fileAttachmentButton");
+
+
+const quantity = $("#quantity");
+const lot = $("#lot");
 
 
 const createDeliveryButton = $("#createDeliveryButton");
@@ -76,11 +108,9 @@ const refreshGridButton = $("#refreshGridButton");
 refreshGridButton.on("click", () => deliveryGrid.refreshButtonAction(refreshGridButton));
 
 
-deliveryGrid.updateGrid();
 chooseProductsModal.on('shown.bs.modal', () => orderGrid.updateGrid());
-chooseProductsButton.on('click', () => {
-  chooseProductsModal.modal('toggle')
-});
+chooseAsnModal.on('shown.bs.modal', () => miniDeliveryGrid.updateGrid());
+
 
 
 createDeliveryButton.on('click', async () => {
@@ -89,7 +119,7 @@ createDeliveryButton.on('click', async () => {
 
 
   let request = {
-    "vendor": "701480",
+    "vendor": sessionStorage[vendorKey],
     "asn": asn.val(),
     "updUser": "701480",
     "delivery": {
@@ -162,30 +192,57 @@ fileAttachmentButton.on('click', () => {
   fileAttachment.trigger('click')
 });
 fileAttachment.on('change', async () => {
-  let vendor = sessionStorage[vendorKey];
-  let documentType = "byDeliveryLine";
-  let processType = "fromDeliveryProcess";
-  let asn = "12345";
-  let asnLine = "1";
 
-  let files = fileAttachment.prop("files");
-
-  let result = await uploadFiles(files, documentType, processType, asn, asnLine);
-  if (Number.isInteger(result)) {
-    if (result === 0) {
-      let filePath = vendor + '/' + getFilePath(processType, files[0].name, vendor, documentType, asn, asnLine);
-
-      let request = {
-        vendor: vendor,
-        asn: asn,
-        asnline : asnLine,
-        updUser : vendor,
-        filename: files[0].name,
-        fileurl : filePath
-      }
-      let data = await fetchData(baseUrl + 'additemAttachment', request);
-      console.log(data);
-    }
-  }
 
 });
+/*
+    let documentType = "byDeliveryLine";
+    let processType = "fromDeliveryProcess";
+    let asn = "12345";
+    let asnLine = "1";
+   */
+
+
+newAsnButton.on("click", async () => {
+  let request = {
+    vendor: sessionStorage[vendorKey],
+    updUser: sessionStorage[vendorNameKey]
+  }
+
+  let data = await fetchData(baseUrl + "generateasn", request);
+
+  if (data && data.resultType) {
+    asn.val(data.asn);
+  }
+});
+
+chooseAsnButton.on("click", () => {
+  if (miniDeliveryGrid.selectedKeys.length === 0)
+    return
+
+  asn.val(miniDeliveryGrid.selectedKeys[0]);
+  chooseAsnModal.modal('toggle');
+});
+
+
+chooseProductsButton.on("click", () => {
+  if (orderGrid.selectedKeys.length === 0)
+    return
+
+  let string = "";
+  let keys = orderGrid.selectedKeys;
+
+  for (let i = 0; i < keys.length; i++) {
+    if (i < keys.length - 1)
+      string += `${keys[i]}, `;
+    else
+      string += `${keys[i]} `;
+  }
+
+  products.val(string);
+  chooseProductsModal.modal('toggle');
+});
+
+
+
+deliveryGrid.updateGrid();
