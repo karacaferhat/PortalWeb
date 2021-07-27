@@ -1,60 +1,7 @@
-const baseUrl = "https://tedarikportaldelivery.azurewebsites.net/api/v1/delivery/";
-
-$("#asnDate").dxDateBox({
-    showClearButton: true,
-    useMaskBehavior: true,
-    displayFormat: dateFormat,
-    type: "date",
-});
-const asnDate = $("#asnDate").dxDateBox("instance");
-const asn = $("#asn");
-const newAsnButton = $("#newAsnButton");
-
-
-
-class DeliveryGrid extends DataGrid{
-
-    constructor(state, columns, gridContainerId = "#deliveryGridContainer"){
-        super(baseUrl, 'getDelivery', "pkey", columns, gridContainerId);
-        
-        this.state = state;
-    }
-
-    async getUpdateArray(){
-        let request ={
-            vendor : "701480",
-            state : this.state,
-            asn : "701480-2021-00001"//asn.val()
-        }
-        let data = await fetchData(this.baseUrl + this.getMethod, request);
-
-        return data.data;
-    }
-
-}
-
-
-newAsnButton.on("click", async ()=>{
-    let request = {
-        vendor : "701480",
-        updUser : "string"
-    }
-
-    let data = await fetchData(baseUrl + "generateasn", request);
-
-    if(data && data.resultType){
-        asn.val(data.asn);
-    }
-})
-
-const uploadFiles = async () => {
+const uploadFiles = async (processType, documentType, asNo = null, asLineNo = null) => {
     reportStatus("Uploading files...", true);
 
-    let vendor = "701480";
-    let processType = processTypeInput.value.toString();
-    let documentType = "asdfg";
-    let asNo = "123456789";
-    let asLineNo = "123456";
+    let vendor = sessionStorage[vendorKey];
 
     let request = {
         vendor: vendor,
@@ -98,4 +45,3 @@ const uploadFiles = async () => {
         reportStatus(error, false);
     }
 }
-
