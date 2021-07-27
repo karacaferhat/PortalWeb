@@ -89,7 +89,6 @@ const newPackageButton = $("#newPackageButton");
 
 
 const asnDate = $("#asnDate").dxDateBox("instance");
-const asn = $("#asn");
 const newAsnButton = $("#newAsnButton");
 const chooseAsnModal = $("#chooseAsnModal");
 const chooseAsnButton = $("#chooseAsnButton")
@@ -123,74 +122,9 @@ createDeliveryButton.on('click', async () => {
   if (orderGrid.selectedKeys.length === 0)
     return;
 
+    let files = fileAttachment.prop("files");
 
-  let request = {
-    "vendor": sessionStorage[vendorKey],
-    "asn": asn.val(),
-    "updUser": sessionStorage[vendorNameKey],
-    "delivery": {
-      "id": asn.val(),
-      "pkey": asn.val(),
-      "asn": asn.val(),
-      "vendor": "701480",
-      "vendorname": "string",
-      "crdate": "string",
-      "cruser": "string",
-      "issdate": "string",
-      "fromPartner": "string",
-      "toPartner": "string",
-      "state": "WAI",
-      "items": [ /////////
-        {
-          "asn": asn.val(),
-          "asnline": asn.val(),
-          "crdate": "string",
-          "order": "string",
-          "orderline": "string",
-          "sku": "string",
-          "lot": lot.val(),
-          "package": "string",
-          "skuname": "string",
-          "ordqty": quantity.val(),
-          "ordunit": "string",
-          "dlvqty": 0,
-          "dlvunit": "string",
-          "lastdlvdate": "string",
-          "revno": "string",
-          "drwno": "string",
-          "drwspecno": "string",
-          "drwrevisionno": "string",
-          "lineattachments": [{
-            "doctype": "string",
-            "filename": "string",
-            "fileurl": "string"
-          }],
-          "linenotes": [
-            "string"
-          ]
-        }
-      ],
-      "attachments": [{
-        "doctype": "string",
-        "filename": "string",
-        "fileurl": "string"
-      }],
-      "edispatchno": "string",
-      "edispatchfile": "string",
-      "transporttype": "string",
-      "transportcompany": "string",
-      "plate": "string",
-      "tcvkn": "string",
-      "notes": [
-        "string"
-      ]
-    }
-  }
-
-  let data = await fetchData(baseUrl + "upsert", request);
-  console.log(data);
-
-  deliveryGrid.updateGrid();
+  await createDelivery(files[0]);
 });
 
 
