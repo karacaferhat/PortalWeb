@@ -1,7 +1,7 @@
 ﻿@page
 @model DeliveryProcess
 @{
-    ViewBag.Title = "orders";
+ViewBag.Title = "orders";
 }
 
 <div id="modals">
@@ -16,6 +16,57 @@
 </div>
 <div class="orders-content">
     <partial name="~/Pages/Shared/PartialViews/_DeliveryFilterSectionPartialView.cshtml" />
+
+    <div class="filter-section">
+        <div class="filter-form">
+            <div class="text-inputs-field">
+                <div class="filter-heading">Arama Kriterleri</div>
+                <div class="mat-input-inline-group">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col mat-input mat-text">
+                                <input id="productName" type="text">
+                                <span class="placeholder">Urun Adi</span>
+                                <span class="input-border"></span>
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#chooseProductsModal">
+                                    Urun Sec
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mat-input mat-text">
+                                <input id="quantity" type="text">
+                                <span class="placeholder">Urun Miktari</span>
+                                <span class="input-border"></span>
+                            </div>
+                            <div class="col mat-input mat-text">
+                                <input id="lot" type="text">
+                                <span class="placeholder">LOT</span>
+                                <span class="input-border"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="m-2">
+                                <button id="fileAttachmentButton" class="btn btn-primary">
+                                    Dosya Eklerini Sec
+                                </button>
+                                <input type="file" id="fileAttachment" style="display: none;" multiple />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="action-footer">
+            <button id="createDeliveryButton" class="btn btn-sm btn-outline-primary rounded-pill ripple-fx">
+                <span class="btn-icon fas fa-tasks"></span>
+                <span class="btn-title">Tamam</span>
+            </button>
+        </div>
+    </div>
 
     <div class="action-section">
         <button id="acceptModalToggleButton" class="btn btn-sm btn-primary rounded-pill ripple-fx no-border">
@@ -42,6 +93,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/3.3.1/exceljs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>
 
+
+
+<script src="~/lib/azurestoragejs.blob-10.5.0/azure-storage-blob.js" asp-append-version="true"></script>
+<script src="~/js/documents/documentUploader.js" asp-append-version="true"></script>
 
 <script src="~/js/dataGrid.js" asp-append-version="true"></script>
 <script src="~/js/orders/orders.js" asp-append-version="true"></script>
