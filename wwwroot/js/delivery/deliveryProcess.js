@@ -1,6 +1,6 @@
 const deliveryGrid = new DeliveryGrid("WAI", [{
     dataField: "asn",
-    caption: "ASN"
+    caption: "Sevkiyat"
   },
   {
     dataField: "vendor",
@@ -185,13 +185,22 @@ createDeliveryButton.on('click', async () => {
   if (orderGrid.selectedKeys.length === 0)
     return;
 
+  let items = orderGrid.selectedRows;
   let files = Array.from(fileAttachment.get(0).files);
-  let deliveryDate = formatDate(asnDate.option("value")).trim();
+  let asnT = asn.val().trim()
+  let ansLineNoT = `${deliveryGrid.totalRowCount + 1}`;
+  let packageT = package.val().trim();
+  let quantityT = quantity.val().trim();
+  let lotT = lot.val().trim();
+  let deliveryCompanyT = deliveryCompany.val().trim();
+  let deliveryTypeT = deliveryType.val().trim();
+  let deliveryDateT = formatDate(asnDate.option("value")).trim();
+  let plateNoT = plateNo.val().trim();
+  let taxNoT = taxNo.val().trim();
 
-  await createDelivery(orderGrid.selectedRows, files, asn.val().trim(), `${deliveryGrid.totalRowCount + 1}`,
-    package.val().trim(), quantity.val().trim(), lot.val().trim(),
-    deliveryCompany.val().trim(), deliveryType.val().trim(), deliveryDate,
-    plateNo.val().trim(), taxNo.val().trim());
+
+  await createDelivery(items, files, asnT, ansLineNoT, packageT, quantityT, lotT,
+    deliveryCompanyT, deliveryTypeT, deliveryDateT, plateNoT, taxNoT);
 
   await deliveryGrid.updateGrid();
 });
