@@ -36,12 +36,13 @@ const convertOrdersToDeliveryItems = (orders, asn, asnline, lot, package, quanti
             "ordqty": o.qty,
             "ordunit": o.ordunit,
             "dlvqty": quantity,
-            "dlvunit": "string",
-            "lastdlvdate": "string",
-            "revno": "string",
-            "drwno": "string",
-            "drwspecno ": "string",
-            "drwrevisionno": "string",
+            "dlvunit": o.ordunit,
+            "lastdlvdate": o.orderdlvdate,
+            "revno": o.revno,
+            "drwno": o.drwno,
+            "drwdate" : o.drwrevdate,
+            "drwspecno ": o.drwspecno,
+            "drwrevisionno": o.drwrevisionno,
             "lineattachments": attachments,
             "linenotes": [
                 "string"
@@ -53,7 +54,7 @@ const convertOrdersToDeliveryItems = (orders, asn, asnline, lot, package, quanti
 }
 
 
-const createDelivery = async (items, files, asn, asnline, package, quantity, lot) => {
+const createDelivery = async (items, files, asn, asnline, package, quantity, lot, deliveryCompany, deliveryType, deliveryDate, plateNo, taxNo) => {
     let vendor = sessionStorage[vendorKey];
     let vendorName = sessionStorage[vendorNameKey];
     let documentType = "fromDeliveryProcess";
@@ -77,18 +78,18 @@ const createDelivery = async (items, files, asn, asnline, package, quantity, lot
             "vendorname": vendorName,
             "crdate": "2021-05-24T00:00:00.0000000Z",
             "cruser": vendorName,
-            "issdate": "2021-07-19T19:08:16.6651583Z",
+            "issdate": deliveryDate,
             "fromPartner": vendor,
-            "toPartner": "000000",
+            "toPartner": "DONMEZ",
             "state": "WAI",
             "items": items,
             "attachments": attachments,
             "edispatchno": "string",
             "edispatchfile": "string",
-            "transporttype": "string",
-            "transportcompany": "string",
-            "plate": "string",
-            "tcvkn": "string",
+            "transporttype": deliveryType,
+            "transportcompany": deliveryCompany,
+            "plate": plateNo,
+            "tcvkn": taxNo,
             "notes": [
                 "string"
             ]
