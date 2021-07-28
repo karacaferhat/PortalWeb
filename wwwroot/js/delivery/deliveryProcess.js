@@ -20,7 +20,7 @@ const deliveryGrid = new DeliveryGrid("WAI", [{
   },
   {
     dataField: "plate",
-    caption: "Son Teslim Tarihi"
+    caption: "Plaka"
   },
   {
     dataField: "tcvkn",
@@ -35,6 +35,10 @@ const miniDeliveryGrid = new DeliveryGrid("WAI", [{
   {
     dataField: "vendor",
     caption: "Tedarikçi"
+  },
+  {
+    dataField: "vendorname",
+    caption: "Tedarikçi Adi"
   }
 ], {
   enableGrouping: false,
@@ -44,32 +48,16 @@ const miniDeliveryGrid = new DeliveryGrid("WAI", [{
 
 const orderGrid = new OrderGrid("PRC",
   [{
-      dataField: "vendor",
-      caption: "Tedarikçi"
+      dataField: "sku",
+      caption: "SKU"
+    },
+    {
+      dataField: "skuname",
+      caption: "SKU Adi"
     },
     {
       dataField: "orderno",
-      caption: "Siparis No"
-    },
-    {
-      dataField: "orderlineno",
-      caption: "Siparis Sira No"
-    },
-    {
-      dataField: "orderdate",
-      caption: "Siparis Tarihi"
-    },
-    {
-      dataField: "orduser",
-      caption: "Siparisi Veren Kullanici"
-    },
-    {
-      dataField: "ordunit",
-      caption: "Siparis Birimi"
-    },
-    {
-      dataField: "sku",
-      caption: "SKU"
+      caption: "Sevkiyat No"
     }
   ], {
     enableGrouping: false
@@ -93,6 +81,11 @@ const asn = $("#asn");
 const newAsnButton = $("#newAsnButton");
 const chooseAsnModal = $("#chooseAsnModal");
 const chooseAsnButton = $("#chooseAsnButton")
+
+const deliveryCompany = $("#deliveryCompany");
+const deliveryType = $("#deliveryType");
+const plateNo = $("#plateNo");
+const taxNo = $("#taxNo");
 
 
 const products = $("#products");
@@ -134,8 +127,14 @@ newAsnButton.on("click", async () => {
 
   if (data && data.resultType) {
     asn.val(data.asn);
+
+    deliveryGrid.setAsn(data.asn);
+    deliveryGrid.updateGrid();
   }
 });
+
+
+
 
 newPackageButton.on("click", async () => {
   let request = {
@@ -156,6 +155,9 @@ chooseAsnButton.on("click", () => {
     return
 
   asn.val(miniDeliveryGrid.selectedKeys[0]);
+
+  deliveryGrid.setAsn(miniDeliveryGrid.selectedKeys[0]);
+  deliveryGrid.updateGrid();
   chooseAsnModal.modal('toggle');
 });
 
@@ -184,8 +186,13 @@ createDeliveryButton.on('click', async () => {
     return;
 
   let files = Array.from(fileAttachment.get(0).files);
+  let deliveryDate = formatDate(asnDate.option("value")).trim();
 
-  await createDelivery(orderGrid.selectedRows, files, asn.val().trim(), "1", package.val().trim(), quantity.val().trim(), lot.val().trim());
+  await createDelivery(orderGrid.selectedRows, files, asn.val().trim(), `${deliveryGrid.totalRowCount + 1}`,
+    package.val().trim(), quantity.val().trim(), lot.val().trim(),
+    deliveryCompany.val().trim(), deliveryType.val().trim(), deliveryDate,
+    plateNo.val().trim(), taxNo.val().trim());
+
   await deliveryGrid.updateGrid();
 });
 

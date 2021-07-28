@@ -7,28 +7,10 @@
                     <div class="row my-3">
                         <div class="col">
                             <div class="mb-1">
-                                <input class="form-control" id="package" type="text" placeholder="Paket" disabled>
-                            </div>
-                        </div>
-
-
-                        <div class="col">
-                            <div>
-                                <button id="newPackageButton" class="btn btn-primary">
-                                    Yeni Paket Olustur
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-
-                    <div class="row my-3">
-                        <div class="col">
-                            <div class="mb-1">
-                                <input class="form-control" id="asn" type="text" placeholder="ASN" disabled>
+                                <input class="form-control" id="asn" type="text" placeholder="Sevkiyat" disabled>
                             </div>
                             <div class="mat-input dx-field">
-                                <div class="dx-field-label">ASN Tarihi</div>
+                                <div class="dx-field-label">Sevkiyat Tarihi</div>
                                 <div class="dx-field-value">
                                     <div id="asnDate"></div>
                                 </div>
@@ -39,34 +21,43 @@
                         <div class="col">
                             <div>
                                 <button id="newAsnButton" class="btn btn-primary">
-                                    Yeni ASN Olustur
+                                    Yeni Sevkiyat Olustur
                                 </button>
                                 <button class="btn btn-primary" data-bs-target="#chooseAsnModal" ,
                                     data-bs-toggle="modal">
-                                    ASN Seç
+                                    Sevkiyat Seç
                                 </button>
                             </div>
                         </div>
                     </div>
-
-
                     <div class="row my-3">
                         <div class="col">
-                            <input class="form-control" id="products" type="text" placeholder="Urunler" disabled>
+                            <input class="form-control" id="deliveryCompany" type="text" placeholder="Tasima Sirketi">
                         </div>
                         <div class="col">
-                            <button class="btn btn-primary" data-bs-target="#chooseProductsModal" ,
-                                data-bs-toggle="modal">
-                                Urun Seç
-                            </button>
+                            <label for="deliveryType">Tasima Turu</label>
+                            <select id="deliveryType">
+                                <option value="cargo">Kargo</option>
+                                <option value="plane">Ucak</option>
+                                <option value="other">Diger</option>
+                            </select>
                         </div>
                     </div>
-
+                    <div class="row my-3">
+                        <div class="col">
+                            <input class="form-control" id="plateNo" type="text" placeholder="Arac Plakasi">
+                        </div>
+                        <div class="col">
+                            <input class="form-control" id="taxNo" type="text" placeholder="Vergi Numarasi">
+                        </div>
+                    </div>
                     <div class="row my-3">
                         <div class="col">
                             <input type="file" id="fileAttachment" class="form-control" multiple />
                         </div>
-                        <div class="col">
+
+                        <div class="col" hidden>
+                            <!--Simdilik Gorunmesin-->
                             <button id="fileAttachmentButton" class="btn btn-primary">
                                 Dosya Eklerini Sec
                             </button>
@@ -86,7 +77,30 @@
             <div class="filter-heading">Urun Ekrani</div>
             <div class="mat-input-inline-group">
                 <div class="col">
-                    <div class="row">
+                    <div class="row my-3">
+                        <div class="col">
+                            <input class="form-control" id="package" type="text" placeholder="Paket" disabled>
+                        </div>
+                        <div class="col">
+                            <button id="newPackageButton" class="btn btn-primary">
+                                Yeni Paket Olustur
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row my-3">
+                        <div class="col">
+                            <input class="form-control" id="products" type="text" placeholder="Urunler" disabled>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-primary" data-bs-target="#chooseProductsModal" ,
+                                data-bs-toggle="modal">
+                                Urun Seç
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row my-3">
                         <div class="col mat-input mat-text">
                             <input id="quantity" type="text">
                             <span class="placeholder">Urun Miktari</span>

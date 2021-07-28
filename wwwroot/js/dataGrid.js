@@ -42,7 +42,7 @@ class DataGrid {
         this.gridContainer = $(gridContainerId);
         this.options = {enableGrouping : enableGrouping,
                         selectionMode : selectionMode};
-        this.data = null;
+        this._data = null;
     }
 
 
@@ -65,18 +65,20 @@ class DataGrid {
         let rows = [];
 
         this.selectedKeys.forEach(key => {
-            rows.push(this.data.find(d => d.id === key));
+            rows.push(this._data.find(d => d.id === key));
         });
 
         return rows;
     }
 
+    get totalRowCount(){return this._data.length}
+
 
     async updateGrid() {
-        this.data = await this.getUpdateArray();
+        this._data = await this.getUpdateArray();
 
         let settings = {
-            dataSource: this.data,
+            dataSource: this._data,
             keyExpr: this.keyColumn,
             columns: this.columns,
             showBorders: true,
