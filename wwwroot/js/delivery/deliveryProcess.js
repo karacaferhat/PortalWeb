@@ -183,9 +183,9 @@ createDeliveryButton.on('click', async () => {
   if (orderGrid.selectedKeys.length === 0)
     return;
 
-    let files = fileAttachment.prop("files");
+  let files = Array.from(fileAttachment.get(0).files);
 
-  await createDelivery(null, files, asn.val().trim(), package.val().trim(), quantity.val().trim(), lot.val().trim());
+  await createDelivery(orderGrid.selectedRows, files, asn.val().trim(), "1", package.val().trim(), quantity.val().trim(), lot.val().trim());
   await deliveryGrid.updateGrid();
 });
 
