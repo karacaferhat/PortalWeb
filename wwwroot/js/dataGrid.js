@@ -42,6 +42,7 @@ class DataGrid {
         this.gridContainer = $(gridContainerId);
         this.options = {enableGrouping : enableGrouping,
                         selectionMode : selectionMode};
+        this.data = null;
     }
 
 
@@ -50,14 +51,32 @@ class DataGrid {
     }
 
     get selectedKeys() {
+        if(this.gridContainer == null)
+            throw new Error("DataGrid Must Be Initiliazed")
+
         let gridInstance = this.gridContainer.dxDataGrid("instance");
         return gridInstance.getSelectedRowKeys();
     }
 
+    get selectedRows(){
+        if(this.gridContainer == null)
+            throw new Error("DataGrid Must Be Initiliazed")
+
+        let rows = [];
+
+        this.selectedKeys.forEach(key => {
+            rows.push(this.data.find(d => d.id === key));
+        });
+
+        return rows;
+    }
+
 
     async updateGrid() {
+        this.data = await this.getUpdateArray();
+
         let settings = {
-            dataSource: await this.getUpdateArray(),
+            dataSource: this.data,
             keyExpr: this.keyColumn,
             columns: this.columns,
             showBorders: true,

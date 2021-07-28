@@ -14,6 +14,9 @@ const uploadFiles = async (files, processType, documentType, asNo = null, asLine
         asLineNo: asLineNo
     }
 
+    console.log(request);
+    console.log(documentServiceBaseUri + `getServiceSasUriForContainer/${processType}`);
+
     let sasString = (await fetchData(documentServiceBaseUri + `getServiceSasUriForContainer/${processType}`, request)).sasString;
 
     try {
