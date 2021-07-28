@@ -5,60 +5,48 @@ const uploadAttachment = async (file, documentType, processType, asn, asnLine)=>
     if (Number.isInteger(result)) {
       if (result === 0) {
         let filePath = vendor + '/' + getFilePath(processType, file.name, vendor, documentType, asn, asnLine);
-  
-        let request = {
-          vendor: vendor,
-          asn: asn,
-          asnline: asnLine,
-          updUser: vendor,
-          filename: file.name,
-          fileurl: filePath
-        }
-        let data = await fetchData(baseUrl + 'additemAttachment', request);
-        console.log(data);
       }
     }
 }
 
 
-const createDelivery = async (file)=>{
+const createDelivery = async (items, files, asn, package, quantity, lot)=>{
+    let vendor = sessionStorage[vendorKey];
+    let vendorName = sessionStorage[vendorNameKey];
     let documentType = "byDeliveryLine";
     let processType = "fromDeliveryProcess";
-    let asn = "12345";
-    let asnLine = "1";
 
-    await uploadAttachment(file, documentType, processType, asn, asnLine);
 
     let request = {
-        "vendor": "701480",
-        "asn": "701480-2021-00002",
-        "updUser": "ferhat.karaca@gmail.com",
+        "vendor": vendor,
+        "asn": asn,
+        "updUser": vendorName,
         "delivery": {
-        "id": "701480-2021-00002",
-          "pkey": "701480-2021-00002",
-          "asn": "701480-2021-00002",
-          "vendor": "701480",
-          "vendorname": "ABC Makina",
+        "id": asn,
+          "pkey": asn,
+          "asn": asn,
+          "vendor": vendor,
+          "vendorname": vendorName,
           "crdate": "2021-05-24T00:00:00.0000000Z",
-          "cruser": "ferhat.karaca@gmail.com",
+          "cruser": vendorName,
           "issdate": "2021-07-19T19:08:16.6651583Z",
-          "fromPartner": "701480",
+          "fromPartner": vendor,
           "toPartner": "000000",
           "state": "WAI",
           "items": [
               {
-                  "asn": "701480-2021-00002",
+                  "asn": asn,
                   "asnline": "1",
                   "crdate": "string",
                   "order": "string",
                   "orderline": "string",
                   "sku": "string",
-                  "lot": "string",
-                  "package": "string",
+                  "lot": lot,
+                  "package": package,
                   "skuname": "string",
-                  "ordqty": 0,
+                  "ordqty": 1,
                   "ordunit": "string",
-                  "dlvqty": 0,
+                  "dlvqty": quantity,
                   "dlvunit": "string",
                   "lastdlvdate": "string",
                   "revno": "string",
@@ -77,14 +65,14 @@ const createDelivery = async (file)=>{
                   ]
               },
               {
-                  "asn": "701480-2021-00002",
+                  "asn": asn,
                   "asnline": "4",
                   "crdate": "string",
                   "order": "string",
                   "orderline": "string",
                   "sku": "string",
-                  "lot": "string",
-                  "package": "string",
+                  "lot": lot,
+                  "package": package,
                   "skuname": "string",
                   "ordqty": 0,
                   "ordunit": "string",
@@ -107,14 +95,14 @@ const createDelivery = async (file)=>{
                   ]
               },
               {
-                  "asn": "701480-2021-00002",
+                  "asn": asn,
                   "asnline": "5",
                   "crdate": "string",
                   "order": "string",
                   "orderline": "string",
                   "sku": "string",
-                  "lot": "string",
-                  "package": "string",
+                  "lot": lot,
+                  "package": package,
                   "skuname": "string",
                   "ordqty": 0,
                   "ordunit": "string",
@@ -137,14 +125,14 @@ const createDelivery = async (file)=>{
                   ]
               },
               {
-                  "asn": "701480-2021-00002",
+                  "asn": asn,
                   "asnline": "6",
                   "crdate": "string",
                   "order": "string",
                   "orderline": "string",
                   "sku": "string",
-                  "lot": "string",
-                  "package": "string",
+                  "lot": lot,
+                  "package": package,
                   "skuname": "string",
                   "ordqty": 0,
                   "ordunit": "string",
@@ -189,4 +177,12 @@ const createDelivery = async (file)=>{
 
     let data = await fetchData(baseUrl + "upsert", request);
     console.log(data);
+
+
+    let attachments = [];
+    for (const file in files) {
+        let data = await uploadAttachment(file, documentType, processType, asn);
+        console.log(data);
+        attachments.push(data);
+    }
 }

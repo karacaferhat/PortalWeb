@@ -1,6 +1,5 @@
 const baseUrl = "https://tedarikportaldelivery.azurewebsites.net/api/v1/delivery/";
 
-const asn = $("#asn");
 
 class DeliveryGrid extends DataGrid {
 
@@ -32,6 +31,6 @@ class DeliveryGrid extends DataGrid {
     }
 
     setAsn(asn){
-        this._asn.val()
+        this._asn = asn;
     }
 }

@@ -89,6 +89,7 @@ const newPackageButton = $("#newPackageButton");
 
 
 const asnDate = $("#asnDate").dxDateBox("instance");
+const asn = $("#asn");
 const newAsnButton = $("#newAsnButton");
 const chooseAsnModal = $("#chooseAsnModal");
 const chooseAsnButton = $("#chooseAsnButton")
@@ -117,15 +118,6 @@ chooseProductsModal.on('shown.bs.modal', () => orderGrid.updateGrid());
 chooseAsnModal.on('shown.bs.modal', () => miniDeliveryGrid.updateGrid());
 
 
-
-createDeliveryButton.on('click', async () => {
-  if (orderGrid.selectedKeys.length === 0)
-    return;
-
-    let files = fileAttachment.prop("files");
-
-  await createDelivery(files[0]);
-});
 
 
 fileAttachmentButton.on('click', () => {
@@ -186,6 +178,16 @@ chooseProductsButton.on("click", () => {
   chooseProductsModal.modal('toggle');
 });
 
+
+createDeliveryButton.on('click', async () => {
+  if (orderGrid.selectedKeys.length === 0)
+    return;
+
+    let files = fileAttachment.prop("files");
+
+  await createDelivery(null, files, asn.val().trim(), package.val().trim(), quantity.val().trim(), lot.val().trim());
+  await deliveryGrid.updateGrid();
+});
 
 
 deliveryGrid.updateGrid();
