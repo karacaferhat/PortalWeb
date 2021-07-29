@@ -39,13 +39,15 @@ const listFiles = async () => {
     //reportStatus("Listed", false);
 
 
-    fileList.innerHTML = "";
+    if (data) {
+        fileList.innerHTML = "";
 
-    data.forEach(f => {
-        fileList.innerHTML += `<a href="${blobStorageBaseUri + f.filePath}">
+        data.forEach(f => {
+            fileList.innerHTML += `<a href="${blobStorageBaseUri + f.filePath}">
             ${f.fileName}
         </a><br/>`;
-    });
+        });
+    }
 };
 
 
@@ -56,7 +58,7 @@ fileInput.addEventListener("change", async () => {
 
     let result = await uploadFiles(
         fileInput.files, processTypeInput.value.toString(),
-         "asdfg", "123456789", "123456");
+        "asdfg", "123456789", "123456");
 
     if (Number.isInteger(result)) {
         if (result === 0)
@@ -65,7 +67,7 @@ fileInput.addEventListener("change", async () => {
             reportStatus(`${result} Files Already Exists. Couldn't Upload.`);
     } else
         reportStatus(result, false);
-    
+
 
     await listFiles();
 });

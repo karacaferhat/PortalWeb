@@ -3,34 +3,38 @@ const deliveryGrid = new DeliveryGrid("WAI", [{
     caption: "Sevkiyat"
   },
   {
-    dataField: "vendor",
-    caption: "Tedarikçi"
+    dataField: "asnline",
+    caption: "Sevkiyat Sirasi"
   },
   {
-    dataField: "vendorname",
-    caption: "Tedarikçi Adi"
+    dataField: "order",
+    caption: "Siparis No"
   },
   {
-    dataField: "fromPartner",
-    caption: "Gelen Ortak"
+    dataField: "orderline",
+    caption: "Siparis Sirasi"
   },
   {
-    dataField: "toPartner",
-    caption: "Giden Ortak"
+    dataField: "sku",
+    caption: "SKU"
   },
   {
-    dataField: "plate",
-    caption: "Plaka"
+    dataField: "skuname",
+    caption: "SKU Adi"
   },
   {
-    dataField: "tcvkn",
-    caption: "TCVKN"
+    dataField: "ordqty",
+    caption: "Urun Miktari"
+  },
+  {
+    dataField: "package",
+    caption: "Paket"
   }
 ]);
 
-const miniDeliveryGrid = new DeliveryGrid("WAI", [{
+const miniDeliveryGrid = new MiniDeliveryGrid("WAI", [{
     dataField: "asn",
-    caption: "ASN"
+    caption: "Sevkiyat"
   },
   {
     dataField: "vendor",
@@ -40,11 +44,7 @@ const miniDeliveryGrid = new DeliveryGrid("WAI", [{
     dataField: "vendorname",
     caption: "Tedarikçi Adi"
   }
-], {
-  enableGrouping: false,
-  selectionMode: "single",
-  gridContainerId: "#miniDeliveryGrid"
-});
+]);
 
 const orderGrid = new OrderGrid("PRC",
   [{
@@ -56,7 +56,7 @@ const orderGrid = new OrderGrid("PRC",
       caption: "SKU Adi"
     },
     {
-      dataField : "ordqty",
+      dataField: "ordqty",
       caption: "Urun Miktari",
       dataType: "number"
     },
@@ -110,6 +110,7 @@ const lot = $("#lot");
 
 const createDeliveryButton = $("#createDeliveryButton");
 const refreshGridButton = $("#refreshGridButton");
+const deleteDeliveryItemButton = $("#deleteDeliveryItemButton");
 
 let created = false;
 
@@ -145,7 +146,7 @@ newAsnButton.on("click", async () => {
     deliveryGrid.setAsn(data.asn);
     deliveryGrid.updateGrid();
 
-    if(created){
+    if (created) {
       clearInputs();
     }
   }
@@ -163,7 +164,10 @@ chooseAsnButton.on("click", () => {
   deliveryGrid.updateGrid();
   chooseAsnModal.modal('toggle');
 
-  if(created){
+  let row = miniDeliveryGrid.selectedRows[0];
+
+
+  if (created) {
     clearInputs();
   }
 });
@@ -172,9 +176,9 @@ chooseAsnButton.on("click", () => {
 const clearInputs = () => {
   asnDate.reset();
 
-  deliveryCompany.val("");  
+  deliveryCompany.val("");
   deliveryType.val("");
-  plateNo.val("");  
+  plateNo.val("");
   taxNo.val("");
   quantity.val("");
   lot.val("");
@@ -222,25 +226,54 @@ chooseProductsButton.on("click", () => {
 });
 
 
+deleteDeliveryItemButton.on('click', async () => {
+  if (deliveryGrid.selectedKeys.length === 0)
+    return;
+
+
+  deleteDeliveryItemButton.html( /*html*/
+    `         
+    <div class="spinner-border text-white" role="status">
+      <span class= "sr-only"> Loading...</span>
+    </div>
+    `
+  );
+
+
+  let items = [];
+  deliveryGrid.selectedKeys.forEach(d => items.push(d.orderline));
+
+  let result = await deleteDelivery(asn.val(), miniDeliveryGrid.selectedRows[0].asnline, items);
+
+  if (result) {
+    await deliveryGrid.updateGrid();
+    deleteDeliveryItemButton.html("Sevkiyat Silindi");
+  } else {
+    deleteDeliveryItemButton.html("Islem Basarisiz");
+  }
+});
+
+
 createDeliveryButton.on('click', async () => {
   if (orderGrid.selectedKeys.length === 0)
     return;
 
-  let items = orderGrid.selectedRows;
+  let newItems = orderGrid.selectedRows;
+  let oldItems = deliveryGrid?deliveryGrid.allRows : null;
   let files = Array.from(fileAttachment.get(0).files);
   let eirsailye = fileEirsaliye.get(0).files[0];
 
 
-  let asnT = asn.val().trim()
+  let asnT = asn.val()?.trim()
   let ansLineNoT = `${deliveryGrid.totalRowCount + 1}`;
-  let packageT = package.val().trim();
-  let quantityT = quantity.val().trim();
-  let lotT = lot.val().trim();
-  let deliveryCompanyT = deliveryCompany.val().trim();
-  let deliveryTypeT = deliveryType.val().trim();
+  let packageT = package.val()?.trim();
+  let quantityT = quantity.val()?.trim();
+  let lotT = lot.val()?.trim();
+  let deliveryCompanyT = deliveryCompany.val()?.trim();
+  let deliveryTypeT = deliveryType.val()?.trim();
   let deliveryDateT = formatDate(asnDate.option("value")).trim();
-  let plateNoT = plateNo.val().trim();
-  let taxNoT = taxNo.val().trim();
+  let plateNoT = plateNo.val()?.trim();
+  let taxNoT = taxNo.val()?.trim();
 
 
   createDeliveryButton.html( /*html*/
@@ -251,13 +284,17 @@ createDeliveryButton.on('click', async () => {
     `
   );
 
-  await createDelivery(items, files, eirsailye, asnT, ansLineNoT, packageT, quantityT, lotT,
+
+  let result = await createDelivery(newItems, oldItems, files, eirsailye, asnT, ansLineNoT, packageT, quantityT, lotT,
     deliveryCompanyT, deliveryTypeT, deliveryDateT, plateNoT, taxNoT);
 
-  await deliveryGrid.updateGrid();
-  createDeliveryButton.html("Sevkiyat Kaydedildi");
-
-  created = true;
+  if (result) {
+    await deliveryGrid.updateGrid();
+    createDeliveryButton.html("Sevkiyat Kaydedildi");
+    created = true;
+  } else {
+    createDeliveryButton.html("Islem Basarisiz");
+  }
 });
 
 
