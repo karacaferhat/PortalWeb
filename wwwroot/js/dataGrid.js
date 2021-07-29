@@ -31,7 +31,11 @@ function formatDate(mydate) {
 
 class DataGrid {
 
-    constructor(baseUrl, getMethod, keyColumn, columns, {enableGrouping =  true, selectionMode = "multiple", gridContainerId = "#gridContainer"} = {}) {
+    constructor(baseUrl, getMethod, keyColumn, columns, {
+        enableGrouping = true,
+        selectionMode = "multiple",
+        gridContainerId = "#gridContainer"
+    } = {}) {
         if (this.constructor == DataGrid)
             throw new Error("Abstract classes can't be instantiated.");
 
@@ -40,8 +44,10 @@ class DataGrid {
         this.keyColumn = keyColumn;
         this.columns = columns;
         this.gridContainer = $(gridContainerId);
-        this.options = {enableGrouping : enableGrouping,
-                        selectionMode : selectionMode};
+        this.options = {
+            enableGrouping: enableGrouping,
+            selectionMode: selectionMode
+        };
         this._data = null;
     }
 
@@ -51,27 +57,49 @@ class DataGrid {
     }
 
     get selectedKeys() {
-        if(this.gridContainer == null)
+        if (this.gridContainer == null)
             throw new Error("DataGrid Must Be Initiliazed")
 
         let gridInstance = this.gridContainer.dxDataGrid("instance");
         return gridInstance.getSelectedRowKeys();
     }
 
-    get selectedRows(){
-        if(this.gridContainer == null)
+    get selectedRows() {
+        if (this.gridContainer == null)
             throw new Error("DataGrid Must Be Initiliazed")
 
         let rows = [];
 
         this.selectedKeys.forEach(key => {
-            rows.push(this._data.find(d => d.id === key));
+            if (Array.isArray(this.keyColumn)) {
+                let numberOfKeys = this.keyColumn.length;
+
+                rows.push(this._data.find(d => {
+                    for (let i = 0; i < numberOfKeys; i++) {
+                        if (d[Object.keys(d)[i]] !== key[Object.keys(key)[i]]) {
+                            return false;
+                        }
+                    }
+                    return true;
+                }));
+            } else {
+                rows.push(this._data.find(d =>
+                    (key === d[Object.keys(d)[0]])
+                ));
+
+            }
         });
 
         return rows;
     }
 
-    get totalRowCount(){return this._data.length}
+    get allRows() {
+        return this._data;
+    }
+
+    get totalRowCount() {
+        return this._data.length
+    }
 
 
     async updateGrid() {
@@ -136,7 +164,7 @@ class DataGrid {
 
         };
 
-        if (this.options.enableGrouping){
+        if (this.options.enableGrouping) {
             settings["columnChooser"] = {
                 enabled: true,
                 mode: "select",
