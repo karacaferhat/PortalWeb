@@ -20,6 +20,7 @@ const uploadAttachment = async (files, processType, documentType, asn, asnLine) 
 }
 
 
+
 const convertOrdersToDeliveryItems = (orders, asn, asnline, lot, package, quantity, attachments) => {
     delivires = [];
     orders.forEach(o => {
@@ -33,7 +34,7 @@ const convertOrdersToDeliveryItems = (orders, asn, asnline, lot, package, quanti
             "lot": lot,
             "package": package,
             "skuname": o.skuname,
-            "ordqty": o.qty,
+            "ordqty": o.ordqty,
             "ordunit": o.ordunit,
             "dlvqty": quantity,
             "dlvunit": o.ordunit,
@@ -54,7 +55,7 @@ const convertOrdersToDeliveryItems = (orders, asn, asnline, lot, package, quanti
 }
 
 
-const createDelivery = async (items, files, asn, asnline, package, quantity, lot, deliveryCompany, deliveryType, deliveryDate, plateNo, taxNo) => {
+const createDelivery = async (items, files, eirsailye, asn, asnline, package, quantity, lot, deliveryCompany, deliveryType, deliveryDate, plateNo, taxNo) => {
     let vendor = sessionStorage[vendorKey];
     let vendorName = sessionStorage[vendorNameKey];
     let documentType = "fromDeliveryProcess";
@@ -63,6 +64,11 @@ const createDelivery = async (items, files, asn, asnline, package, quantity, lot
     let attachments = null;
     if(files.length > 0)
         attachments = await uploadAttachment(files, processType, documentType, asn, asnline);
+
+    let edis = null
+    if(eirsailye)
+        edis = await uploadAttachment([eirsailye], processType, documentType, asn, asnline);
+
 
     items = convertOrdersToDeliveryItems(items, asn, asnline, lot, package, quantity, attachments);
 
@@ -84,8 +90,8 @@ const createDelivery = async (items, files, asn, asnline, package, quantity, lot
             "state": "WAI",
             "items": items,
             "attachments": attachments,
-            "edispatchno": "string",
-            "edispatchfile": "string",
+            "edispatchno": edis ? edis[0].filename : null,
+            "edispatchfile": edis ? edis[0].fileurl : null,
             "transporttype": deliveryType,
             "transportcompany": deliveryCompany,
             "plate": plateNo,

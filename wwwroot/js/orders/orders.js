@@ -54,7 +54,7 @@ class OrderGrid extends DataGrid {
         if (sku && sku.val())
             s = sku.val().trim();
         if (orderNo && orderNo.val())
-            ono = orderNo.val().trim();
+            oNo = orderNo.val().trim();
 
 
         let updateRequest = {

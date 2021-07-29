@@ -56,6 +56,11 @@ const orderGrid = new OrderGrid("PRC",
       caption: "SKU Adi"
     },
     {
+      dataField : "ordqty",
+      caption: "Urun Miktari",
+      dataType: "number"
+    },
+    {
       dataField: "orderno",
       caption: "Sevkiyat No"
     }
@@ -96,6 +101,8 @@ const chooseProductsButton = $("#chooseProductsButton")
 const fileAttachment = $("#fileAttachment");
 const fileAttachmentButton = $("#fileAttachmentButton");
 
+const fileEirsaliye = $("#fileEirsaliye");
+const fileEirsaliyeButton = $("#fileEirsaliyeButton");
 
 const quantity = $("#quantity");
 const lot = $("#lot");
@@ -103,6 +110,8 @@ const lot = $("#lot");
 
 const createDeliveryButton = $("#createDeliveryButton");
 const refreshGridButton = $("#refreshGridButton");
+
+let created = false;
 
 refreshGridButton.on("click", () => deliveryGrid.refreshButtonAction(refreshGridButton));
 
@@ -117,6 +126,11 @@ fileAttachmentButton.on('click', () => {
   fileAttachment.trigger('click')
 });
 
+fileEirsaliyeButton.on('click', () => {
+  fileEirsaliye.trigger('click')
+});
+
+
 newAsnButton.on("click", async () => {
   let request = {
     vendor: sessionStorage[vendorKey],
@@ -130,9 +144,47 @@ newAsnButton.on("click", async () => {
 
     deliveryGrid.setAsn(data.asn);
     deliveryGrid.updateGrid();
+
+    if(created){
+      clearInputs();
+    }
   }
 });
 
+
+
+chooseAsnButton.on("click", () => {
+  if (miniDeliveryGrid.selectedKeys.length === 0)
+    return
+
+  asn.val(miniDeliveryGrid.selectedKeys[0]);
+
+  deliveryGrid.setAsn(miniDeliveryGrid.selectedKeys[0]);
+  deliveryGrid.updateGrid();
+  chooseAsnModal.modal('toggle');
+
+  if(created){
+    clearInputs();
+  }
+});
+
+
+const clearInputs = () => {
+  asnDate.reset();
+
+  deliveryCompany.val("");  
+  deliveryType.val("");
+  plateNo.val("");  
+  taxNo.val("");
+  quantity.val("");
+  lot.val("");
+  products.val("");
+  fileAttachment.val("");
+  package.val("");
+
+  createDeliveryButton.html("Olustur");
+  created = false;
+}
 
 
 
@@ -149,17 +201,6 @@ newPackageButton.on("click", async () => {
   }
 });
 
-
-chooseAsnButton.on("click", () => {
-  if (miniDeliveryGrid.selectedKeys.length === 0)
-    return
-
-  asn.val(miniDeliveryGrid.selectedKeys[0]);
-
-  deliveryGrid.setAsn(miniDeliveryGrid.selectedKeys[0]);
-  deliveryGrid.updateGrid();
-  chooseAsnModal.modal('toggle');
-});
 
 
 chooseProductsButton.on("click", () => {
@@ -187,6 +228,9 @@ createDeliveryButton.on('click', async () => {
 
   let items = orderGrid.selectedRows;
   let files = Array.from(fileAttachment.get(0).files);
+  let eirsailye = fileEirsaliye.get(0).files[0];
+
+
   let asnT = asn.val().trim()
   let ansLineNoT = `${deliveryGrid.totalRowCount + 1}`;
   let packageT = package.val().trim();
@@ -199,10 +243,21 @@ createDeliveryButton.on('click', async () => {
   let taxNoT = taxNo.val().trim();
 
 
-  await createDelivery(items, files, asnT, ansLineNoT, packageT, quantityT, lotT,
+  createDeliveryButton.html( /*html*/
+    `         
+    <div class="spinner-border text-white" role="status">
+      <span class= "sr-only"> Loading...</span>
+    </div>
+    `
+  );
+
+  await createDelivery(items, files, eirsailye, asnT, ansLineNoT, packageT, quantityT, lotT,
     deliveryCompanyT, deliveryTypeT, deliveryDateT, plateNoT, taxNoT);
 
   await deliveryGrid.updateGrid();
+  createDeliveryButton.html("Sevkiyat Kaydedildi");
+
+  created = true;
 });
 
 
