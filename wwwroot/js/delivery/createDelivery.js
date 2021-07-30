@@ -21,15 +21,14 @@ const uploadAttachment = async (files, processType, documentType, asn, asnLine) 
 
 
 
-const convertOrdersToDeliveryItems = (orders, oldItemsLength, asn, asnline, lot, package, quantity, attachments) => {
-    delivires = [];
+const convertOrdersToDeliveryItems = (orders, oldItemsLength, asn, lot, package, quantity, attachments) => {
+    let delivires = [];
     let i = oldItemsLength;
     orders.forEach(o => {
-        console.log(o);
         delivires.push({
             "asn": asn,
-            "asnline": `${i++}`,
-            "crdate": o.lastdlvdate,
+            "asnline": `${++i}`,
+            "crdate": o.orderdate,
             "order": o.id,
             "orderline": o.orderlineno,
             "sku": o.sku,
@@ -41,9 +40,9 @@ const convertOrdersToDeliveryItems = (orders, oldItemsLength, asn, asnline, lot,
             "dlvqty": quantity,
             "dlvunit": o.ordunit,
             "lastdlvdate": o.orderdlvdate,
-            "revno": o.revno,
+            "revno": "",
             "drwno": o.drwno,
-            "drwdate": o.drwrevdate,
+            "drwrevdate": o.drwrevdate,
             "drwspecno ": o.drwspecno,
             "drwrevisionno": o.drwrevisionno,
             "lineattachments": attachments,
@@ -53,12 +52,13 @@ const convertOrdersToDeliveryItems = (orders, oldItemsLength, asn, asnline, lot,
         });
     });
 
+
     return delivires;
 }
 
 
 
-const deleteDeliveryLines = async (asn, items) => {
+const deleteDeliveryLines = async (items) => {
     let vendor = sessionStorage[vendorKey];
     let vendorName = sessionStorage[vendorNameKey];
 
@@ -71,11 +71,10 @@ const deleteDeliveryLines = async (asn, items) => {
             asnline: item.asnline,
             updUser: vendorName
         };
-        console.log(request);
+
         let result = await fetchData(baseUrl + "deleteline", request);
 
         if (result == null || !result.resultType) {
-            console.log(result);
             failed++;
         }
     }
@@ -104,9 +103,10 @@ const createDelivery = async (newItems, oldItems, files, eirsailye, asn, asnline
     if (oldItems)
         items = items.concat(oldItems);
 
-    newItems = convertOrdersToDeliveryItems(newItems, oldItems ? oldItems.length : 0, asn, asnline, lot, package, quantity, attachments);
-    items = items.concat(newItems);
 
+
+    newItems = convertOrdersToDeliveryItems(newItems, oldItems ? oldItems.length : 0, asn, lot, package, quantity, attachments);
+    items = items.concat(newItems);
 
 
     let request = {
@@ -139,6 +139,7 @@ const createDelivery = async (newItems, oldItems, files, eirsailye, asn, asnline
         }
     };
 
+    console.log(request);
     let data = await fetchData(baseUrl + "upsert", request);
     return data;
 }

@@ -250,7 +250,7 @@ deleteDeliveryItemButton.on('click', async () => {
     });
   });
 
-  let result = await deleteDeliveryLines(asn.val(), items);
+  let result = await deleteDeliveryLines(items);
 
   if (result === 0) {
     deleteDeliveryItemButton.html("Siparisler Silindi");
@@ -267,7 +267,7 @@ createDeliveryButton.on('click', async () => {
     return;
 
   let newItems = orderGrid.selectedRows;
-  let oldItems = deliveryGrid ? deliveryGrid.allRows : null;
+  let oldItems = deliveryGrid?deliveryGrid.allRows : null;
   let files = Array.from(fileAttachment.get(0).files);
   let eirsailye = fileEirsaliye.get(0).files[0];
 
@@ -279,24 +279,28 @@ createDeliveryButton.on('click', async () => {
   let lotT = lot.val()?.trim();
   let deliveryCompanyT = deliveryCompany.val()?.trim();
   let deliveryTypeT = deliveryType.val()?.trim();
-  let deliveryDateT = formatDate(asnDate.option("value")).trim();
+  let deliveryDateT = formatDate(asnDate.option("value"))?.trim();
   let plateNoT = plateNo.val()?.trim();
   let taxNoT = taxNo.val()?.trim();
 
+  /*html*/
+  createDeliveryButton.html(
 
-  createDeliveryButton.html( /*html*/
     `         
-    <div class="spinner-border text-white" role="status">
-      <span class= "sr-only"> Loading...</span>
-    </div>
-    `
+          <div class="spinner-border text-white" role="status">
+            <span class= "sr-only"> Loading...</span>
+          </div>
+          `
   );
+
+
 
 
   let result = await createDelivery(newItems, oldItems, files, eirsailye, asnT, ansLineNoT, packageT, quantityT, lotT,
     deliveryCompanyT, deliveryTypeT, deliveryDateT, plateNoT, taxNoT);
 
-  if (result && result.resultType) {
+
+  if (result) {
     await deliveryGrid.updateGrid();
     createDeliveryButton.html("Sevkiyat Kaydedildi");
     created = true;
@@ -307,7 +311,7 @@ createDeliveryButton.on('click', async () => {
 
 
 
-exitButton.on("click", async() => {
+exitButton.on("click", async () => {
   if (asn.val() == null)
     return
 
@@ -318,8 +322,11 @@ exitButton.on("click", async() => {
   }
 
   let data = await fetchData(baseUrl + "post", request);
-  if(data && data.resultType)
+  console.log(data);
+  if (data && data.resultType){
     $("#exitModal").modal("toggle");
+    clearInputs();
+  }
 })
 
 
