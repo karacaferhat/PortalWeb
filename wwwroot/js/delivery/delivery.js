@@ -7,7 +7,7 @@ class DeliveryGrid extends DataGrid {
         enableGrouping = true,
         selectionMode = "multiple",
         gridContainerId = "#deliveryGridContainer",
-        key = ["asn", "orderline"]
+        key = ["asn", "asnline", "order", "orderline"]
     } = {}) {
 
         super(baseUrl, 'getDelivery', key, columns, {

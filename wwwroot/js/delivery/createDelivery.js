@@ -27,11 +27,11 @@ const convertOrdersToDeliveryItems = (orders, oldItemsLength, asn, asnline, lot,
     orders.forEach(o => {
         console.log(o);
         delivires.push({
-            "asn": o.asn,
-            "asnline": o.asnline,
+            "asn": asn,
+            "asnline": `${i++}`,
             "crdate": o.lastdlvdate,
-            "order": o.order,
-            "orderline": `${i++}`,
+            "order": o.id,
+            "orderline": o.orderlineno,
             "sku": o.sku,
             "lot": lot,
             "package": package,
@@ -58,22 +58,29 @@ const convertOrdersToDeliveryItems = (orders, oldItemsLength, asn, asnline, lot,
 
 
 
-const deleteDelivery = async (asn, asnline, items) => {
+const deleteDeliveryLines = async (asn, items) => {
     let vendor = sessionStorage[vendorKey];
     let vendorName = sessionStorage[vendorNameKey];
 
+    let failed = 0
+    for (let i = 0; i < items.length; i++) {
+        let item = items[i];
+        let request = {
+            vendor: vendor,
+            asn: item.asn,
+            asnline: item.asnline,
+            updUser: vendorName
+        };
+        console.log(request);
+        let result = await fetchData(baseUrl + "deleteline", request);
 
-    let request = {
-        vendor: vendor,
-        asn: asn,
-        asnline: asnline,
-        orderlines: items,
-        updUser:  vendorName
-    };
+        if (result == null || !result.resultType) {
+            console.log(result);
+            failed++;
+        }
+    }
 
-
-    let data = (await fetchData(baseUrl + "deletelines", request));
-    console.log(data);
+    return failed;
 }
 
 
@@ -133,6 +140,5 @@ const createDelivery = async (newItems, oldItems, files, eirsailye, asn, asnline
     };
 
     let data = await fetchData(baseUrl + "upsert", request);
-    console.log(data);
-
+    return data;
 }

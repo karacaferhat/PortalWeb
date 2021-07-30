@@ -112,6 +112,8 @@ const createDeliveryButton = $("#createDeliveryButton");
 const refreshGridButton = $("#refreshGridButton");
 const deleteDeliveryItemButton = $("#deleteDeliveryItemButton");
 
+const exitButton = $("#exitButton");
+
 let created = false;
 
 refreshGridButton.on("click", () => deliveryGrid.refreshButtonAction(refreshGridButton));
@@ -227,7 +229,7 @@ chooseProductsButton.on("click", () => {
 
 
 deleteDeliveryItemButton.on('click', async () => {
-  if (deliveryGrid.selectedKeys.length === 0)
+  if (asn.val() == null || deliveryGrid.selectedKeys.length === 0)
     return;
 
 
@@ -241,16 +243,22 @@ deleteDeliveryItemButton.on('click', async () => {
 
 
   let items = [];
-  deliveryGrid.selectedKeys.forEach(d => items.push(d.orderline));
+  deliveryGrid.selectedKeys.forEach(d => {
+    items.push({
+      asn: d.asn,
+      asnline: d.asnline
+    });
+  });
 
-  let result = await deleteDelivery(asn.val(), miniDeliveryGrid.selectedRows[0].asnline, items);
+  let result = await deleteDeliveryLines(asn.val(), items);
 
-  if (result) {
-    await deliveryGrid.updateGrid();
-    deleteDeliveryItemButton.html("Sevkiyat Silindi");
+  if (result === 0) {
+    deleteDeliveryItemButton.html("Siparisler Silindi");
   } else {
-    deleteDeliveryItemButton.html("Islem Basarisiz");
+    deleteDeliveryItemButton.html("Bazi Islemler Basarisiz");
   }
+
+  await deliveryGrid.updateGrid();
 });
 
 
@@ -259,7 +267,7 @@ createDeliveryButton.on('click', async () => {
     return;
 
   let newItems = orderGrid.selectedRows;
-  let oldItems = deliveryGrid?deliveryGrid.allRows : null;
+  let oldItems = deliveryGrid ? deliveryGrid.allRows : null;
   let files = Array.from(fileAttachment.get(0).files);
   let eirsailye = fileEirsaliye.get(0).files[0];
 
@@ -288,7 +296,7 @@ createDeliveryButton.on('click', async () => {
   let result = await createDelivery(newItems, oldItems, files, eirsailye, asnT, ansLineNoT, packageT, quantityT, lotT,
     deliveryCompanyT, deliveryTypeT, deliveryDateT, plateNoT, taxNoT);
 
-  if (result) {
+  if (result && result.resultType) {
     await deliveryGrid.updateGrid();
     createDeliveryButton.html("Sevkiyat Kaydedildi");
     created = true;
@@ -298,4 +306,23 @@ createDeliveryButton.on('click', async () => {
 });
 
 
+
+exitButton.on("click", async() => {
+  if (asn.val() == null)
+    return
+
+  let request = {
+    vendor: sessionStorage[vendorKey],
+    asn: asn.val(),
+    updUser: sessionStorage[vendorNameKey]
+  }
+
+  let data = await fetchData(baseUrl + "post", request);
+  if(data && data.resultType)
+    $("#exitModal").modal("toggle");
+})
+
+
 deliveryGrid.updateGrid();
+orderGrid.updateGrid();
+miniDeliveryGrid.updateGrid();
