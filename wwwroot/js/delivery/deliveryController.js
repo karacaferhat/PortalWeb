@@ -83,30 +83,21 @@ const deleteDeliveryLines = async (items) => {
 }
 
 
-const createDelivery = async (newItems, oldItems, files, eirsailye, asn, asnline, package, quantity, lot, deliveryCompany, deliveryType, deliveryDate, plateNo, taxNo) => {
+
+const createDelivery = async (newItems, oldItems, asn, package, quantity, lot, deliveryCompany, deliveryType, deliveryDate, plateNo, taxNo, attachments, edispatchno, edispatchfile) => {
     let vendor = sessionStorage[vendorKey];
     let vendorName = sessionStorage[vendorNameKey];
-    let documentType = "fromDeliveryProcess";
-    let processType = "byDeliveryLine";
-
-    let attachments = null;
-    if (files.length > 0)
-        attachments = await uploadAttachment(files, processType, documentType, asn, asnline);
-
-    let edis = null
-    if (eirsailye)
-        edis = await uploadAttachment([eirsailye], processType, documentType, asn, asnline);
 
 
     let items = []
     let lastItemAsn = 0;
 
-    if (oldItems){
+    if (oldItems) {
         items = items.concat(oldItems);
         lastItemAsn = Number.parseInt(oldItems[oldItems.length - 1].asnline);
     }
 
-    newItems = convertOrdersToDeliveryItems(newItems, lastItemAsn, asn, lot, package, quantity, attachments);
+    newItems = convertOrdersToDeliveryItems(newItems, lastItemAsn, asn, lot, package, quantity, []);
     items = items.concat(newItems);
 
 
@@ -128,8 +119,8 @@ const createDelivery = async (newItems, oldItems, files, eirsailye, asn, asnline
             "state": "WAI",
             "items": items,
             "attachments": attachments,
-            "edispatchno": edis ? edis[0].filename : null,
-            "edispatchfile": edis ? edis[0].fileurl : null,
+            "edispatchno": edispatchno,
+            "edispatchfile": edispatchfile,
             "transporttype": deliveryType,
             "transportcompany": deliveryCompany,
             "plate": plateNo,
@@ -143,4 +134,56 @@ const createDelivery = async (newItems, oldItems, files, eirsailye, asn, asnline
     console.log(request);
     let data = await fetchData(baseUrl + "upsert", request);
     return data;
+}
+
+
+
+const updateFiles = async (asn, asnline, files, eirsailye) => {
+    let result = 0;//0 Yuklenmedi;  1 Dosyalar Yuklendi;    2 Eirsailye Yuklendi;   3 Ikiside yuklendi
+
+    let vendor = sessionStorage[vendorKey];
+    let vendorName = sessionStorage[vendorNameKey];
+    let documentType = "fromDeliveryProcess";
+    let processType = "byDeliveryLine";
+
+    let attachments = null;
+    if (files.length > 0) {
+        attachments = await uploadAttachment(files, processType, documentType, asn, asnline);
+        console.log(attachments)
+
+
+        let request = {
+            "vendor": vendor,
+            "asn": asn,
+            "updUser": vendorName,
+            "fileurl": attachments[0].fileurl,
+            "filename": attachments[0].filename
+        };
+
+        let data = await fetchData(baseUrl + "addheaderAttachment", request);
+
+        if(data && data.resultType) result += 1;
+    }
+
+
+    if (eirsailye) {
+        let edis = await uploadAttachment([eirsailye], processType, documentType, asn, asnline);
+        console.log(edis)
+
+
+        let request = {
+            "vendor": vendor,
+            "asn": asn,
+            "updUser": vendorName,
+            "edispatchfilename": edis[0].filename,
+            "edispatchfileUrl": edis[0].fileurl
+        };
+
+
+        let data = await fetchData(baseUrl + "addedispatch", request);
+
+        if(data && data.resultType) result += 2;
+    }
+
+    return result;
 }
