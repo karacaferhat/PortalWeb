@@ -51,28 +51,6 @@
                             <input class="form-control" id="taxNo" type="text" placeholder="Vergi Numarasi">
                         </div>
                     </div>
-                    <div class="row my-3">
-                        <div hidden>
-                            <!--Simdilik Gorunmesin-->
-                            <input type="file" id="fileAttachment" class="form-control" multiple />
-                            <input type="file" id="fileEirsaliye" class="form-control" multiple />
-                        </div>
-
-                        <div class="col">
-                            <button id="fileAttachmentButton" class="btn btn-primary">
-                                Dokuman Yukle
-                            </button>
-                        </div>
-                        <div class="col">
-                            <button id="fileEirsaliyeButton" accept="application/pdf" class="btn btn-primary">
-                                Eirsaliye Yükle
-                            </button>
-                        </div>
-                        <div class="row my-3">
-                            <div id="fileAttachmentList" class="col"></div>
-                            <div id="fileEirsaliyeList" class="col"></div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -130,12 +108,58 @@
         </div>
     </div>
     <div class="action-footer">
-        <button class="btn btn-success" data-bs-target="#exitModal" , data-bs-toggle="modal">
-            Cikis Onayi Ver
-        </button>
         <button id="createDeliveryButton" class="btn btn-sm btn-outline-primary rounded-pill ripple-fx">
             <span class="btn-icon fas fa-tasks"></span>
             <span class="btn-title">Urunu Kaydet</span>
         </button>
+    </div>
+</div>
+
+
+<div class="filter-section">
+    <div class="filter-form">
+        <div class="text-inputs-field">
+            <div class="filter-heading">Dosya Yukleme Ekrani</div>
+            <div class="mat-input-inline-group">
+                <div class="col">
+                    <div class="row my-3">
+                        <div hidden>
+                            <!--Simdilik Gorunmesin-->
+                            <input type="file" id="fileAttachment" class="form-control" multiple />
+                            <input type="file" id="fileEirsaliye" class="form-control"/>
+                        </div>
+
+                        <div class="col">
+                            <button id="fileAttachmentButton" class="btn btn-primary">
+                                Dokuman Yukle
+                            </button>
+                        </div>
+                        <div class="col">
+                            <button id="fileEirsaliyeButton" accept="application/pdf" class="btn btn-primary">
+                                Eirsaliye Yükle
+                            </button>
+                        </div>
+                        <div class="row my-3">
+                            <div id="fileAttachmentList" class="col"></div>
+                            <div id="fileEirsaliyeList" class="col"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="action-footer">
+        <div class="mx-2">
+            <button class="btn btn-success" data-bs-target="#exitModal" , data-bs-toggle="modal">
+                Cikis Onayi Ver
+            </button>
+        </div>
+
+        <div class="mx-2">
+            <button id="uploadFilesButton" class="btn btn-sm btn-outline-primary rounded-pill ripple-fx">
+                <span class="btn-icon fas fa-tasks"></span>
+                <span class="btn-title">Dosyalari Yukle</span>
+            </button>
+        </div>
     </div>
 </div>

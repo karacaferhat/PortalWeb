@@ -123,6 +123,7 @@ const deleteDeliveryItemButton = $("#deleteDeliveryItemButton");
 const exitButton = $("#exitButton");
 
 const productInfo = $("#productInfo");
+const uploadFilesButton = $("#uploadFilesButton");
 
 
 let created = false;
@@ -218,13 +219,7 @@ chooseAsnButton.on("click", () => {
     clearInputs();
   }
 
-
-  asn.val(miniDeliveryGrid.selectedKeys[0]);
-
-  deliveryGrid.setAsn(miniDeliveryGrid.selectedKeys[0]);
-  deliveryGrid.updateGrid();
-  chooseAsnModal.modal('toggle');
-
+  
   let row = miniDeliveryGrid.selectedRows[0];
 
 
@@ -235,6 +230,13 @@ chooseAsnButton.on("click", () => {
   deliveryType.val(row.transporttype);
   plateNo.val(row.plate);
   taxNo.val(row.tcvkn);
+
+
+  asn.val(miniDeliveryGrid.selectedKeys[0]);
+
+  deliveryGrid.setAsn(miniDeliveryGrid.selectedKeys[0]);
+  deliveryGrid.updateGrid();
+  chooseAsnModal.modal('toggle');
 });
 
 
@@ -330,12 +332,10 @@ createDeliveryButton.on('click', async () => {
 
   let newItems = orderGrid.selectedRows;
   let oldItems = (deliveryGrid && deliveryGrid.allRows.length > 0)?deliveryGrid.allRows : null;
-  let files = Array.from(fileAttachment.get(0).files);
-  let eirsailye = fileEirsaliye.get(0).files[0];
+  let row = miniDeliveryGrid.selectedRows;
+  
 
-
-  let asnT = asn.val()?.trim()
-  let ansLineNoT = `${deliveryGrid.totalRowCount + 1}`;
+  let asnT = asn.val()?.trim();
   let packageT = package.val()?.trim();
   let quantityT = quantity.val()?.trim();
   let lotT = lot.val()?.trim();
@@ -344,6 +344,11 @@ createDeliveryButton.on('click', async () => {
   let deliveryDateT = formatDate(asnDate.option("value"))?.trim();
   let plateNoT = plateNo.val()?.trim();
   let taxNoT = taxNo.val()?.trim();
+
+  let attachments = row.attachments;
+  let edispatchno = row.edispatchno;
+  let edispatchfile = row.edispatchfile;
+
 
   /*html*/
   createDeliveryButton.html(
@@ -358,8 +363,8 @@ createDeliveryButton.on('click', async () => {
 
 
 
-  let result = await createDelivery(newItems, oldItems, files, eirsailye, asnT, ansLineNoT, packageT, quantityT, lotT,
-    deliveryCompanyT, deliveryTypeT, deliveryDateT, plateNoT, taxNoT);
+  let result = await createDelivery(newItems, oldItems, asnT, packageT, quantityT, lotT, deliveryCompanyT,
+    deliveryTypeT, deliveryDateT, plateNoT, taxNoT, attachments, edispatchno, edispatchfile);
 
 
   if (result) {
@@ -399,6 +404,18 @@ exitButton.on("click", async () => {
   }
 })
 
+
+uploadFilesButton.on('click', async ()=> {
+  let files = Array.from(fileAttachment.get(0).files);
+  let eirsailye = fileEirsaliye.get(0).files[0];
+
+  let asnT = asn.val()?.trim();
+  let asnLineNoT = `${deliveryGrid.totalRowCount + 1}`;
+
+  
+  let result = await updateFiles(asnT, asnLineNoT, files, eirsailye);
+  console.log(result);
+});
 
 
 miniDeliveryGrid.updateGrid();
