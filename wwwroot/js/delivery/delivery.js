@@ -25,7 +25,7 @@ class DeliveryGrid extends DataGrid {
             vendor: sessionStorage[vendorKey],
             state: this.state,
             asn: this._asn
-        }
+        };
         let data = await fetchData(this.baseUrl + this.getMethod, request);
 
         let items = [];

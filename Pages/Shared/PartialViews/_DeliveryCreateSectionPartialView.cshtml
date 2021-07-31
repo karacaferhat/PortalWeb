@@ -52,19 +52,25 @@
                         </div>
                     </div>
                     <div class="row my-3">
-                        <div class="col" hidden>
+                        <div hidden>
+                            <!--Simdilik Gorunmesin-->
                             <input type="file" id="fileAttachment" class="form-control" multiple />
                             <input type="file" id="fileEirsaliye" class="form-control" multiple />
                         </div>
 
                         <div class="col">
-                            <!--Simdilik Gorunmesin-->
                             <button id="fileAttachmentButton" class="btn btn-primary">
                                 Dokuman Yukle
                             </button>
+                        </div>
+                        <div class="col">
                             <button id="fileEirsaliyeButton" accept="application/pdf" class="btn btn-primary">
                                 Eirsaliye Yükle
                             </button>
+                        </div>
+                        <div class="row my-3">
+                            <div id="fileAttachmentList" class="col"></div>
+                            <div id="fileEirsaliyeList" class="col"></div>
                         </div>
                     </div>
                 </div>
@@ -104,6 +110,9 @@
                         </div>
                     </div>
 
+                    <div class="row my-3" id="productInfo"></div>
+
+
                     <div class="row my-3">
                         <div class="col mat-input mat-text">
                             <input id="quantity" type="text">
@@ -121,12 +130,12 @@
         </div>
     </div>
     <div class="action-footer">
-        <button class="btn btn-danger" data-bs-target="#exitModal" , data-bs-toggle="modal">
-           Kapat
+        <button class="btn btn-success" data-bs-target="#exitModal" , data-bs-toggle="modal">
+            Cikis Onayi Ver
         </button>
         <button id="createDeliveryButton" class="btn btn-sm btn-outline-primary rounded-pill ripple-fx">
             <span class="btn-icon fas fa-tasks"></span>
-            <span class="btn-title">Olustur</span>
+            <span class="btn-title">Urunu Kaydet</span>
         </button>
     </div>
 </div>
