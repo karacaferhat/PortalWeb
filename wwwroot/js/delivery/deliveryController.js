@@ -139,36 +139,38 @@ const createDelivery = async (newItems, oldItems, asn, package, quantity, lot, d
 
 
 const updateFiles = async (asn, asnline, files, eirsailye) => {
-    let result = 0;//0 Yuklenmedi;  1 Dosyalar Yuklendi;    2 Eirsailye Yuklendi;   3 Ikiside yuklendi
+    let result = 0; //0 Yuklenmedi;  1 Dosyalar Yuklendi;    2 Eirsailye Yuklendi;   3 Ikiside yuklendi
 
     let vendor = sessionStorage[vendorKey];
     let vendorName = sessionStorage[vendorNameKey];
     let documentType = "fromDeliveryProcess";
     let processType = "byDeliveryLine";
 
+
     let attachments = null;
     if (files.length > 0) {
         attachments = await uploadAttachment(files, processType, documentType, asn, asnline);
-        console.log(attachments)
+        let data = null;
+
+        attachments.forEach(async a => {
+            let request = {
+                "vendor": vendor,
+                "asn": asn,
+                "updUser": vendorName,
+                "fileurl": a.fileurl,
+                "filename": a.filename
+            };
 
 
-        let request = {
-            "vendor": vendor,
-            "asn": asn,
-            "updUser": vendorName,
-            "fileurl": attachments[0].fileurl,
-            "filename": attachments[0].filename
-        };
-
-        let data = await fetchData(baseUrl + "addheaderAttachment", request);
-
-        if(data && data.resultType) result += 1;
+            data = await fetchData(baseUrl + "addheaderAttachment", request);
+        });
+        
+        if (data && data.resultType) result += 1;
     }
 
 
     if (eirsailye) {
         let edis = await uploadAttachment([eirsailye], processType, documentType, asn, asnline);
-        console.log(edis)
 
 
         let request = {
@@ -182,7 +184,7 @@ const updateFiles = async (asn, asnline, files, eirsailye) => {
 
         let data = await fetchData(baseUrl + "addedispatch", request);
 
-        if(data && data.resultType) result += 2;
+        if (data && data.resultType) result += 2;
     }
 
     return result;
