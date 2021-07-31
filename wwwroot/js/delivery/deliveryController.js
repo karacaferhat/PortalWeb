@@ -21,9 +21,9 @@ const uploadAttachment = async (files, processType, documentType, asn, asnLine) 
 
 
 
-const convertOrdersToDeliveryItems = (orders, oldItemsLength, asn, lot, package, quantity, attachments) => {
+const convertOrdersToDeliveryItems = (orders, lastItemAsn, asn, lot, package, quantity, attachments) => {
     let delivires = [];
-    let i = oldItemsLength;
+    let i = lastItemAsn;
     orders.forEach(o => {
         delivires.push({
             "asn": asn,
@@ -98,14 +98,15 @@ const createDelivery = async (newItems, oldItems, files, eirsailye, asn, asnline
         edis = await uploadAttachment([eirsailye], processType, documentType, asn, asnline);
 
 
-    items = []
+    let items = []
+    let lastItemAsn = 0;
 
-    if (oldItems)
+    if (oldItems){
         items = items.concat(oldItems);
+        lastItemAsn = Number.parseInt(oldItems[oldItems.length - 1].asnline);
+    }
 
-
-
-    newItems = convertOrdersToDeliveryItems(newItems, oldItems ? oldItems.length : 0, asn, lot, package, quantity, attachments);
+    newItems = convertOrdersToDeliveryItems(newItems, lastItemAsn, asn, lot, package, quantity, attachments);
     items = items.concat(newItems);
 
 
