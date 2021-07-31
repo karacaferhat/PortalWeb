@@ -150,6 +150,8 @@ const clearInputs = () => {
   fileAttachmentList.html("");
   fileEirsaliyeList.html("");
 
+  productInfo.html("");
+
   createDeliveryButton.html("Urun Olustur");
   created = false;
 }
@@ -369,6 +371,8 @@ createDeliveryButton.on('click', async () => {
     lot.val("");
     fileAttachment.val("");
     products.val("");
+    productInfo.html("");
+
 
     created = true;
   } else {
