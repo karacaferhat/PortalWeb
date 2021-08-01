@@ -551,3 +551,11 @@ PAGES
   border-top: 1px solid #dee2e6;
 }
 .table-section {padding: 1rem;}
+
+.labelValue{
+  font-weight: bold;
+};
+.labeCol{
+  font-weight: normal;
+  justify-content: right;
+};

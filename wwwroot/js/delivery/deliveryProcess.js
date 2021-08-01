@@ -529,3 +529,9 @@ miniDeliveryGrid.updateGrid();
 orderGrid.updateGrid();
 deliveryGrid.setAsn("#######"); //Grid'i bosaltmak icin olmayacak bir deger yaz
 deliveryGrid.updateGrid();
+
+$("#printLabelButton").on("click", () => { 
+  $("#printArea").printThis({
+  loadCSS:"css/print.css",
+  });
+});

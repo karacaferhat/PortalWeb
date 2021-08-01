@@ -116,7 +116,7 @@
 
     <div class="table-section">
         <div class="action-section">
-            <button id="printLabelButton" class="btn btn-sm btn-primary rounded-pill ripple-fx no-border">
+            <button id="openPrintDialog" class="btn btn-sm btn-primary rounded-pill ripple-fx no-border">
                 <span class="btn-icon fas fa-bookmark"></span>
                 <span class="btn-title">Etiket Bas</span>
             </button>
@@ -221,3 +221,45 @@
         </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.4/dist/barcodes/JsBarcode.code128.min.js"></script>
+<script src="~/js/printThis.js" charset="utf-8" asp-append-version="true"></script>
+<link rel="stylesheet" src="~/css/print.css" type="text/css" media="print">
+<script src="~/js/printLabel.js" charset="utf-8" asp-append-version="true"></script>
+
+<div class="modal fade" id="printDialog" role="dialog" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Print</h5>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">
+                    <span class="fa fa-times"></span>
+                </button>
+            </div>
+            <div class="modal-body">              
+                <div id="printArea" class="printArea" >
+                  
+                    <div class="row"><div class="col labelCol">Sevkiyat No:</div><div class="col labelValue">X0001</div></div>
+                    <div class="row"><div class="col labelCol">Sipariş No:</div><div class="col labelValue">X0001</div></div>
+                    <div class="row"><div class="col labelCol">Ürün Kodu:</div><div class="col labelValue">X0001</div></div>
+                    <div class="row"><div class="col labelCol">Ürün Adı:</div><div class="col labelValue">X0001</div></div>
+                    <div class="row"><div class="col labelCol">Miktar:</div><div class="col labelValue">X0001<span>-</span><span>ADET</span></div></div>                    
+                    
+                    <svg id="barcode"></svg>
+               
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                <button id="printLabelButton" class="btn btn-sm btn-primary rounded-pill ripple-fx no-border">
+                    <span class="btn-icon fas fa-bookmark"></span>
+                    <span class="btn-title">Print</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
