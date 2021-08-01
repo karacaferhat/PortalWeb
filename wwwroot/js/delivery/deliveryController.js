@@ -60,7 +60,7 @@ const convertOrdersToDeliveryItems = (orders, lastItemAsn, asn, lot, package, qu
 
 const deleteDeliveryLines = async (items) => {
     let vendor = sessionStorage[vendorKey];
-    let vendorName = sessionStorage[vendorNameKey];
+    let email = sessionStorage[emailKey];
 
     let failed = 0
     for (let i = 0; i < items.length; i++) {
@@ -69,7 +69,7 @@ const deleteDeliveryLines = async (items) => {
             vendor: vendor,
             asn: item.asn,
             asnline: item.asnline,
-            updUser: vendorName
+            updUser: emailKey
         };
 
         let result = await fetchData(baseUrl + "deleteline", request);
@@ -87,6 +87,7 @@ const deleteDeliveryLines = async (items) => {
 const createDelivery = async (newItems, oldItems, asn, package, quantity, lot, deliveryCompany, deliveryType, deliveryDate, plateNo, taxNo, attachments, edispatchno, edispatchfile) => {
     let vendor = sessionStorage[vendorKey];
     let vendorName = sessionStorage[vendorNameKey];
+    let email = sessionStorage[emailKey];
 
 
     let items = []
@@ -104,7 +105,7 @@ const createDelivery = async (newItems, oldItems, asn, package, quantity, lot, d
     let request = {
         "vendor": vendor,
         "asn": asn,
-        "updUser": vendorName,
+        "updUser": emailKey,
         "delivery": {
             "id": asn,
             "pkey": asn,
@@ -112,7 +113,7 @@ const createDelivery = async (newItems, oldItems, asn, package, quantity, lot, d
             "vendor": vendor,
             "vendorname": vendorName,
             "crdate": "2021-05-24T00:00:00.0000000Z",
-            "cruser": vendorName,
+            "cruser": email,
             "issdate": deliveryDate,
             "fromPartner": vendor,
             "toPartner": "DONMEZ",
@@ -142,7 +143,7 @@ const updateFiles = async (asn, asnline, files, eirsailye) => {
     let result = 0; //0 Yuklenmedi;  1 Dosyalar Yuklendi;    2 Eirsailye Yuklendi;   3 Ikiside yuklendi
 
     let vendor = sessionStorage[vendorKey];
-    let vendorName = sessionStorage[vendorNameKey];
+    let email = sessionStorage[emailKey];
     let documentType = "fromDeliveryProcess";
     let processType = "byDeliveryLine";
 
@@ -156,7 +157,7 @@ const updateFiles = async (asn, asnline, files, eirsailye) => {
             let request = {
                 "vendor": vendor,
                 "asn": asn,
-                "updUser": vendorName,
+                "updUser": email,
                 "fileurl": a.fileurl,
                 "filename": a.filename
             };
@@ -176,7 +177,7 @@ const updateFiles = async (asn, asnline, files, eirsailye) => {
         let request = {
             "vendor": vendor,
             "asn": asn,
-            "updUser": vendorName,
+            "updUser": email,
             "edispatchfilename": edis[0].filename,
             "edispatchfileUrl": edis[0].fileurl
         };
