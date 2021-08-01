@@ -192,7 +192,7 @@ fileEirsaliye.on('change', () => listFiles(Array.from(fileEirsaliye.get(0).files
 newAsnButton.on("click", async () => {
   let request = {
     vendor: sessionStorage[vendorKey],
-    updUser: sessionStorage[vendorNameKey]
+    updUser: sessionStorage[emailKey]
   }
 
   let data = await fetchData(baseUrl + "generateasn", request);
@@ -243,7 +243,7 @@ chooseAsnButton.on("click", () => {
 newPackageButton.on("click", async () => {
   let request = {
     vendor: sessionStorage[vendorKey],
-    updUser: sessionStorage[vendorNameKey]
+    updUser: sessionStorage[emailKey]
   }
 
   let data = await fetchData(baseUrl + "generatePackage", request);
@@ -399,7 +399,7 @@ exitButton.on("click", async () => {
   let request = {
     vendor: sessionStorage[vendorKey],
     asn: asn.val(),
-    updUser: sessionStorage[vendorNameKey]
+    updUser: sessionStorage[emailKey]
   }
 
   let data = await fetchData(baseUrl + "post", request);
@@ -418,9 +418,22 @@ uploadFilesButton.on('click', async ()=> {
   let asnT = asn.val()?.trim();
   let asnLineNoT = `${deliveryGrid.totalRowCount + 1}`;
 
-  
+
+  let text = uploadFilesButton.html();
+  uploadFilesButton.html(
+    /*html*/
+    `         
+      <div class="spinner-border text-white" role="status">
+        <span class= "sr-only"> Loading...</span>
+      </div>
+    `);
+
+
   let result = await updateFiles(asnT, asnLineNoT, files, eirsailye);
   console.log(result);
+
+  uploadFilesButton.html(text);
+
 });
 
 
