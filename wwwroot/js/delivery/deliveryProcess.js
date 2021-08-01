@@ -125,6 +125,8 @@ const exitButton = $("#exitButton");
 const productInfo = $("#productInfo");
 const uploadFilesButton = $("#uploadFilesButton");
 
+const fileAttachmentClearButton = $("#fileAttachmentClearButton");
+const fileEirsaliyeClearButton = $("#fileEirsaliyeClearButton");
 
 let created = false;
 
@@ -181,6 +183,16 @@ fileAttachmentButton.on('click', () => {
 fileEirsaliyeButton.on('click', () => {
   fileEirsaliye.trigger('click')
 });
+
+fileAttachmentClearButton.on('click', ()=>{
+  fileAttachmentList.html("");
+  fileAttachment.val(null);
+});
+
+fileEirsaliyeClearButton.on('click', ()=>{
+  fileEirsaliyeList.html("");
+  fileEirsaliye.val(null);
+})
 
 
 fileAttachment.on('change', () => listFiles(Array.from(fileAttachment.get(0).files), fileAttachmentList));

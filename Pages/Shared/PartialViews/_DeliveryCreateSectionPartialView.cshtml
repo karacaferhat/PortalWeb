@@ -113,25 +113,25 @@
             <span class="btn-title">Urunu Kaydet</span>
         </button>
     </div>
- 
-        <div class="table-section">
+
+    <div class="table-section">
         <div class="action-section">
-        <button id="printLabelButton" class="btn btn-sm btn-primary rounded-pill ripple-fx no-border">
-            <span class="btn-icon fas fa-bookmark"></span>
-            <span class="btn-title">Etiket Bas</span>
-        </button>
-        <button id="deleteDeliveryItemButton" class="btn btn-sm btn-danger rounded-pill ripple-fx no-border">
-            <span class="btn-icon fas fa-ban"></span>
-            <span class="btn-title">Sil</span>
-        </button>
-        <button id="refreshGridButton" class="btn btn-sm btn-success rounded-pill ripple-fx no-border" hidden>
-            <!--hidden-->
-            <span class="btn-icon fas fa-sync"></span>
-            <span class="btn-title">Tabloyu Yenile</span>
-        </button>
-    </div>
-            <div id="deliveryGridContainer"></div>
+            <button id="printLabelButton" class="btn btn-sm btn-primary rounded-pill ripple-fx no-border">
+                <span class="btn-icon fas fa-bookmark"></span>
+                <span class="btn-title">Etiket Bas</span>
+            </button>
+            <button id="deleteDeliveryItemButton" class="btn btn-sm btn-danger rounded-pill ripple-fx no-border">
+                <span class="btn-icon fas fa-ban"></span>
+                <span class="btn-title">Sil</span>
+            </button>
+            <button id="refreshGridButton" class="btn btn-sm btn-success rounded-pill ripple-fx no-border" hidden>
+                <!--hidden-->
+                <span class="btn-icon fas fa-sync"></span>
+                <span class="btn-title">Tabloyu Yenile</span>
+            </button>
         </div>
+        <div id="deliveryGridContainer"></div>
+    </div>
 </div>
 
 
@@ -140,35 +140,54 @@
         <div class="text-inputs-field">
             <div class="filter-heading">Sevkiyata Dosya Ekle</div>
             <div class="mat-input-inline-group">
-                <div class="col">
-                    <div class="row my-3">
-                        <div hidden>
-                            <!--Simdilik Gorunmesin-->
-                            <input type="file" id="fileAttachment" class="form-control" multiple />
-                            <input type="file" id="fileEirsaliye" class="form-control"/>
-                        </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="row my-3">
+                            <div hidden>
+                                <!--Simdilik Gorunmesin-->
+                                <input type="file" id="fileAttachment" class="form-control" multiple />
+                                <input type="file" id="fileEirsaliye" class="form-control" />
+                            </div>
 
-                        <div class="col">
-                            <button id="fileAttachmentButton" class="btn btn-primary">
-                                Dosya Seç
-                            </button>
+                            <div class="col">
+                                <div class="row mx-2">
+                                    <button id="fileAttachmentButton" class="btn btn-primary">
+                                        Dosya Seç
+                                    </button>
+                                </div>
+                                <div class="row mx-2">
+                                    <button id="fileAttachmentClearButton" class="btn btn-danger">
+                                        Secimi Temizle
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="row mx-2">
+                                    <button id="fileEirsaliyeButton" accept="application/pdf" class="btn btn-primary">
+                                        E-irsaliye Seç
+                                    </button>
+                                </div>
+                                <div class="row mx-2">
+                                    <button id="fileEirsaliyeClearButton" accept="application/pdf"
+                                        class="btn btn-danger">
+                                        Secimi Temizle
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                       
                         <div class="row my-3">
                             <div id="fileAttachmentList" class="col"></div>
                             <div id="fileEirsaliyeList" class="col"></div>
                         </div>
+                    </div>
+                    <div class="col">
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="action-footer">
-         <div class="mx-2">
-            <button id="fileEirsaliyeButton" accept="application/pdf" class="btn btn-primary">
-                                E-irsaliye Seç
-            </button>
-        </div>
         <div class="mx-2">
             <button class="btn btn-success" data-bs-target="#exitModal" , data-bs-toggle="modal">
                 Cikis Onayi Ver
