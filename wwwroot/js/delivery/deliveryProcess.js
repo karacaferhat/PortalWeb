@@ -112,6 +112,8 @@ const fileEirsaliyeButton = $("#fileEirsaliyeButton");
 const fileAttachmentList = $("#fileAttachmentList")
 const fileEirsaliyeList = $("#fileEirsaliyeList")
 
+const uploadedFilesList = $("#uploadedFilesList");
+const uploadedEirsaliyeList = $("#uploadedEirsaliyeList");
 
 const quantity = $("#quantity");
 const lot = $("#lot");
@@ -160,15 +162,75 @@ const clearInputs = () => {
 }
 
 
-const listFiles = function(files, fileList) {
+const listFiles = function (files, fileList) {
   var children = "";
   for (var i = 0; i < files.length; ++i) {
-      children += '<li>' + files[i].name + '</li>';
+    children += '<li>' + files[i].name + '</li>';
   }
-  fileList.html('<ul>'+ children +'</ul>');
+  fileList.html('<ul>' + children + '</ul>');
 }
 
+const updateUploadedFileList = (attachments, edispatchfilename, edispatchfileUrl)=>{
+  if (attachments && attachments.length > 0) {
+    let row = miniDeliveryGrid.selectedRows[0];
+    let string = "";
 
+    let i = 0;
+    attachments.forEach(f => {
+      let id = `${row.asn}filedeletebutton${i++}`;
+
+      string += 
+      /*html*/
+      `<a href="${blobStorageBaseUri + f.fileurl}">${f.filename}</a>
+      <button class="btn btn-danger" id="${id}">Sil</button>
+      <br/>`;
+    });
+
+    uploadedFilesList.html(string);
+
+    for(let i = 0; i< attachments.length; i++){
+      let f = attachments[i];
+      let id = `${row.asn}filedeletebutton${i++}`;
+      $(`#${id}`).on('click', ()=>deleteHeaderAttachment(row.asn, f.fileurl, f.filename));
+    }
+  }
+  else{
+    uploadedFilesList.html(""); 
+  }
+
+  if (edispatchfilename && edispatchfileUrl) {
+    string = 
+    /*html*/
+    `<a href="${blobStorageBaseUri + edispatchfileUrl}">${edispatchfilename}</a><br/>`;
+
+    uploadedEirsaliyeList.html(string);
+  }
+  else{
+    uploadedEirsaliyeList.html("");
+  }
+
+
+}
+
+const deleteHeaderAttachment = async (asn, fileurl, filename) => {
+  let vendor = sessionStorage[vendorKey];
+  let email = sessionStorage[emailKey];
+
+  let request = {
+    "vendor": vendor,
+    "asn": asn,
+    "updUser": email,
+    "fileurl": fileurl,
+    "filename": filename
+  };
+
+  let data = await fetchData(baseUrl + "deleteheaderAttachment", request);
+  console.log(data);
+
+  await miniDeliveryGrid.updateGrid();
+  let row = miniDeliveryGrid.selectedRows[0];
+  updateUploadedFileList(row.attachments, row.edispatchno, row.edispatchfile);
+}
 
 refreshGridButton.on("click", () => deliveryGrid.refreshButtonAction(refreshGridButton));
 chooseProductsModal.on('shown.bs.modal', () => orderGrid.updateGrid());
@@ -184,12 +246,12 @@ fileEirsaliyeButton.on('click', () => {
   fileEirsaliye.trigger('click')
 });
 
-fileAttachmentClearButton.on('click', ()=>{
+fileAttachmentClearButton.on('click', () => {
   fileAttachmentList.html("");
   fileAttachment.val(null);
 });
 
-fileEirsaliyeClearButton.on('click', ()=>{
+fileEirsaliyeClearButton.on('click', () => {
   fileEirsaliyeList.html("");
   fileEirsaliye.val(null);
 })
@@ -231,7 +293,7 @@ chooseAsnButton.on("click", () => {
     clearInputs();
   }
 
-  
+
   let row = miniDeliveryGrid.selectedRows[0];
 
 
@@ -243,11 +305,14 @@ chooseAsnButton.on("click", () => {
   plateNo.val(row.plate);
   taxNo.val(row.tcvkn);
 
-
   asn.val(miniDeliveryGrid.selectedKeys[0]);
+
 
   deliveryGrid.setAsn(miniDeliveryGrid.selectedKeys[0]);
   deliveryGrid.updateGrid();
+
+  updateUploadedFileList(row.attachments, row.edispatchno, row.edispatchfile);
+
   chooseAsnModal.modal('toggle');
 });
 
@@ -281,14 +346,14 @@ chooseProductsButton.on("click", () => {
       string += `${keys[i]} `;
   }
 
-  
 
-  
+
+
   string = "";
   let rows = orderGrid.selectedRows;
   for (let i = 0; i < rows.length; i++) {
     let row = rows[i]
-    string += 
+    string +=
       /*html*/
       ` <div>
           <span class="mx-4">Ürün Kodu: ${row.sku}</span>          
@@ -301,7 +366,7 @@ chooseProductsButton.on("click", () => {
           
         </div>
       `;
-      products.val(row.skuname);
+    products.val(row.skuname);
   }
 
 
@@ -349,9 +414,9 @@ createDeliveryButton.on('click', async () => {
     return;
 
   let newItems = orderGrid.selectedRows;
-  let oldItems = (deliveryGrid && deliveryGrid.allRows.length > 0)?deliveryGrid.allRows : null;
+  let oldItems = (deliveryGrid && deliveryGrid.allRows.length > 0) ? deliveryGrid.allRows : null;
   let row = miniDeliveryGrid.selectedRows;
-  
+
 
   let asnT = asn.val()?.trim();
   let packageT = package.val()?.trim();
@@ -415,7 +480,7 @@ exitButton.on("click", async () => {
   }
 
   let data = await fetchData(baseUrl + "post", request);
-  console.log(data);
+
   if (data && data.resultType) {
     $("#exitModal").modal("toggle");
     clearInputs();
@@ -423,7 +488,9 @@ exitButton.on("click", async () => {
 })
 
 
-uploadFilesButton.on('click', async ()=> {
+uploadFilesButton.on('click', async () => {
+  if(miniDeliveryGrid.selectedKeys.length === 0) return;
+
   let files = Array.from(fileAttachment.get(0).files);
   let eirsailye = fileEirsaliye.get(0).files[0];
 
@@ -444,8 +511,17 @@ uploadFilesButton.on('click', async ()=> {
   let result = await updateFiles(asnT, asnLineNoT, files, eirsailye);
   console.log(result);
 
-  uploadFilesButton.html(text);
+  
+  uploadFilesButton.html("Dosyalar Kaydedildi");
 
+
+  await miniDeliveryGrid.updateGrid();
+  let row = miniDeliveryGrid.selectedRows[0];
+  updateUploadedFileList(row.attachments, row.edispatchno, row.edispatchfile);
+
+  setTimeout(() => {
+    uploadFilesButton.html(text);
+  }, 5000);
 });
 
 

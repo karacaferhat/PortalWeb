@@ -132,7 +132,6 @@ const createDelivery = async (newItems, oldItems, asn, package, quantity, lot, d
         }
     };
 
-    console.log(request);
     let data = await fetchData(baseUrl + "upsert", request);
     return data;
 }
@@ -153,7 +152,9 @@ const updateFiles = async (asn, asnline, files, eirsailye) => {
         attachments = await uploadAttachment(files, processType, documentType, asn, asnline);
         let data = null;
 
-        attachments.forEach(async a => {
+
+        for (let i = 0; i < attachments.length; i++) {
+            let a = attachments[i];
             let request = {
                 "vendor": vendor,
                 "asn": asn,
@@ -162,10 +163,12 @@ const updateFiles = async (asn, asnline, files, eirsailye) => {
                 "filename": a.filename
             };
 
+            console.log(request);
 
             data = await fetchData(baseUrl + "addheaderAttachment", request);
-        });
-        
+            console.log(data);
+        }
+
         if (data && data.resultType) result += 1;
     }
 
