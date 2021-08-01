@@ -269,7 +269,7 @@ chooseProductsButton.on("click", () => {
       string += `${keys[i]} `;
   }
 
-  products.val(string);
+  
 
   
   string = "";
@@ -279,11 +279,17 @@ chooseProductsButton.on("click", () => {
     string += 
       /*html*/
       ` <div>
-          <span class="mx-4">SKU: ${row.sku}</span>
-          <span class="mx-4">SKU Adi: ${row.skuname}</span>
-          <span class="mx-4">Urun Miktari: ${row.ordqty}</span>
+          <span class="mx-4">Ürün Kodu: ${row.sku}</span>          
+          <span class="mx-4">Sipariş Miktar: ${row.ordqty}</span>          
+          <span class="mx-4">Sipariş Birimi: ${row.ordunit}</span>
+          <span class="mx-4">Sipariş No: ${row.orderno}</span>    
+          <span class="mx-4">Sipariş Satır No: ${row.orderlineno}</span>    
+          <span class="mx-4">Ürün Çizim Revizyon No: ${row.drwrevisionno}</span>    
+          <span class="mx-4">Sipariş Notu: ${row.ordlinedesc}</span>    
+          
         </div>
       `;
+      products.val(row.skuname);
   }
 
 
