@@ -1,0 +1,13 @@
+@media print {
+ 
+    
+   
+    @page {
+        size: 150mm 150mm ; 
+    }
+    printArea { width: 150mm; height: 150mm }
+    @media print { body { width: 150mm } } 
+   
+  
+  }
+ 
