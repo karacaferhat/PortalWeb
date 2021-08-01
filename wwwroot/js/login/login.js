@@ -29,8 +29,6 @@ const login = async () => {
     let email = emailInput.val();
     let password = passwordInput.val();
 
-    //email = "mete.arslan8@hotmail.com";
-    //password = "Qwer123!!!";
 
     if(!(email && password)) {
         reportStatus("Login", "Please, Enter Username And Password ");
