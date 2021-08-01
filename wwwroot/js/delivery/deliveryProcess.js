@@ -172,23 +172,36 @@ const listFiles = function (files, fileList) {
 
 const updateUploadedFileList = (attachments, edispatchfilename, edispatchfileUrl)=>{
   if (attachments && attachments.length > 0) {
+    let row = miniDeliveryGrid.selectedRows[0];
     let string = "";
+
+    let i = 0;
     attachments.forEach(f => {
-      string += `<a href="${blobStorageBaseUri + f.fileurl}">
-      ${f.filename}
-  </a><br/>`;
+      let id = `${row.asn}filedeletebutton${i++}`;
+
+      string += 
+      /*html*/
+      `<a href="${blobStorageBaseUri + f.fileurl}">${f.filename}</a>
+      <button class="btn btn-danger" id="${id}">Sil</button>
+      <br/>`;
     });
 
     uploadedFilesList.html(string);
+
+    for(let i = 0; i< attachments.length; i++){
+      let f = attachments[i];
+      let id = `${row.asn}filedeletebutton${i++}`;
+      $(`#${id}`).on('click', ()=>deleteHeaderAttachment(row.asn, f.fileurl, f.filename));
+    }
   }
   else{
     uploadedFilesList.html(""); 
   }
 
   if (edispatchfilename && edispatchfileUrl) {
-    string = `<a href="${blobStorageBaseUri + edispatchfileUrl}">
-    ${edispatchfilename}
-    </a><br/>`;
+    string = 
+    /*html*/
+    `<a href="${blobStorageBaseUri + edispatchfileUrl}">${edispatchfilename}</a><br/>`;
 
     uploadedEirsaliyeList.html(string);
   }
@@ -199,6 +212,25 @@ const updateUploadedFileList = (attachments, edispatchfilename, edispatchfileUrl
 
 }
 
+const deleteHeaderAttachment = async (asn, fileurl, filename) => {
+  let vendor = sessionStorage[vendorKey];
+  let email = sessionStorage[emailKey];
+
+  let request = {
+    "vendor": vendor,
+    "asn": asn,
+    "updUser": email,
+    "fileurl": fileurl,
+    "filename": filename
+  };
+
+  let data = await fetchData(baseUrl + "deleteheaderAttachment", request);
+  console.log(data);
+
+  await miniDeliveryGrid.updateGrid();
+  let row = miniDeliveryGrid.selectedRows[0];
+  updateUploadedFileList(row.attachments, row.edispatchno, row.edispatchfile);
+}
 
 refreshGridButton.on("click", () => deliveryGrid.refreshButtonAction(refreshGridButton));
 chooseProductsModal.on('shown.bs.modal', () => orderGrid.updateGrid());
