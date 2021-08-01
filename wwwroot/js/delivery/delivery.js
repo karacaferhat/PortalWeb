@@ -28,13 +28,15 @@ class DeliveryGrid extends DataGrid {
         };
         let data = await fetchData(this.baseUrl + this.getMethod, request);
 
-        let items = [];
-        data.data.forEach(d => {
-            items = items.concat(Array.from(d.items));
-        });
+        if (data) {
+            let items = [];
+            data.data.forEach(d => {
+                items = items.concat(Array.from(d.items));
+            });
 
-        return items;
-
+            return items;
+        }
+        return [];
     }
 
     setAsn(asn) {
