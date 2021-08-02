@@ -491,7 +491,7 @@ uploadFilesButton.on('click', async () => {
 
   let asnT = asn.val()?.trim();
   let asnLineNoT = `${deliveryGrid.totalRowCount + 1}`;
-
+  let oldAttachments = miniDeliveryGrid.selectedRows[0].attachments;
 
   let text = uploadFilesButton.html();
   uploadFilesButton.html(
@@ -503,12 +503,17 @@ uploadFilesButton.on('click', async () => {
     `);
 
 
-  let result = await updateFiles(asnT, asnLineNoT, files, eirsailye);
+  let result = await updateFiles(asnT, asnLineNoT, files, eirsailye, oldAttachments);
   console.log(result);
 
 
   uploadFilesButton.html("Dosyalar Kaydedildi");
 
+  fileAttachment.val("");
+  fileEirsaliye.val("");
+
+  fileAttachmentList.html("");
+  fileEirsaliyeList.html("");
 
   await miniDeliveryGrid.updateGrid();
   let row = miniDeliveryGrid.selectedRows[0];
@@ -524,6 +529,7 @@ miniDeliveryGrid.updateGrid();
 orderGrid.updateGrid();
 deliveryGrid.setAsn("#######"); //Grid'i bosaltmak icin olmayacak bir deger yaz
 deliveryGrid.updateGrid();
+
 
 $("#printLabelButton").on("click", () => {
   $("#printArea").printThis({
