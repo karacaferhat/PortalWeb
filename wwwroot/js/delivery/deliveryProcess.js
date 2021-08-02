@@ -161,7 +161,9 @@ const clearInputs = () => {
 
   uploadedFilesList.html("");
   uploadedEirsaliyeList.html("");
-  
+
+  deliveryGrid.setAsn("########");
+  deliveryGrid.updateGrid();
 
   createDeliveryButton.html("Urun Olustur");
   created = false;
@@ -216,36 +218,6 @@ const updateUploadedFileList = (attachments, edispatchfilename, edispatchfileUrl
 
 }
 
-const deleteHeaderAttachment = async (asn, fileurl, filename) => {
-  let vendor = sessionStorage[vendorKey];
-  let email = sessionStorage[emailKey];
-
-  let request = {
-    "vendor": vendor,
-    "asn": asn,
-    "updUser": email,
-    "fileurl": fileurl,
-    "filename": filename
-  };
-
-  let data = await fetchData(baseUrl + "deleteheaderAttachment", request);
-  console.log(data);
-
-
-
-
-  request = {
-    vendor: vendor,
-    fileurl: fileurl.replace(`${vendor}/`, '')
-  };
-  result = await fetchData(documentServiceBaseUri + "deleteFile", request);
-  console.log(result);
-
-
-  await miniDeliveryGrid.updateGrid();
-  let row = miniDeliveryGrid.selectedRows[0];
-  updateUploadedFileList(row.attachments, row.edispatchno, row.edispatchfile);
-}
 
 refreshGridButton.on("click", () => deliveryGrid.refreshButtonAction(refreshGridButton));
 chooseProductsModal.on('shown.bs.modal', () => orderGrid.updateGrid());
