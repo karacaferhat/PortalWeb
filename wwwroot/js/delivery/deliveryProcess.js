@@ -30,7 +30,8 @@ const deliveryGrid = new DeliveryGrid("WAI", [{
     dataField: "package",
     caption: "Paket"
   }
-]);
+],
+{selectionMode: 'single'});
 
 const miniDeliveryGrid = new MiniDeliveryGrid("WAI", [{
     dataField: "asn",

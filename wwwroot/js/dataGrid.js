@@ -75,13 +75,13 @@ class DataGrid {
                 let numberOfKeys = this.keyColumn.length;
 
                 rows.push(this._data.find(d => {
-                    for (let i = 0; i < numberOfKeys; i++) {
-                        if (d[Object.keys(d)[i]] !== key[Object.keys(key)[i]]) {
+                    for (let i = 0; i < numberOfKeys; i++) {    
+                        if (d[Object.keys(key)[i]] !== key[Object.keys(key)[i]]) {
                             return false;
                         }
                     }
                     return true;
-                }));
+                }));                
             } else {
                 rows.push(this._data.find(d =>
                     (key === d[Object.keys(d)[0]])
