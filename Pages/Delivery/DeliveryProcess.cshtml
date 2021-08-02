@@ -4,10 +4,17 @@
     ViewBag.Title = "orders";
 }
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.0/polyfill.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/3.3.1/exceljs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>
+
+
+
 <div id="modals">
     <partial name="~/Pages/Shared/PartialViews/DeliveryModals/_ExitModal.cshtml" />
     <partial name="~/Pages/Shared/PartialViews/DeliveryModals/_ChooseProductsModal.cshtml" />
     <partial name="~/Pages/Shared/PartialViews/DeliveryModals/_ChooseAsnModal.cshtml" />
+    <partial name="~/Pages/Shared/PartialViews/DeliveryModals/_PrintLabelModal.cshtml" />
 </div>
 
 
@@ -18,21 +25,19 @@
 </div>
 <div class="orders-content">
     <partial name="~/Pages/Shared/PartialViews/_DeliveryCreateSectionPartialView.cshtml" />
-
-    
-
-
 </div>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.0/polyfill.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/3.3.1/exceljs.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.4/dist/barcodes/JsBarcode.code128.min.js" asp-append-version="true"></script>
+<script src="~/js/printThis.js" charset="utf-8" asp-append-version="true"></script>
+<link rel="stylesheet" src="~/css/print.css" type="text/css" media="print" asp-append-version="true">
+<script src="~/js/printLabel.js" charset="utf-8" asp-append-version="true"></script>
 
 
 <script src="~/lib/azurestoragejs.blob-10.5.0/azure-storage-blob.js" asp-append-version="true"></script>
 <script src="~/js/documents/documentUploader.js" asp-append-version="true"></script>
+
 
 <script src="~/js/dataGrid.js" asp-append-version="true"></script>
 <script src="~/js/orders/orders.js" asp-append-version="true"></script>

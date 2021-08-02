@@ -1,10 +1,19 @@
 $("#openPrintDialog").on("click", () => {
-    JsBarcode("#barcode", "701480000156", {
+    let row = deliveryGrid.selectedRows[0];
+
+
+    JsBarcode("#barcode", row.package, {
         width: 4,
         height: 100
     });
-   $("#printDialog").modal("toggle");   
+
+    $("#printPackage").html(row.package);
+    $("#printOrderNo").html(row.order);
+    $("#printSku").html(row.sku);
+    $("#printSkuName").html(row.skuname);
+    $("#printQuantity").html(`${row.ordqty} - ${row.ordunit}`);
+    $("#printLot").html(row.lot);
+    $("#printVendor").html(row.vendor);
+
+    $("#printDialog").modal("toggle");
 });
-
-
-
