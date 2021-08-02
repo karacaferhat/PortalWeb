@@ -206,11 +206,19 @@ const updateUploadedFileList = (attachments, edispatchfilename, edispatchfileUrl
   }
 
   if (edispatchfilename && edispatchfileUrl) {
+    let row = miniDeliveryGrid.selectedRows[0];
+
+    let id = `${row.asn}edispatchdeletebutton`
     string =
       /*html*/
-      `<a href="${blobStorageBaseUri + edispatchfileUrl}">${edispatchfilename}</a><br/>`;
+      `<a href="${blobStorageBaseUri + edispatchfileUrl}">${edispatchfilename}</a><br/>
+      <button class="btn btn-danger" id="${id}">Sil</button>`;
 
     uploadedEirsaliyeList.html(string);
+
+
+    $(`#${id}`).on('click', ()=>deleteEirsaliyeAttachment(row.asn, edispatchfileUrl));
+
   } else {
     uploadedEirsaliyeList.html("");
   }
