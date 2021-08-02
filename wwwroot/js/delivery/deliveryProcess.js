@@ -198,7 +198,7 @@ const updateUploadedFileList = (attachments, edispatchfilename, edispatchfileUrl
 
     for (let i = 0; i < attachments.length; i++) {
       let f = attachments[i];
-      let id = `${row.asn}filedeletebutton${i++}`;
+      let id = `${row.asn}filedeletebutton${i}`;
       $(`#${id}`).on('click', () => deleteHeaderAttachment(row.asn, f.fileurl, f.filename));
     }
   } else {
