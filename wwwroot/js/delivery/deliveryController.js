@@ -1,18 +1,27 @@
-const uploadAttachment = async (files, processType, documentType, asn, asnLine) => {
+const uploadAttachment = async (files, processType, documentType, asn, asnLine, oldAttachments) => {
     let vendor = sessionStorage[vendorKey];
 
     let result = await uploadFiles(files, processType, documentType, asn, asnLine);
+    console.log(oldAttachments);
 
     attachments = [];
     if (Number.isInteger(result)) {
-        files.forEach(file => {
-            let filePath = vendor + '/' + getFilePath(processType, file.name, vendor, documentType, asn, asnLine);
-            attachments.push({
+        for (let i = 0; i < files.length; i++) {
+            let file = files[i];
+
+            let filePath = getFilePath(processType, file.name, vendor, documentType, asn, asnLine);
+            let obj = {
                 doctype: documentType,
                 filename: file.name,
-                fileurl: filePath
-            });
-        });
+                fileurl: vendor + '/' + filePath
+            };
+
+            let exists = oldAttachments.find(o => o.fileurl === obj.fileurl) != undefined;
+
+            if(!exists)
+                attachments.push(obj);
+
+        }
     }
 
 
@@ -138,7 +147,7 @@ const createDelivery = async (newItems, oldItems, asn, package, quantity, lot, d
 
 
 
-const updateFiles = async (asn, asnline, files, eirsailye) => {
+const updateFiles = async (asn, asnline, files, eirsailye, oldAttachments) => {
     let result = 0; //0 Yuklenmedi;  1 Dosyalar Yuklendi;    2 Eirsailye Yuklendi;   3 Ikiside yuklendi
 
     let vendor = sessionStorage[vendorKey];
@@ -149,7 +158,7 @@ const updateFiles = async (asn, asnline, files, eirsailye) => {
 
     let attachments = null;
     if (files.length > 0) {
-        attachments = await uploadAttachment(files, processType, documentType, asn, asnline);
+        attachments = await uploadAttachment(files, processType, documentType, asn, asnline, oldAttachments);
         let data = null;
 
 
@@ -174,8 +183,8 @@ const updateFiles = async (asn, asnline, files, eirsailye) => {
 
 
     if (eirsailye) {
-        let edis = await uploadAttachment([eirsailye], processType, documentType, asn, asnline);
-
+        let edis = await uploadAttachment([eirsailye], processType, documentType, asn, asnline , []);
+        console.log(edis);
 
         let request = {
             "vendor": vendor,
@@ -198,59 +207,58 @@ const updateFiles = async (asn, asnline, files, eirsailye) => {
 const deleteHeaderAttachment = async (asn, fileurl, filename) => {
     let vendor = sessionStorage[vendorKey];
     let email = sessionStorage[emailKey];
-  
+
     let request = {
-      "vendor": vendor,
-      "asn": asn,
-      "updUser": email,
-      "fileurl": fileurl,
-      "filename": filename
+        "vendor": vendor,
+        "asn": asn,
+        "updUser": email,
+        "fileurl": fileurl,
+        "filename": filename
     };
-  
+
     let data = await fetchData(baseUrl + "deleteheaderAttachment", request);
     console.log(data);
-  
-  
-  
-  
+
+
+
+
     request = {
-      vendor: vendor,
-      fileurl: fileurl.replace(`${vendor}/`, '')
+        vendor: vendor,
+        fileurl: fileurl.replace(`${vendor}/`, '')
     };
     result = await fetchData(documentServiceBaseUri + "deleteFile", request);
     console.log(result);
-  
-  
+
+
     await miniDeliveryGrid.updateGrid();
     let row = miniDeliveryGrid.selectedRows[0];
     updateUploadedFileList(row.attachments, row.edispatchno, row.edispatchfile);
-  }
-  
+}
 
-  const deleteEirsaliyeAttachment = async (asn, fileurl) => {
+
+const deleteEirsaliyeAttachment = async (asn, fileurl) => {
     let vendor = sessionStorage[vendorKey];
     let email = sessionStorage[emailKey];
-  
+
     let request = {
-      "vendor": vendor,
-      "asn": asn,
-      "updUser": email
+        "vendor": vendor,
+        "asn": asn,
+        "updUser": email
     };
-  
+
     let data = await fetchData(baseUrl + "deleteedispatch", request);
     console.log(data);
-  
+
 
     request = {
-      vendor: vendor,
-      fileurl: fileurl.replace(`${vendor}/`, '')
+        vendor: vendor,
+        fileurl: fileurl.replace(`${vendor}/`, '')
     };
     result = await fetchData(documentServiceBaseUri + "deleteFile", request);
     console.log(result);
-  
-  
+
+
     await miniDeliveryGrid.updateGrid();
     let row = miniDeliveryGrid.selectedRows[0];
     updateUploadedFileList(row.attachments, row.edispatchno, row.edispatchfile);
-  }
-  
+}

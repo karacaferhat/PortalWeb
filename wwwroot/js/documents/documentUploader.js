@@ -85,6 +85,11 @@ const getFilePath = (processType, fileName, vendor, documentType, asno, asLineNo
 const checkIfFileExists = async (processType, fileName, vendor, documentType, asno, asLineNo) => {
     let filePath = getFilePath(processType, fileName, vendor, documentType, asno, asLineNo);
 
+
+    return await checkIfFilePathExists(vendor, filePath);
+}
+
+const checkIfFilePathExists = async (vendor, filePath) => {
     let request = {
         containerName: vendor,
         filePath: filePath
