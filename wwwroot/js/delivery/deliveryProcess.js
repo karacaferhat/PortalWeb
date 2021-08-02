@@ -159,6 +159,10 @@ const clearInputs = () => {
 
   productInfo.html("");
 
+  uploadedFilesList.html("");
+  uploadedEirsaliyeList.html("");
+  
+
   createDeliveryButton.html("Urun Olustur");
   created = false;
 }
