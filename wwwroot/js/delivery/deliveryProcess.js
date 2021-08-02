@@ -30,8 +30,9 @@ const deliveryGrid = new DeliveryGrid("WAI", [{
     dataField: "package",
     caption: "Paket"
   }
-],
-{selectionMode: 'single'});
+], {
+  selectionMode: 'single'
+});
 
 const miniDeliveryGrid = new MiniDeliveryGrid("WAI", [{
     dataField: "asn",
@@ -171,7 +172,7 @@ const listFiles = function (files, fileList) {
   fileList.html('<ul>' + children + '</ul>');
 }
 
-const updateUploadedFileList = (attachments, edispatchfilename, edispatchfileUrl)=>{
+const updateUploadedFileList = (attachments, edispatchfilename, edispatchfileUrl) => {
   if (attachments && attachments.length > 0) {
     let row = miniDeliveryGrid.selectedRows[0];
     let string = "";
@@ -180,33 +181,31 @@ const updateUploadedFileList = (attachments, edispatchfilename, edispatchfileUrl
     attachments.forEach(f => {
       let id = `${row.asn}filedeletebutton${i++}`;
 
-      string += 
-      /*html*/
-      `<a href="${blobStorageBaseUri + f.fileurl}">${f.filename}</a>
+      string +=
+        /*html*/
+        `<a href="${blobStorageBaseUri + f.fileurl}">${f.filename}</a>
       <button class="btn btn-danger" id="${id}">Sil</button>
       <br/>`;
     });
 
     uploadedFilesList.html(string);
 
-    for(let i = 0; i< attachments.length; i++){
+    for (let i = 0; i < attachments.length; i++) {
       let f = attachments[i];
       let id = `${row.asn}filedeletebutton${i++}`;
-      $(`#${id}`).on('click', ()=>deleteHeaderAttachment(row.asn, f.fileurl, f.filename));
+      $(`#${id}`).on('click', () => deleteHeaderAttachment(row.asn, f.fileurl, f.filename));
     }
-  }
-  else{
-    uploadedFilesList.html(""); 
+  } else {
+    uploadedFilesList.html("");
   }
 
   if (edispatchfilename && edispatchfileUrl) {
-    string = 
-    /*html*/
-    `<a href="${blobStorageBaseUri + edispatchfileUrl}">${edispatchfilename}</a><br/>`;
+    string =
+      /*html*/
+      `<a href="${blobStorageBaseUri + edispatchfileUrl}">${edispatchfilename}</a><br/>`;
 
     uploadedEirsaliyeList.html(string);
-  }
-  else{
+  } else {
     uploadedEirsaliyeList.html("");
   }
 
@@ -227,6 +226,17 @@ const deleteHeaderAttachment = async (asn, fileurl, filename) => {
 
   let data = await fetchData(baseUrl + "deleteheaderAttachment", request);
   console.log(data);
+
+
+
+
+  request = {
+    vendor: vendor,
+    fileurl: fileurl.replace(`${vendor}/`, '')
+  };
+  result = await fetchData(documentServiceBaseUri + "deleteFile", request);
+  console.log(result);
+
 
   await miniDeliveryGrid.updateGrid();
   let row = miniDeliveryGrid.selectedRows[0];
@@ -490,7 +500,7 @@ exitButton.on("click", async () => {
 
 
 uploadFilesButton.on('click', async () => {
-  if(miniDeliveryGrid.selectedKeys.length === 0) return;
+  if (miniDeliveryGrid.selectedKeys.length === 0) return;
 
   let files = Array.from(fileAttachment.get(0).files);
   let eirsailye = fileEirsaliye.get(0).files[0];
@@ -512,7 +522,7 @@ uploadFilesButton.on('click', async () => {
   let result = await updateFiles(asnT, asnLineNoT, files, eirsailye);
   console.log(result);
 
-  
+
   uploadFilesButton.html("Dosyalar Kaydedildi");
 
 
@@ -531,8 +541,8 @@ orderGrid.updateGrid();
 deliveryGrid.setAsn("#######"); //Grid'i bosaltmak icin olmayacak bir deger yaz
 deliveryGrid.updateGrid();
 
-$("#printLabelButton").on("click", () => { 
+$("#printLabelButton").on("click", () => {
   $("#printArea").printThis({
-  loadCSS:"css/print.css",
+    loadCSS: "css/print.css",
   });
 });
