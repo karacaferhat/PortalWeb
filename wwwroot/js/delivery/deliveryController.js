@@ -193,3 +193,36 @@ const updateFiles = async (asn, asnline, files, eirsailye) => {
 
     return result;
 }
+
+
+const deleteHeaderAttachment = async (asn, fileurl, filename) => {
+    let vendor = sessionStorage[vendorKey];
+    let email = sessionStorage[emailKey];
+  
+    let request = {
+      "vendor": vendor,
+      "asn": asn,
+      "updUser": email,
+      "fileurl": fileurl,
+      "filename": filename
+    };
+  
+    let data = await fetchData(baseUrl + "deleteheaderAttachment", request);
+    console.log(data);
+  
+  
+  
+  
+    request = {
+      vendor: vendor,
+      fileurl: fileurl.replace(`${vendor}/`, '')
+    };
+    result = await fetchData(documentServiceBaseUri + "deleteFile", request);
+    console.log(result);
+  
+  
+    await miniDeliveryGrid.updateGrid();
+    let row = miniDeliveryGrid.selectedRows[0];
+    updateUploadedFileList(row.attachments, row.edispatchno, row.edispatchfile);
+  }
+  
