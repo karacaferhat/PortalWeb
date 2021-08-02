@@ -226,6 +226,23 @@
 <script src="~/js/printThis.js" charset="utf-8" asp-append-version="true"></script>
 <link rel="stylesheet" src="~/css/print.css" type="text/css" media="print">
 <script src="~/js/printLabel.js" charset="utf-8" asp-append-version="true"></script>
+<style>
+ .myColName { 
+        width: 30mm; 
+        font-family: 'Open Sans';
+        font-weight: bold;
+        font-size: small;
+    };
+    .myColValue { 
+        width: 60mm;
+        font-size: small;
+        font-family: 'Open Sans';    
+    };
+ 
+  .printArea { 
+            width: 95mm;height: 95mm; 
+        } 
+</style>
 
 <div class="modal fade" id="printDialog" role="dialog" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
     aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -239,14 +256,40 @@
             </div>
             <div class="modal-body">              
                 <div id="printArea" class="printArea" >
-                  
-                    <div class="row"><div class="col labelCol">Sevkiyat No:</div><div class="col labelValue">X0001</div></div>
-                    <div class="row"><div class="col labelCol">Sipariş No:</div><div class="col labelValue">X0001</div></div>
-                    <div class="row"><div class="col labelCol">Ürün Kodu:</div><div class="col labelValue">X0001</div></div>
-                    <div class="row"><div class="col labelCol">Ürün Adı:</div><div class="col labelValue">X0001</div></div>
-                    <div class="row"><div class="col labelCol">Miktar:</div><div class="col labelValue">X0001<span>-</span><span>ADET</span></div></div>                    
-                    
-                    <svg id="barcode"></svg>
+                     <svg id="barcode"></svg>
+                <div id="labelTable">
+                   <div class="row">
+                       <div class="col-4 border-dark myColName">Sevkiyat No:</div>
+                       <div class="col-8 border-dark myColValue">701480-2021-00159</div>
+                   </div>
+                   <div class="row">
+                       <div class="col-4 border-dark myColName">Sipariş No:</div>
+                       <div class="col-8 border-dark myColValue">P00000000024334</div>
+                   </div>
+                   <div class="row">
+                       <div class="col-4 border-dark myColName">Ürün Kodu:</div>
+                       <div class="col-8 border-dark myColValue">K00366</div>
+                   </div>
+                    <div class="row">
+                       <div class="col-4 border-dark myColName">Ürün:</div>
+                       <div class="col-8 border-dark myColValue">PULL START 405.20.16.7.IK</div>
+                   </div>
+                    <div class="row">
+                       <div class="col-4 border-dark myColName">Miktar:</div>
+                       <div class="col-8 border-dark myColValue">15<span>-</span><span>ADET</span></div>
+                   </div>
+                   <div class="row">
+                       <div class="col-4 border-dark myColName">Lot:</div>
+                       <div class="col-8 border-dark myColValue">L0001</div>
+                   </div>
+                </div>
+                 <div class="row">
+                       <div class="col-4 border-dark myColName">Gönderen:</div>
+                       <div class="col-8 border-dark myColValue">TRİO KES.TKM.LAR HIRD.MÜH.HİZ.MAK.SAN.VE TİC.LTD.ŞTİ.</div>
+                   </div>
+                                    
+                    </br>
+                   
                
                 </div>
             </div>

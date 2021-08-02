@@ -1,13 +1,28 @@
-@media print {
- 
+
+    @page {
+        size: 100mm 100mm;
+        margin: 5mm 5mm 5mm 5mm;   
+    }    
+    .body {
+        width: 95mm;height: 95mm; 
+    }
+    .printArea { 
+        width: 95mm;height: 95mm; 
+    } 
     
    
-    @page {
-        size: 150mm 150mm ; 
-    }
-    printArea { width: 150mm; height: 150mm }
-    @media print { body { width: 150mm } } 
-   
+    
+    .myColName { 
+        width: 30mm; 
+        font-family: 'Open Sans';
+        font-weight: bold;
+        font-size: small;
+    };
+    .myColValue { 
+        width: 60mm;
+        font-size: small;
+        font-family: 'Open Sans';    
+    };
   
-  }
- 
+
+
