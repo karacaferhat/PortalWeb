@@ -527,7 +527,19 @@ uploadFilesButton.on('click', async () => {
 
 miniDeliveryGrid.updateGrid();
 orderGrid.updateGrid();
-deliveryGrid.setAsn("#######"); //Grid'i bosaltmak icin olmayacak bir deger yaz
+
+let currentUrlSplitedWithParameters = window.location.href.split("#");
+
+if(currentUrlSplitedWithParameters && currentUrlSplitedWithParameters.length > 1){
+  let asnValue = currentUrlSplitedWithParameters[1]; 
+  
+  deliveryGrid.setAsn(asnValue);
+  asn.val(asnValue)
+}
+else
+  deliveryGrid.setAsn("#######"); //Grid'i bosaltmak icin olmayacak bir deger yaz
+
+
 deliveryGrid.updateGrid();
 
 
