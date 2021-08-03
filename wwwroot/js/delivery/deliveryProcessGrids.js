@@ -32,6 +32,8 @@ class DeliveryItemsGrid extends DataGrid {
         };
         let data = await fetchData(this.baseUrl + this.getMethod, request);
 
+        console.log(this._asn);
+
         if (data) {
             let items = [];
             data.data.forEach(d => {
