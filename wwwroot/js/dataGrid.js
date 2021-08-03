@@ -35,7 +35,9 @@ class DataGrid {
         enableGrouping = true,
         selectionMode = "multiple",
         gridContainerId = "#gridContainer",
-        masterDetail = null
+        masterDetail = null,
+        exportEnabled = true,
+        searchPanelEnabled = true
     } = {}) {
         if (this.constructor == DataGrid)
             throw new Error("Abstract classes can't be instantiated.");
@@ -45,10 +47,12 @@ class DataGrid {
         this.keyColumn = keyColumn;
         this.columns = columns;
         this._gridContainer = $(gridContainerId);
-        this.options = {
+        this._options = {
             enableGrouping: enableGrouping,
             selectionMode: selectionMode,
-            masterDetail: masterDetail
+            masterDetail: masterDetail,
+            exportEnabled: exportEnabled,
+            searchPanelEnabled: searchPanelEnabled
         };
         this._data = null;
     }
@@ -95,7 +99,9 @@ class DataGrid {
         return rows;
     }
 
-    get gridContainer(){return this._gridContainer;}
+    get gridContainer(){
+        return this._gridContainer;
+    }
 
     get allRows() {
         return this._data;
@@ -123,7 +129,7 @@ class DataGrid {
                 applyFilter: "auto"
             },
             searchPanel: {
-                visible: true,
+                visible: this._options.searchPanelEnabled,
                 width: 240,
                 placeholder: "Ara..."
             },
@@ -137,10 +143,10 @@ class DataGrid {
                 visible: true
             },
             selection: {
-                mode: this.options.selectionMode
+                mode: this._options.selectionMode
             },
             export: {
-                enabled: true,
+                enabled: this._options.exportEnabled,
                 allowExportSelectedData: true,
                 texts: {
                     exportAll: "Tümü",
@@ -168,7 +174,7 @@ class DataGrid {
 
         };
 
-        if (this.options.enableGrouping) {
+        if (this._options.enableGrouping) {
             settings["columnChooser"] = {
                 enabled: true,
                 mode: "select",
@@ -179,8 +185,8 @@ class DataGrid {
                 emptyPanelText: "Gruplamak için buraya sürükleyin"
             };
         }
-        if(this.options.masterDetail){
-            settings["masterDetail"] = this.options.masterDetail;
+        if(this._options.masterDetail){
+            settings["masterDetail"] = this._options.masterDetail;
         }
 
 

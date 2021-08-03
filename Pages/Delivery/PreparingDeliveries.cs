@@ -8,11 +8,11 @@ using Microsoft.Extensions.Logging;
 
 namespace PortalWeb.Pages.Delivery
 {
-    public class WaitingDeliveries : PageModel
+    public class PreparingDeliveries : PageModel
     {
-        private readonly ILogger<WaitingDeliveries> _logger;
+        private readonly ILogger<PreparingDeliveries> _logger;
 
-        public WaitingDeliveries(ILogger<WaitingDeliveries> logger)
+        public PreparingDeliveries(ILogger<PreparingDeliveries> logger)
         {
             _logger = logger;
         }
