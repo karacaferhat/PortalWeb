@@ -12,4 +12,10 @@ let deliveryGridWithItems = new DeliveryGridWithItems('WAI', [{
     }
 ]);
 
+const refreshGridButton = $("#refreshGridButton");
+
+
+
+refreshGridButton.on("click", () => deliveryGridWithItems.refreshButtonAction(refreshGridButton));
+
 deliveryGridWithItems.updateGrid();
