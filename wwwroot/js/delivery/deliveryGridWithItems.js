@@ -75,7 +75,7 @@ class DeliveryGridWithItems extends DataGrid {
             },
             {
                 dataField: "revno",
-                caption: "?Rev? Numarasi"
+                caption: "Revizyon Numarasi"
             }
 
         ], {
