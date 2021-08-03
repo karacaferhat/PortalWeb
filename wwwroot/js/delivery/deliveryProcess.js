@@ -1,4 +1,4 @@
-const deliveryGrid = new DeliveryGrid("WAI", [{
+const deliveryGrid = new DeliveryItemsGrid("WAI", [{
     dataField: "asn",
     caption: "Sevkiyat"
   },
@@ -34,7 +34,7 @@ const deliveryGrid = new DeliveryGrid("WAI", [{
   selectionMode: 'single'
 });
 
-const miniDeliveryGrid = new MiniDeliveryGrid("WAI", [{
+const miniDeliveryGrid = new DeliveryGrid("WAI", [{
     dataField: "asn",
     caption: "Sevkiyat"
   },

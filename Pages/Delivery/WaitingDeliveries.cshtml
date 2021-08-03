@@ -1,0 +1,28 @@
+@page
+@model WaitingDeliveries
+@{
+    ViewBag.Title = "delivires";
+}
+
+
+
+<div id="modals">
+
+</div>
+
+
+<div class="my-3 container-fluid d-flex justify-content-center">
+    <div>
+        <h3>Bekleyen Sevkiyatlar</h3>
+    </div>
+</div>
+<div class="orders-content">
+
+</div>
+
+<div id = "deliveryGridWithItemsContainer"></div>
+
+<script src="~/js/dataGrid.js" asp-append-version="true"></script>
+<script src="~/js/delivery/deliveryProcessGrids.js" asp-append-version="true"></script>
+<script src="~/js/delivery/deliveryGridWithItems.js" asp-append-version="true"></script>
+<script src="~/js/delivery/waitingDeliveries.js" asp-append-version="true"></script>

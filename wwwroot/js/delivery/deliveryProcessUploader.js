@@ -16,7 +16,7 @@ const uploadAttachment = async (files, processType, documentType, asn, asnLine, 
                 fileurl: vendor + '/' + filePath
             };
 
-            let exists = oldAttachments.find(o => o.fileurl === obj.fileurl) != undefined;
+            let exists = oldAttachments ? oldAttachments.find(o => o.fileurl === obj.fileurl) != undefined : false;
 
             if(!exists)
                 attachments.push(obj);
