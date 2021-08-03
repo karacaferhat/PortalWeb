@@ -171,8 +171,8 @@ const clearInputs = () => {
 
 
 const listFiles = function (files, fileList) {
-  var children = "";
-  for (var i = 0; i < files.length; ++i) {
+  let children = "";
+  for (let i = 0; i < files.length; ++i) {
     children += '<li>' + files[i].name + '</li>';
   }
   fileList.html('<ul>' + children + '</ul>');

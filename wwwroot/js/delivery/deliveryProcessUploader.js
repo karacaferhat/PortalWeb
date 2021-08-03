@@ -152,8 +152,8 @@ const updateFiles = async (asn, asnline, files, eirsailye, oldAttachments) => {
 
     let vendor = sessionStorage[vendorKey];
     let email = sessionStorage[emailKey];
-    let documentType = "fromDeliveryProcess";
-    let processType = "byDeliveryLine";
+    let documentType = "DELV";
+    let processType = "byDelivery";
 
 
     let attachments = null;

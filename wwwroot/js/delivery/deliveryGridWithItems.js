@@ -13,7 +13,7 @@ class DeliveryGridWithItems extends DataGrid {
             gridContainerId: gridContainerId,
             masterDetail: {
                 enabled: true,
-                template: (container, options) => {
+                template: async (container, options) => {
                     var currentDelivery = options.data;
 
                     $("<div>")
@@ -23,21 +23,23 @@ class DeliveryGridWithItems extends DataGrid {
                             <div class="d-flex justify-content-center">
                                 <div><h4>ASN: ${currentDelivery.asn}</h4></div>
                             </div>
-                            <div class="d-flex justify-content-begin">
-                                <div><h4>Siparisler</h4><div>
-                            </div>
                             `)
                         .appendTo(container);
 
 
-                    this._createItemGrid(currentDelivery).then(a => {
-                        $("<div>").dxTabPanel({
-                            items: [{
-                                title: "Siparisler",
-                                template: ()=>a
-                            }]
-                        }).appendTo(container);
-                    });
+                    let itemGrid = await this._createItemGrid(currentDelivery.asn);
+                    let attachmentsList = this._createAttachementsSection(currentDelivery.attachments);
+
+
+                    $("<div>").dxTabPanel({
+                        items: [{
+                            title: "Urunler",
+                            template: ()=> itemGrid
+                        }, {
+                            title: "Dosya Ekleri",
+                            template: () => attachmentsList
+                        }]
+                    }).appendTo(container);
                 }
             }
         });
@@ -46,19 +48,36 @@ class DeliveryGridWithItems extends DataGrid {
         this._asn = "";
     }
 
-    async _createItemGrid(currentDelivery) {
+    async _createItemGrid(asn) {
         let itemsGrid = new DeliveryItemsGrid("WAI", [{
-                dataField: "asn",
-                caption: "Sevkiyat"
+                dataField: "sku",
+                caption: "SKU"
             },
             {
-                dataField: "asnline",
-                caption: "Sevkiyat Sirasi"
+                dataField: "skuname",
+                caption: "SKU Adi"
             },
             {
-                dataField: "order",
-                caption: "Siparis No"
+                dataField: "ordqty",
+                caption: "Siparis Miktari"
+            },
+            {
+                dataField: "ordunit",
+                caption: "Siparis Miktar Birimi"
+            },
+            {
+                dataField: "dlvqty",
+                caption: "Sevkiyat Miktari"
+            },
+            {
+                dataField: "dlvunit",
+                caption: "Sevkiyat Miktari"
+            },
+            {
+                dataField: "revno",
+                caption: "?Rev? Numarasi"
             }
+
         ], {
             selectionMode: 'single',
             gridContainerId: "<div>",
@@ -67,10 +86,23 @@ class DeliveryGridWithItems extends DataGrid {
             searchPanelEnabled: false
         });
 
-        itemsGrid.setAsn(currentDelivery.asn);
+        itemsGrid.setAsn(asn);
         await itemsGrid.updateGrid();
 
         return itemsGrid.grid;
+    }
+
+    _createAttachementsSection(attachments){
+        let children = "";
+      
+        console.log(attachments)
+        attachments.forEach(a => {
+            children += 
+                /*html*/
+                `<li><a href = "${blobStorageBaseUri + a.fileurl}"> ${a.filename} </li>`;
+        });
+
+        return '<ul>' + children + '</ul>';
     }
 
     async getUpdateArray() {
