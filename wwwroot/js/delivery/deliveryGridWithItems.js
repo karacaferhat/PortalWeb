@@ -1,16 +1,21 @@
-class DeliveryGridWithItems extends DataGrid {
+class DeliveryGridWithItems extends DeliveryGrid {
 
     constructor(state, columns, {
         enableGrouping = true,
         selectionMode = "multiple",
         gridContainerId = "#deliveryGridWithItemsContainer",
-        key = ["asn", "asnline", "order", "orderline"]
+        key = "asn",
+        exportEnabled = true,
+        searchPanelEnabled = true,
     } = {}) {
 
-        super(baseUrl, 'getDelivery', key, columns, {
+        super(state, columns, {
+            key: key,
             enableGrouping: enableGrouping,
             selectionMode: selectionMode,
             gridContainerId: gridContainerId,
+            exportEnabled: exportEnabled,
+            searchPanelEnabled: searchPanelEnabled,
             masterDetail: {
                 enabled: true,
                 template: async (container, options) => {
@@ -34,7 +39,7 @@ class DeliveryGridWithItems extends DataGrid {
                     $("<div>").dxTabPanel({
                         items: [{
                             title: "Urunler",
-                            template: ()=> itemGrid
+                            template: () => itemGrid
                         }, {
                             title: "Dosya Ekleri",
                             template: () => attachmentsList
@@ -43,9 +48,6 @@ class DeliveryGridWithItems extends DataGrid {
                 }
             }
         });
-
-        this.state = state;
-        this._asn = "";
     }
 
     async _createItemGrid(asn) {
@@ -92,31 +94,16 @@ class DeliveryGridWithItems extends DataGrid {
         return itemsGrid.grid;
     }
 
-    _createAttachementsSection(attachments){
+    _createAttachementsSection(attachments) {
         let children = "";
-      
+
         console.log(attachments)
         attachments.forEach(a => {
-            children += 
+            children +=
                 /*html*/
                 `<li><a href = "${blobStorageBaseUri + a.fileurl}"> ${a.filename} </li>`;
         });
 
         return '<ul>' + children + '</ul>';
-    }
-
-    async getUpdateArray() {
-        let request = {
-            vendor: sessionStorage[vendorKey],
-            state: this.state,
-            asn: this._asn
-        }
-        let data = await fetchData(this.baseUrl + this.getMethod, request);
-
-        return data.data;
-    }
-
-    setAsn(asn) {
-        this._asn = asn;
     }
 }
