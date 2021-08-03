@@ -18,7 +18,16 @@ class DeliveryGridWithItems extends DataGrid {
 
                     $("<div>")
                         .addClass("master-detail-caption")
-                        .text("ASN: " + currentDelivery.asn)
+                        .html(
+                            /*html*/
+                            `
+                            <div class="d-flex justify-content-center">
+                                <div><h4>ASN: ${currentDelivery.asn}</h4></div>
+                            </div>
+                            <div class="d-flex justify-content-begin">
+                                <div><h4>Siparisler</h4><div>
+                            </div>
+                            `)
                         .appendTo(container);
 
 
@@ -36,7 +45,10 @@ class DeliveryGridWithItems extends DataGrid {
                         }
                     ], {
                         selectionMode: 'single',
-                        gridContainerId: "<div>"
+                        gridContainerId: "<div>",
+                        enableGrouping: false,
+                        exportEnabled: false,
+                        searchPanelEnabled: false
                     });
 
                     itemsGrid.setAsn(currentDelivery.asn);

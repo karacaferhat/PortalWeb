@@ -23,14 +23,18 @@ class OrderGrid extends DataGrid {
     constructor(state, columns, {
         enableGrouping = true,
         selectionMode = "multiple",
-        gridContainerId = "#orderGridContainer"
+        gridContainerId = "#orderGridContainer",
+        exportEnabled = true,
+        searchPanelEnabled = true
     } = {}) {
 
         super("https://tedarikportalorder.azurewebsites.net/api/v1/orders/",
             'getOrders', "pkey", columns, {
                 enableGrouping : enableGrouping,
                 selectionMode : selectionMode,
-                gridContainerId : gridContainerId
+                gridContainerId : gridContainerId,
+                exportEnabled: exportEnabled,
+                searchPanelEnabled: searchPanelEnabled
             }
         );
 
