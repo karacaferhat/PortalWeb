@@ -9,7 +9,8 @@ class DeliveryItemsGrid extends DataGrid {
         gridContainerId = "#deliveryItemsGridContainer",
         key = ["asn", "asnline", "order", "orderline"],
         exportEnabled = true,
-        searchPanelEnabled = true
+        searchPanelEnabled = true,
+        masterDetail=null
     } = {}) {
 
         super(baseUrl, 'getDelivery', key, columns, {
@@ -17,7 +18,8 @@ class DeliveryItemsGrid extends DataGrid {
             selectionMode: selectionMode,
             gridContainerId: gridContainerId,
             exportEnabled: exportEnabled,
-            searchPanelEnabled: searchPanelEnabled
+            searchPanelEnabled: searchPanelEnabled,
+            masterDetail: masterDetail
         });
 
         this.state = state;
@@ -54,7 +56,8 @@ class DeliveryGrid extends DeliveryItemsGrid {
         selectionMode = "single",
         gridContainerId = "#deliveryGridContainer",
         exportEnabled = true,
-        searchPanelEnabled= true
+        searchPanelEnabled= true,
+        masterDetail=null
     } = {}) {
 
         super(state, columns, {
@@ -63,7 +66,8 @@ class DeliveryGrid extends DeliveryItemsGrid {
             gridContainerId: gridContainerId,
             key: "asn",
             exportEnabled: exportEnabled,
-            searchPanelEnabled: searchPanelEnabled
+            searchPanelEnabled: searchPanelEnabled,
+            masterDetail: masterDetail
         });
     }
 

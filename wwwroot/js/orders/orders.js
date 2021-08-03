@@ -25,7 +25,8 @@ class OrderGrid extends DataGrid {
         selectionMode = "multiple",
         gridContainerId = "#orderGridContainer",
         exportEnabled = true,
-        searchPanelEnabled = true
+        searchPanelEnabled = true,
+        masterDetail=null
     } = {}) {
 
         super("https://tedarikportalorder.azurewebsites.net/api/v1/orders/",
@@ -34,7 +35,8 @@ class OrderGrid extends DataGrid {
                 selectionMode : selectionMode,
                 gridContainerId : gridContainerId,
                 exportEnabled: exportEnabled,
-                searchPanelEnabled: searchPanelEnabled
+                searchPanelEnabled: searchPanelEnabled,
+                masterDetail: masterDetail
             }
         );
 
