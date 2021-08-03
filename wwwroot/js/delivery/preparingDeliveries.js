@@ -15,14 +15,10 @@ let deliveryGridWithItems = new DeliveryGridWithItems('WAI', [{
         caption: "Sevkiyat Tarihi"
     },
     {
-        dataField: "edispatchno",
-        caption: "E-Irsaliye Dosya Adi"
-    },
-    {
-        caption: "Indir",
+        caption: "E-Irsaliye",
         dataField: "edispatchfile",
         cellTemplate: function (container, options) {
-            $('<a> Indir  </a>')
+            $(`<a> ${options.value.split('/').pop()} </a>`)
                 .attr('href', blobStorageBaseUri + options.value)
                 .attr('target', '_blank')
                 .appendTo(container);
