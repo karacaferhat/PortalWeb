@@ -125,6 +125,10 @@ class DataGrid {
             allowColumnResizing: true,
             rowAlternationEnabled: true,
             columnAutoWidth: true,
+            loadPanel: {
+                enabled: true,
+                text: "Yukleniyor"
+            },
             filterRow: {
                 visible: true,
                 applyFilter: "auto"
