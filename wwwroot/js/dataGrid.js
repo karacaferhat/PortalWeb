@@ -104,6 +104,10 @@ class DataGrid {
         return this._grid;
     }
 
+    get gridContainer(){
+        return this._gridContainer;
+    }
+
     get allRows() {
         return this._data;
     }
