@@ -1,0 +1,68 @@
+class DeliveryGridWithItems extends DataGrid {
+
+    constructor(state, columns, {
+        enableGrouping = true,
+        selectionMode = "multiple",
+        gridContainerId = "#deliveryGridWithItemsContainer",
+        key = ["asn", "asnline", "order", "orderline"]
+    } = {}) {
+
+        super(baseUrl, 'getDelivery', key, columns, {
+            enableGrouping: enableGrouping,
+            selectionMode: selectionMode,
+            gridContainerId: gridContainerId,
+            masterDetail: {
+                enabled: true,
+                template: (container, options) => {
+                    var currentDelivery = options.data;
+
+                    $("<div>")
+                        .addClass("master-detail-caption")
+                        .text("ASN: " + currentDelivery.asn)
+                        .appendTo(container);
+
+
+                    let itemsGrid = new DeliveryItemsGrid("WAI", [{
+                            dataField: "asn",
+                            caption: "Sevkiyat"
+                        },
+                        {
+                            dataField: "asnline",
+                            caption: "Sevkiyat Sirasi"
+                        },
+                        {
+                            dataField: "order",
+                            caption: "Siparis No"
+                        }
+                    ], {
+                        selectionMode: 'single',
+                        gridContainerId: "<div>"
+                    });
+
+                    itemsGrid.setAsn(currentDelivery.asn);
+                    itemsGrid.updateGrid();
+
+                    itemsGrid.gridContainer.appendTo(container);
+                }
+            }
+        });
+        
+        this.state = state;
+        this._asn = "";
+    }
+
+    async getUpdateArray() {
+        let request = {
+            vendor: sessionStorage[vendorKey],
+            state: this.state,
+            asn: this._asn
+        }
+        let data = await fetchData(this.baseUrl + this.getMethod, request);
+
+        return data.data;
+    }
+
+    setAsn(asn) {
+        this._asn = asn;
+    }
+}

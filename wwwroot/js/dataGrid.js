@@ -34,7 +34,8 @@ class DataGrid {
     constructor(baseUrl, getMethod, keyColumn, columns, {
         enableGrouping = true,
         selectionMode = "multiple",
-        gridContainerId = "#gridContainer"
+        gridContainerId = "#gridContainer",
+        masterDetail = null
     } = {}) {
         if (this.constructor == DataGrid)
             throw new Error("Abstract classes can't be instantiated.");
@@ -43,10 +44,11 @@ class DataGrid {
         this.getMethod = getMethod;
         this.keyColumn = keyColumn;
         this.columns = columns;
-        this.gridContainer = $(gridContainerId);
+        this._gridContainer = $(gridContainerId);
         this.options = {
             enableGrouping: enableGrouping,
-            selectionMode: selectionMode
+            selectionMode: selectionMode,
+            masterDetail: masterDetail
         };
         this._data = null;
     }
@@ -57,15 +59,15 @@ class DataGrid {
     }
 
     get selectedKeys() {
-        if (this.gridContainer == null)
+        if (this._gridContainer == null)
             throw new Error("DataGrid Must Be Initiliazed")
 
-        let gridInstance = this.gridContainer.dxDataGrid("instance");
+        let gridInstance = this._gridContainer.dxDataGrid("instance");
         return gridInstance.getSelectedRowKeys();
     }
 
     get selectedRows() {
-        if (this.gridContainer == null)
+        if (this._gridContainer == null)
             throw new Error("DataGrid Must Be Initiliazed")
 
         let rows = [];
@@ -92,6 +94,8 @@ class DataGrid {
 
         return rows;
     }
+
+    get gridContainer(){return this._gridContainer;}
 
     get allRows() {
         return this._data;
@@ -175,9 +179,12 @@ class DataGrid {
                 emptyPanelText: "Gruplamak için buraya sürükleyin"
             };
         }
+        if(this.options.masterDetail){
+            settings["masterDetail"] = this.options.masterDetail;
+        }
 
 
-        this.gridContainer.dxDataGrid(settings);
+        this._gridContainer.dxDataGrid(settings);
     }
 
     async refreshButtonAction(button) {

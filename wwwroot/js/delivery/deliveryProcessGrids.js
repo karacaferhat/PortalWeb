@@ -1,12 +1,12 @@
 const baseUrl = "https://tedarikportaldelivery.azurewebsites.net/api/v1/delivery/";
 
 
-class DeliveryGrid extends DataGrid {
+class DeliveryItemsGrid extends DataGrid {
 
     constructor(state, columns, {
         enableGrouping = true,
         selectionMode = "multiple",
-        gridContainerId = "#deliveryGridContainer",
+        gridContainerId = "#deliveryItemsGridContainer",
         key = ["asn", "asnline", "order", "orderline"]
     } = {}) {
 
@@ -44,11 +44,11 @@ class DeliveryGrid extends DataGrid {
     }
 }
 
-class MiniDeliveryGrid extends DeliveryGrid {
+class DeliveryGrid extends DeliveryItemsGrid {
     constructor(state, columns, {
         enableGrouping = false,
         selectionMode = "single",
-        gridContainerId = "#miniDeliveryGrid"
+        gridContainerId = "#deliveryGridContainer"
     } = {}) {
 
         super(state, columns, {
