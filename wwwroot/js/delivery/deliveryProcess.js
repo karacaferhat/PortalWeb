@@ -136,6 +136,35 @@ let created = false;
 
 
 
+const setAsnWithUrl = () => {
+  let currentUrlSplitedWithParameters = window.location.href.split("#");
+
+  if(currentUrlSplitedWithParameters && currentUrlSplitedWithParameters.length > 1){
+    let asnValue = currentUrlSplitedWithParameters[1]; 
+
+
+    let obj = miniDeliveryGrid.allRows.find(a=>a.asn === asnValue);
+
+
+    if(obj){
+      let row = miniDeliveryGrid.allRows.indexOf(obj);
+      if(row !== null){
+          miniDeliveryGrid.gridContainer.dxDataGrid("instance").selectRowsByIndexes([row]).then(()=>{
+            chooseAsnButton.click();
+          }
+        );
+      }
+    }
+  }
+  else
+    deliveryGrid.setAsn("#######"); //Grid'i bosaltmak icin olmayacak bir deger yaz
+    
+}
+
+
+
+
+
 const clearInputs = () => {
   asn.val("");
   asnDate.option('value', Date.now());
@@ -308,7 +337,7 @@ chooseAsnButton.on("click", () => {
 
   updateUploadedFileList(row.attachments, row.edispatchno, row.edispatchfile);
 
-  chooseAsnModal.modal('toggle');
+  chooseAsnModal.modal('hide');
 });
 
 
@@ -526,25 +555,13 @@ uploadFilesButton.on('click', async () => {
 
 
 miniDeliveryGrid.updateGrid();
-orderGrid.updateGrid();
-
-let currentUrlSplitedWithParameters = window.location.href.split("#");
-
-if(currentUrlSplitedWithParameters && currentUrlSplitedWithParameters.length > 1){
-  let asnValue = currentUrlSplitedWithParameters[1]; 
-  
-  deliveryGrid.setAsn(asnValue);
-  asn.val(asnValue)
-}
-else
-  deliveryGrid.setAsn("#######"); //Grid'i bosaltmak icin olmayacak bir deger yaz
-
-
 deliveryGrid.updateGrid();
-
+orderGrid.updateGrid();
 
 $("#printLabelButton").on("click", () => {
   $("#printArea").printThis({
     loadCSS: "css/print.css",
   });
 });
+
+setTimeout(() => setAsnWithUrl(), 1000);//Bunu gelistir. setAsnWithUrl sayfa tamamen yuklendikten hemen sonra calisiyor. Nedenini anlamadim. miniDeliveryGrid.updateGrid().then()'in icinde de cagirsam olmadi.
