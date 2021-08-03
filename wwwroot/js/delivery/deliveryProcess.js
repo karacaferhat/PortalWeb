@@ -156,9 +156,10 @@ const setAsnWithUrl = () => {
       }
     }
   }
-  else
+  else{
     deliveryGrid.setAsn("#######"); //Grid'i bosaltmak icin olmayacak bir deger yaz
-    
+    deliveryGrid.updateGrid();
+  }
 }
 
 
