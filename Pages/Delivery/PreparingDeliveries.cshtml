@@ -16,11 +16,22 @@
         <h3>Hazırlanan Sevkiyatlar</h3>
     </div>
 </div>
+
+
 <div class="orders-content">
 
+    <div class="action-section">
+        <button id="refreshGridButton" class="btn btn-sm btn-success rounded-pill ripple-fx no-border">
+            <span class="btn-icon fas fa-sync"></span>
+            <span class="btn-title">Tabloyu Yenile</span>
+        </button>
+    </div>
+
+    <div class="table-section">
+        <div id="deliveryGridWithItemsContainer"></div>
+    </div>
 </div>
 
-<div id = "deliveryGridWithItemsContainer"></div>
 
 <script src="~/js/dataGrid.js" asp-append-version="true"></script>
 <script src="~/js/delivery/deliveryProcessGrids.js" asp-append-version="true"></script>
