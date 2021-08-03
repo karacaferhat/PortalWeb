@@ -19,7 +19,6 @@ class DeliveryGridWithItems extends DataGrid {
                     $("<div>")
                         .addClass("master-detail-caption")
                         .html(
-                            /*html*/
                             `
                             <div class="d-flex justify-content-center">
                                 <div><h4>ASN: ${currentDelivery.asn}</h4></div>
@@ -31,36 +30,47 @@ class DeliveryGridWithItems extends DataGrid {
                         .appendTo(container);
 
 
-                    let itemsGrid = new DeliveryItemsGrid("WAI", [{
-                            dataField: "asn",
-                            caption: "Sevkiyat"
-                        },
-                        {
-                            dataField: "asnline",
-                            caption: "Sevkiyat Sirasi"
-                        },
-                        {
-                            dataField: "order",
-                            caption: "Siparis No"
-                        }
-                    ], {
-                        selectionMode: 'single',
-                        gridContainerId: "<div>",
-                        enableGrouping: false,
-                        exportEnabled: false,
-                        searchPanelEnabled: false
+                    this._createItemGrid(currentDelivery).then(a => {
+                        $("<div>").dxTabPanel({
+                            items: [{
+                                title: "Siparisler",
+                                template: ()=>a
+                            }]
+                        }).appendTo(container);
                     });
-
-                    itemsGrid.setAsn(currentDelivery.asn);
-                    itemsGrid.updateGrid();
-
-                    itemsGrid.gridContainer.appendTo(container);
                 }
             }
         });
-        
+
         this.state = state;
         this._asn = "";
+    }
+
+    async _createItemGrid(currentDelivery) {
+        let itemsGrid = new DeliveryItemsGrid("WAI", [{
+                dataField: "asn",
+                caption: "Sevkiyat"
+            },
+            {
+                dataField: "asnline",
+                caption: "Sevkiyat Sirasi"
+            },
+            {
+                dataField: "order",
+                caption: "Siparis No"
+            }
+        ], {
+            selectionMode: 'single',
+            gridContainerId: "<div>",
+            enableGrouping: false,
+            exportEnabled: false,
+            searchPanelEnabled: false
+        });
+
+        itemsGrid.setAsn(currentDelivery.asn);
+        await itemsGrid.updateGrid();
+
+        return itemsGrid.grid;
     }
 
     async getUpdateArray() {

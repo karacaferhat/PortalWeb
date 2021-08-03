@@ -55,6 +55,7 @@ class DataGrid {
             searchPanelEnabled: searchPanelEnabled
         };
         this._data = null;
+        this._grid = null;
     }
 
 
@@ -99,8 +100,8 @@ class DataGrid {
         return rows;
     }
 
-    get gridContainer(){
-        return this._gridContainer;
+    get grid(){
+        return this._grid;
     }
 
     get allRows() {
@@ -190,7 +191,7 @@ class DataGrid {
         }
 
 
-        this._gridContainer.dxDataGrid(settings);
+        this._grid = this._gridContainer.dxDataGrid(settings);
     }
 
     async refreshButtonAction(button) {
