@@ -139,26 +139,20 @@ let created = false;
 const setAsnWithUrl = () => {
   let currentUrlSplitedWithParameters = window.location.href.split("#");
 
-  if(currentUrlSplitedWithParameters && currentUrlSplitedWithParameters.length > 1){
-    let asnValue = currentUrlSplitedWithParameters[1]; 
+  if (currentUrlSplitedWithParameters && currentUrlSplitedWithParameters.length > 1) {
+    let asnValue = currentUrlSplitedWithParameters[1];
 
 
-    let obj = miniDeliveryGrid.allRows.find(a=>a.asn === asnValue);
+    let obj = miniDeliveryGrid.allRows.find(a => a.asn === asnValue);
 
 
-    if(obj){
+    if (obj) {
       let row = miniDeliveryGrid.allRows.indexOf(obj);
-      if(row !== null){
-          miniDeliveryGrid.gridContainer.dxDataGrid("instance").selectRowsByIndexes([row]).then(()=>{
-            chooseAsnButton.click();
-          }
+      if (row !== null)
+        miniDeliveryGrid.gridContainer.dxDataGrid("instance").selectRowsByIndexes([row]).then(() =>
+          chooseAsnButton.click()
         );
-      }
     }
-  }
-  else{
-    deliveryGrid.setAsn("#######"); //Grid'i bosaltmak icin olmayacak bir deger yaz
-    deliveryGrid.updateGrid();
   }
 }
 
@@ -247,7 +241,7 @@ const updateUploadedFileList = (attachments, edispatchfilename, edispatchfileUrl
     uploadedEirsaliyeList.html(string);
 
 
-    $(`#${id}`).on('click', ()=>deleteEirsaliyeAttachment(row.asn, edispatchfileUrl));
+    $(`#${id}`).on('click', () => deleteEirsaliyeAttachment(row.asn, edispatchfileUrl));
 
   } else {
     uploadedEirsaliyeList.html("");
@@ -554,12 +548,14 @@ uploadFilesButton.on('click', async () => {
   }, 5000);
 });
 
-const loadGrids = async()=>{
+const loadGrids = async () => {
+  deliveryGrid.setAsn("#######"); //Grid'i bosaltmak icin olmayacak bir deger yaz
+
   await miniDeliveryGrid.updateGrid();
   await deliveryGrid.updateGrid();
   await orderGrid.updateGrid();
 }
-loadGrids().then(()=>setAsnWithUrl());
+loadGrids().then(() => setAsnWithUrl());
 
 
 $("#printLabelButton").on("click", () => {
@@ -567,4 +563,3 @@ $("#printLabelButton").on("click", () => {
     loadCSS: "css/print.css",
   });
 });
-
