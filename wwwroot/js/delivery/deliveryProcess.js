@@ -553,10 +553,13 @@ uploadFilesButton.on('click', async () => {
   }, 5000);
 });
 
+const loadGrids = async()=>{
+  await miniDeliveryGrid.updateGrid();
+  await deliveryGrid.updateGrid();
+  await orderGrid.updateGrid();
+}
+loadGrids().then(()=>setAsnWithUrl());
 
-miniDeliveryGrid.updateGrid();
-deliveryGrid.updateGrid();
-orderGrid.updateGrid();
 
 $("#printLabelButton").on("click", () => {
   $("#printArea").printThis({
@@ -564,4 +567,3 @@ $("#printLabelButton").on("click", () => {
   });
 });
 
-setTimeout(() => setAsnWithUrl(), 1000);//Bunu gelistir. setAsnWithUrl sayfa tamamen yuklendikten hemen sonra calisiyor. Nedenini anlamadim. miniDeliveryGrid.updateGrid().then()'in icinde de cagirsam olmadi.
