@@ -5,7 +5,7 @@ const orderGrid = new OrderGrid("WAI",  [
     { dataField: "orderdate", caption: "Siparis Tarihi" },
     { dataField: "orduser", caption: "Siparisi Veren Kullanici" },
     { dataField: "ordunit", caption: "Siparis Birimi" },
-    { dataField: "sku", caption: "SKU" }
+    { dataField: "sku", caption: "Ürün Kodu" }
 ]);
 
 const acceptButton = $("#acceptButton");
