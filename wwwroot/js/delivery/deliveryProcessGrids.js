@@ -1,6 +1,7 @@
+"use strict";
+
+
 const baseUrl = "https://tedarikportaldelivery.azurewebsites.net/api/v1/delivery/";
-
-
 
 
 class DeliveryGrid extends DataGrid {

@@ -1,3 +1,6 @@
+"use strict";
+
+
 function formatDate(mydate) {
     if (mydate === null)
         return null;

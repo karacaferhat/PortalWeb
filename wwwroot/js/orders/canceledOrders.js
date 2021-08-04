@@ -1,3 +1,6 @@
+"use strict";
+
+
 const orderGrid = new OrderGrid("CAN",  [
     { dataField: "vendor", caption: "Tedarikçi" },
     { dataField: "orderno", caption: "Siparis No" },

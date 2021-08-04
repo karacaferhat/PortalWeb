@@ -1,3 +1,5 @@
+"use strict";
+
 //!!!!ONEMLI!!!! azure dan cors u duzelt
 
 const documentServiceBaseUri = "https://tederikportaldocumentservice.azurewebsites.net/api/v1/deliverydocument/";

@@ -1,3 +1,6 @@
+"use strict";
+
+
 let deliveryGridWithItems = new DeliveryGridWithItems('WAI',
     [{
             dataField: "asn",

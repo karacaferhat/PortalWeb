@@ -1,3 +1,5 @@
+"use strict";
+
 let deliveryGridWithItems = new DeliveryGridWithItems('CAN',
     [{
             dataField: "asn",
