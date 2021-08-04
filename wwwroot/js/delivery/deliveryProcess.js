@@ -67,15 +67,15 @@ const miniDeliveryGrid = new DeliveryGrid("WAI", [{
 const orderGrid = new OrderGrid("PRC",
   [{
       dataField: "sku",
-      caption: "SKU"
+      caption: "Ürün Kodu"
     },
     {
       dataField: "skuname",
-      caption: "SKU Adi"
+      caption: "Ürün Adi"
     },
     {
       dataField: "ordqty",
-      caption: "Urun Miktari",
+      caption: "Ürün Miktari",
       dataType: "number"
     },
     {
