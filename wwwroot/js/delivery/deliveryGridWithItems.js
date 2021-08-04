@@ -57,7 +57,8 @@ class DeliveryGridWithItems extends DeliveryGrid {
         if (childColumns === null)
             childColumns = this._childColumns;
 
-        let itemsGrid = new DeliveryItemsGrid("WAI", this.childColumns, {
+        console.log(childColumns);
+        let itemsGrid = new DeliveryItemsGrid("WAI", childColumns, {
             selectionMode: 'single',
             gridContainerId: "<div>",
             enableGrouping: false,

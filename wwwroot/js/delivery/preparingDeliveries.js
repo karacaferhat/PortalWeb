@@ -26,63 +26,47 @@ let deliveryGridWithItems = new DeliveryGridWithItems('WAI',
             cellTemplate: function (container, options) {
                 let link = options.value;
 
-                if(link)
+                if (link)
                     $(`<a> ${link.split('/').pop()} </a>`)
-                        .attr('href', blobStorageBaseUri + link)
-                        .attr('target', '_blank')
-                        .appendTo(container);
+                    .attr('href', blobStorageBaseUri + link)
+                    .attr('target', '_blank')
+                    .appendTo(container);
                 else
                     $('').appendTo(container);
             }
         }
     ],
     [{
-            dataField: "asn",
-            caption: "Sevkiyat"
-        },
-        {
             dataField: "asnline",
-            caption: "Sevk Satır No"
-        },
-        {
-            dataField: "crdate",
-            caption: "Oluşturulma Tarihi"
-        },
-        {
-            dataField: "order",
-            caption: "Sipariş"
+            caption: "Sevkiyat Sırası"
         },
         {
             dataField: "sku",
-            caption: "Ürün Kodu"
+            caption: "SKU"
         },
         {
             dataField: "skuname",
-            caption: "Ürün Adı"
+            caption: "SKU Adi"
         },
         {
             dataField: "ordqty",
-            caption: "Sipariş Miktari"
+            caption: "Siparis Miktari"
         },
         {
             dataField: "ordunit",
-            caption: "Sipariş Birimi"
+            caption: "Siparis Miktar Birimi"
         },
         {
             dataField: "dlvqty",
-            caption: "Sevk Miktari"
+            caption: "Sevkiyat Miktari"
         },
         {
             dataField: "dlvunit",
-            caption: "Sevk Birimi"
+            caption: "Sevkiyat Miktari"
         },
         {
-            dataField: "lastdlvdate",
-            caption: "Son Gönderim Tarihi"
-        },
-        {
-            dataField: "package",
-            caption: "Paket No"
+            dataField: "revno",
+            caption: "Revizyon Numarasi"
         }
     ], {
         selectionMode: 'single'

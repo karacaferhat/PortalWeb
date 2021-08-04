@@ -1,35 +1,51 @@
 const deliveryGrid = new DeliveryItemsGrid("WAI", [{
-    dataField: "asn",
-    caption: "Sevkiyat"
-  },
-  {
-    dataField: "asnline",
-    caption: "Sevkiyat Sirasi"
-  },
-  {
-    dataField: "order",
-    caption: "Siparis No"
-  },
-  {
-    dataField: "orderline",
-    caption: "Siparis Sirasi"
-  },
-  {
-    dataField: "sku",
-    caption: "SKU"
-  },
-  {
-    dataField: "skuname",
-    caption: "SKU Adi"
-  },
-  {
-    dataField: "ordqty",
-    caption: "Urun Miktari"
-  },
-  {
-    dataField: "package",
-    caption: "Paket"
-  }
+  dataField: "asn",
+  caption: "Sevkiyat"
+},
+{
+  dataField: "asnline",
+  caption: "Sevk Satır No"
+},
+{
+  dataField: "crdate",
+  caption: "Oluşturulma Tarihi"
+},
+{
+  dataField: "order",
+  caption: "Sipariş"
+},
+{
+  dataField: "sku",
+  caption: "Ürün Kodu"
+},
+{
+  dataField: "skuname",
+  caption: "Ürün Adı"
+},
+{
+  dataField: "ordqty",
+  caption: "Sipariş Miktari"
+},
+{
+  dataField: "ordunit",
+  caption: "Sipariş Birimi"
+},
+{
+  dataField: "dlvqty",
+  caption: "Sevk Miktari"
+},
+{
+  dataField: "dlvunit",
+  caption: "Sevk Birimi"
+},
+{
+  dataField: "lastdlvdate",
+  caption: "Son Gönderim Tarihi"
+},
+{
+  dataField: "package",
+  caption: "Paket No"
+}
 ], {
   selectionMode: 'single'
 });
