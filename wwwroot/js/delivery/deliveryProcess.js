@@ -80,7 +80,7 @@ const orderGrid = new OrderGrid("PRC",
     },
     {
       dataField: "orderno",
-      caption: "Sevkiyat No"
+      caption: "Sipariş No"
     }
   ], {
     enableGrouping: false,
