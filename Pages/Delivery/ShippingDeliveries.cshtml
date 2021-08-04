@@ -1,0 +1,42 @@
+@page
+@model ShippingDeliveries
+@{
+    ViewBag.Title = "delivires";
+}
+
+
+
+<div id="modals">
+
+</div>
+
+
+<div class="my-3 container-fluid d-flex justify-content-center">
+    <div>
+        <h3>Hazırlanan Sevkiyatlar</h3>
+    </div>
+</div>
+
+
+<div class="orders-content">
+
+    <div class="action-section">
+        <button id="refreshGridButton" class="btn btn-sm btn-success rounded-pill ripple-fx no-border">
+            <span class="btn-icon fas fa-sync"></span>
+            <span class="btn-title">Tabloyu Yenile</span>
+        </button>
+    </div>
+
+    <div class="table-section">
+        <div id="deliveryGridWithItemsContainer"></div>
+    </div>
+</div>
+
+
+<script src="~/lib/azurestoragejs.blob-10.5.0/azure-storage-blob.js" asp-append-version="true"></script>
+<script src="~/js/documents/documentUploader.js" asp-append-version="true"></script>
+
+<script src="~/js/dataGrid.js" asp-append-version="true"></script>
+<script src="~/js/delivery/deliveryProcessGrids.js" asp-append-version="true"></script>
+<script src="~/js/delivery/deliveryGridWithItems.js" asp-append-version="true"></script>
+<script src="~/js/delivery/shippingDeliveries.js" asp-append-version="true"></script>

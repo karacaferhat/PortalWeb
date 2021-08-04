@@ -1,12 +1,7 @@
-let deliveryGridWithItems = new DeliveryGridWithItems('WAI',
+let deliveryGridWithItems = new DeliveryGridWithItems('CAN',
     [{
             dataField: "asn",
-            caption: "Sevkiyat No",
-            cellTemplate: function (container, options) {
-                $(`<a> ${options.value} </a>`)
-                    .attr('href', "/Delivery/DeliveryProcess#" + options.value)
-                    .appendTo(container);
-            }
+            caption: "Sevkiyat No"
         },
         {
             dataField: "transportcompany",

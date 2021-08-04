@@ -54,7 +54,7 @@ class DeliveryGridWithItems extends DeliveryGrid {
     }
 
     async _createItemGrid(asn, childColumns = null) {
-        if(childColumns === null)
+        if (childColumns === null)
             childColumns = this._childColumns;
 
         let itemsGrid = new DeliveryItemsGrid("WAI", this.childColumns, {
@@ -74,11 +74,13 @@ class DeliveryGridWithItems extends DeliveryGrid {
     _createAttachementsSection(attachments) {
         let children = "";
 
-        attachments.forEach(a => {
-            children +=
-                /*html*/
-                `<li><a href = "${blobStorageBaseUri + a.fileurl}"> ${a.filename} </li>`;
-        });
+        if (attachments) {
+            attachments.forEach(a => {
+                children +=
+                    /*html*/
+                    `<li><a href = "${blobStorageBaseUri + a.fileurl}"> ${a.filename} </li>`;
+            });
+        }
 
         return '<ul>' + children + '</ul>';
     }
