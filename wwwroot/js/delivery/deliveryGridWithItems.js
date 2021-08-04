@@ -1,3 +1,6 @@
+"use strict";
+
+
 class DeliveryGridWithItems extends DeliveryGrid {
 
     constructor(state, parentColumns, childColumns, {

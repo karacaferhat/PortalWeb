@@ -1,10 +1,13 @@
+"use strict";
+
+
 const uploadAttachment = async (files, processType, documentType, asn, asnLine, oldAttachments) => {
     let vendor = sessionStorage[vendorKey];
 
     let result = await uploadFiles(files, processType, documentType, asn, asnLine);
     console.log(oldAttachments);
 
-    attachments = [];
+    let attachments = [];
     if (Number.isInteger(result)) {
         for (let i = 0; i < files.length; i++) {
             let file = files[i];
@@ -30,7 +33,7 @@ const uploadAttachment = async (files, processType, documentType, asn, asnLine, 
 
 
 
-const convertOrdersToDeliveryItems = (orders, lastItemAsn, asn, lot, package, quantity, attachments) => {
+const convertOrdersToDeliveryItems = (orders, lastItemAsn, asn, lot, packageInput, quantity, attachments) => {
     let delivires = [];
     let i = lastItemAsn;
     orders.forEach(o => {
@@ -42,7 +45,7 @@ const convertOrdersToDeliveryItems = (orders, lastItemAsn, asn, lot, package, qu
             "orderline": o.orderlineno,
             "sku": o.sku,
             "lot": lot,
-            "package": package,
+            "package": packageInput,
             "skuname": o.skuname,
             "ordqty": o.ordqty,
             "ordunit": o.ordunit,
@@ -78,7 +81,7 @@ const deleteDeliveryLines = async (items) => {
             vendor: vendor,
             asn: item.asn,
             asnline: item.asnline,
-            updUser: emailKey
+            updUser: email
         };
 
         let result = await fetchData(baseUrl + "deleteline", request);
@@ -93,7 +96,7 @@ const deleteDeliveryLines = async (items) => {
 
 
 
-const createDelivery = async (newItems, oldItems, asn, package, quantity, lot, deliveryCompany, deliveryType, deliveryDate, plateNo, taxNo, attachments, edispatchno, edispatchfile) => {
+const createDelivery = async (newItems, oldItems, asn, packageInput, quantity, lot, deliveryCompany, deliveryType, deliveryDate, plateNo, taxNo, attachments, edispatchno, edispatchfile) => {
     let vendor = sessionStorage[vendorKey];
     let vendorName = sessionStorage[vendorNameKey];
     let email = sessionStorage[emailKey];
@@ -107,7 +110,7 @@ const createDelivery = async (newItems, oldItems, asn, package, quantity, lot, d
         lastItemAsn = Number.parseInt(oldItems[oldItems.length - 1].asnline);
     }
 
-    newItems = convertOrdersToDeliveryItems(newItems, lastItemAsn, asn, lot, package, quantity, []);
+    newItems = convertOrdersToDeliveryItems(newItems, lastItemAsn, asn, lot, packageInput, quantity, []);
     items = items.concat(newItems);
 
 
@@ -226,7 +229,7 @@ const deleteHeaderAttachment = async (asn, fileurl, filename) => {
         vendor: vendor,
         fileurl: fileurl.replace(`${vendor}/`, '')
     };
-    result = await fetchData(documentServiceBaseUri + "deleteFile", request);
+    let result = await fetchData(documentServiceBaseUri + "deleteFile", request);
     console.log(result);
 
 

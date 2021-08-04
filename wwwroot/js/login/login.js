@@ -1,3 +1,6 @@
+"use strict";
+
+
 const baseUri = "https://tedarikportalapi.azurewebsites.net/api/v1/identity/";
 
 const emailInput = $("#emailInput");

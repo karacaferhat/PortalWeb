@@ -1,3 +1,6 @@
+"use strict";
+
+
 $("#beggingDate").dxDateBox({
     showClearButton: true,
     useMaskBehavior: true,

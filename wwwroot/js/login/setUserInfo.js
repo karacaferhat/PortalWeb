@@ -1,3 +1,6 @@
+"use strict";
+
+
 const nameText = $("#loginNameText");
 const surnameText = $("#loginSurnameText");
 const vendorNameText = $("#loginVendorNameText");

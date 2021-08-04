@@ -1,3 +1,6 @@
+"use strict";
+
+
 const deliveryGrid = new DeliveryItemsGrid("WAI", [{
   dataField: "asn",
   caption: "Sevkiyat"
@@ -100,7 +103,7 @@ $("#asnDate").dxDateBox({
 });
 
 
-const package = $("#package");
+const packageInput = $("#package");
 const newPackageButton = $("#newPackageButton");
 
 
@@ -186,7 +189,7 @@ const clearInputs = () => {
   taxNo.val("");
   products.val("");
 
-  package.val("");
+  packageInput.val("");
 
   quantity.val("");
   lot.val("");
@@ -249,7 +252,7 @@ const updateUploadedFileList = (attachments, edispatchfilename, edispatchfileUrl
     let row = miniDeliveryGrid.selectedRows[0];
 
     let id = `${row.asn}edispatchdeletebutton`
-    string =
+    let string =
       /*html*/
       `<a href="${blobStorageBaseUri + edispatchfileUrl}">${edispatchfilename}</a><br/>
       <button class="btn btn-danger" id="${id}">Sil</button>`;
@@ -361,7 +364,7 @@ newPackageButton.on("click", async () => {
   let data = await fetchData(baseUrl + "generatePackage", request);
 
   if (data && data.resultType) {
-    package.val(data.package);
+    packageInput.val(data.package);
     createDeliveryButton.html("Urun Olustur");
   }
 });
@@ -454,7 +457,7 @@ createDeliveryButton.on('click', async () => {
 
 
   let asnT = asn.val()?.trim();
-  let packageT = package.val()?.trim();
+  let packageT = packageInput.val()?.trim();
   let quantityT = quantity.val()?.trim();
   let lotT = lot.val()?.trim();
   let deliveryCompanyT = deliveryCompany.val()?.trim();
@@ -489,7 +492,7 @@ createDeliveryButton.on('click', async () => {
     await deliveryGrid.updateGrid();
     createDeliveryButton.html("Sevkiyat Kaydedildi");
 
-    package.val("");
+    packageInput.val("");
     quantity.val("");
     lot.val("");
     fileAttachment.val("");

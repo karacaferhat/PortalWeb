@@ -1,3 +1,6 @@
+"use strict";
+
+
 const status = document.getElementById("status");
 const selectButton = document.getElementById("select-button");
 const fileInput = document.getElementById("file-input");
