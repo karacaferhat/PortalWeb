@@ -29,7 +29,38 @@ let deliveryGridWithItems = new DeliveryGridWithItems('WAI', [{
                 .appendTo(container);
         }
     }
-], {selectionMode: 'single'});
+], [{
+        dataField: "sku",
+        caption: "SKU"
+    },
+    {
+        dataField: "skuname",
+        caption: "SKU Adi"
+    },
+    {
+        dataField: "ordqty",
+        caption: "Siparis Miktari"
+    },
+    {
+        dataField: "ordunit",
+        caption: "Siparis Miktar Birimi"
+    },
+    {
+        dataField: "dlvqty",
+        caption: "Sevkiyat Miktari"
+    },
+    {
+        dataField: "dlvunit",
+        caption: "Sevkiyat Miktari"
+    },
+    {
+        dataField: "revno",
+        caption: "Revizyon Numarasi"
+    }
+
+], {
+    selectionMode: 'single'
+});
 
 const refreshGridButton = $("#refreshGridButton");
 

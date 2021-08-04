@@ -1,6 +1,6 @@
 class DeliveryGridWithItems extends DeliveryGrid {
 
-    constructor(state, columns, {
+    constructor(state, parentColumns, childColumns, {
         enableGrouping = true,
         selectionMode = "multiple",
         gridContainerId = "#deliveryGridWithItemsContainer",
@@ -9,7 +9,7 @@ class DeliveryGridWithItems extends DeliveryGrid {
         searchPanelEnabled = true,
     } = {}) {
 
-        super(state, columns, {
+        super(state, parentColumns, {
             key: key,
             enableGrouping: enableGrouping,
             selectionMode: selectionMode,
@@ -26,13 +26,13 @@ class DeliveryGridWithItems extends DeliveryGrid {
                         .html(
                             `
                             <div class="d-flex justify-content-center">
-                                <div><h4>ASN: ${currentDelivery.asn}</h4></div>
+                                <div><h4>Sevkiyat No: ${currentDelivery.asn}</h4></div>
                             </div>
                             `)
                         .appendTo(container);
 
 
-                    let itemGrid = await this._createItemGrid(currentDelivery.asn);
+                    let itemGrid = await this._createItemGrid(currentDelivery.asn, childColumns);
                     let attachmentsList = this._createAttachementsSection(currentDelivery.attachments);
 
 
@@ -48,39 +48,16 @@ class DeliveryGridWithItems extends DeliveryGrid {
                 }
             }
         });
+
+
+        this._childColumns = childColumns;
     }
 
-    async _createItemGrid(asn) {
-        let itemsGrid = new DeliveryItemsGrid("WAI", [{
-                dataField: "sku",
-                caption: "SKU"
-            },
-            {
-                dataField: "skuname",
-                caption: "SKU Adi"
-            },
-            {
-                dataField: "ordqty",
-                caption: "Siparis Miktari"
-            },
-            {
-                dataField: "ordunit",
-                caption: "Siparis Miktar Birimi"
-            },
-            {
-                dataField: "dlvqty",
-                caption: "Sevkiyat Miktari"
-            },
-            {
-                dataField: "dlvunit",
-                caption: "Sevkiyat Miktari"
-            },
-            {
-                dataField: "revno",
-                caption: "Revizyon Numarasi"
-            }
+    async _createItemGrid(asn, childColumns = null) {
+        if(childColumns === null)
+            childColumns = this._childColumns;
 
-        ], {
+        let itemsGrid = new DeliveryItemsGrid("WAI", this.childColumns, {
             selectionMode: 'single',
             gridContainerId: "<div>",
             enableGrouping: false,
@@ -97,7 +74,6 @@ class DeliveryGridWithItems extends DeliveryGrid {
     _createAttachementsSection(attachments) {
         let children = "";
 
-        console.log(attachments)
         attachments.forEach(a => {
             children +=
                 /*html*/

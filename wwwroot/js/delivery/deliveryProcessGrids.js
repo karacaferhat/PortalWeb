@@ -1,7 +1,54 @@
 const baseUrl = "https://tedarikportaldelivery.azurewebsites.net/api/v1/delivery/";
 
 
-class DeliveryItemsGrid extends DataGrid {
+
+
+class DeliveryGrid extends DataGrid {
+    constructor(state, columns, {
+        enableGrouping = false,
+        selectionMode = "single",
+        gridContainerId = "#deliveryGridContainer",
+        key = "asn",
+        exportEnabled = true,
+        searchPanelEnabled= true,
+        masterDetail=null
+    } = {}) {
+
+        super(baseUrl, 'getDelivery', key, columns, {
+            enableGrouping: enableGrouping,
+            selectionMode: selectionMode,
+            gridContainerId: gridContainerId,
+            key: key,
+            exportEnabled: exportEnabled,
+            searchPanelEnabled: searchPanelEnabled,
+            masterDetail: masterDetail
+        });
+
+        this._state = state;
+        this._asn = "";
+    }
+
+    async getUpdateArray() {
+        let request = {
+            vendor: sessionStorage[vendorKey],
+            state: this._state,
+            asn: this._asn
+        }
+        let data = await fetchData(this.baseUrl + this.getMethod, request);
+
+        
+        return data ? data.data : null;
+    }
+
+
+    setAsn(asn) {
+        this._asn = asn;
+    }
+}
+
+
+
+class DeliveryItemsGrid extends DeliveryGrid {
 
     constructor(state, columns, {
         enableGrouping = true,
@@ -13,7 +60,8 @@ class DeliveryItemsGrid extends DataGrid {
         masterDetail=null
     } = {}) {
 
-        super(baseUrl, 'getDelivery', key, columns, {
+        super(state, columns, {
+            key: key,
             enableGrouping: enableGrouping,
             selectionMode: selectionMode,
             gridContainerId: gridContainerId,
@@ -21,64 +69,19 @@ class DeliveryItemsGrid extends DataGrid {
             searchPanelEnabled: searchPanelEnabled,
             masterDetail: masterDetail
         });
-
-        this.state = state;
-        this._asn = "";
     }
 
     async getUpdateArray() {
-        let request = {
-            vendor: sessionStorage[vendorKey],
-            state: this.state,
-            asn: this._asn
-        };
-        let data = await fetchData(this.baseUrl + this.getMethod, request);
-
+        let data = await super.getUpdateArray();
+        
         if (data) {
             let items = [];
-            data.data.forEach(d => {
+            data.forEach(d => {
                 items = items.concat(Array.from(d.items));
             });
 
             return items;
         }
         return [];
-    }
-
-    setAsn(asn) {
-        this._asn = asn;
-    }
-}
-
-class DeliveryGrid extends DeliveryItemsGrid {
-    constructor(state, columns, {
-        enableGrouping = false,
-        selectionMode = "single",
-        gridContainerId = "#deliveryGridContainer",
-        exportEnabled = true,
-        searchPanelEnabled= true,
-        masterDetail=null
-    } = {}) {
-
-        super(state, columns, {
-            enableGrouping: enableGrouping,
-            selectionMode: selectionMode,
-            gridContainerId: gridContainerId,
-            key: "asn",
-            exportEnabled: exportEnabled,
-            searchPanelEnabled: searchPanelEnabled,
-            masterDetail: masterDetail
-        });
-    }
-
-    async getUpdateArray() {
-        let request = {
-            vendor: sessionStorage[vendorKey],
-            state: this.state,
-            asn: this._asn
-        }
-        let data = await fetchData(this.baseUrl + this.getMethod, request);
-
-        return data.data;
     }
 }
