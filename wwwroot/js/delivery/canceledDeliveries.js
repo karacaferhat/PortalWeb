@@ -37,11 +37,11 @@ let deliveryGridWithItems = new DeliveryGridWithItems('CAN',
         },
         {
             dataField: "sku",
-            caption: "SKU"
+            caption: "Ürün Kodu"
         },
         {
             dataField: "skuname",
-            caption: "SKU Adi"
+            caption: "Ürün Adı"
         },
         {
             dataField: "ordqty",
