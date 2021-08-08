@@ -6,19 +6,17 @@ const documentServiceBaseUri = "https://tederikportaldocumentservice.azurewebsit
 const loggerServiceBaseUri = "https://tedarikportallogger.azurewebsites.net/api/v1/log/";
 const blobStorageBaseUri = "https://tedarikportalstorage.blob.core.windows.net/";
 
-const uploadFiles = async (files, processType, documentType, asNo = null, asLineNo = null) => {
+const uploadFiles = async (files, processType, documentType, asn = "", asnline = "") => {
     let vendor = sessionStorage[vendorKey];
 
     let request = {
         vendor: vendor,
         documentType: documentType,
-        asNo: asNo,
-        asLineNo: asLineNo
+        asNo: asn,
+        asLineNo: asnline
     }
 
-    console.log(request);
-    console.log(documentServiceBaseUri + `getServiceSasUriForContainer/${processType}`);
-
+    
     let sasString = (await fetchData(documentServiceBaseUri + `getServiceSasUriForContainer/${processType}`, request)).sasString;
 
     try {
@@ -30,7 +28,7 @@ const uploadFiles = async (files, processType, documentType, asNo = null, asLine
         let failedUploads = 0;
         const promises = [];
         for (const file of files) {
-            let exists = await checkIfFileExists(processType, file.name, vendor, documentType, asNo, asLineNo);
+            let exists = await checkIfFileExists(processType, file.name, vendor, documentType, asn, asnline);
             if (exists) {
                 console.log(`${file.name} Already Exists. Couldn't Upload.`);
                 failedUploads += 1;
@@ -42,8 +40,8 @@ const uploadFiles = async (files, processType, documentType, asNo = null, asLine
             promises.push(azblob.uploadBrowserDataToBlockBlob(
                 azblob.Aborter.none, file, blockBlobURL));
 
-            let filePath = vendor + '/' + getFilePath(processType, file.name, vendor, documentType, asNo, asLineNo);
-            await logUpload(vendor, file.name, filePath, asNo, asLineNo);
+            let filePath = vendor + '/' + getFilePath(processType, file.name, vendor, documentType, asn, asnline);
+            await logUpload(vendor, file.name, filePath, asn, asnline);
         }
 
         if (promises.length > 0)

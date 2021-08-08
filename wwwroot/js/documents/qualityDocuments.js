@@ -44,15 +44,15 @@ createButton.on('click', async () => {
     console.log("Upload: ");
     console.log(result);
 
-    if (result) {
+    if (result < 1) {
         result = await saveDocumentData(files[0].name, fileurl, validUntilDate.option("value"), sku.val(), refcode.val(), note.val());
         console.log("Save: ");
-        console.log(result);
+        console.log(result.success);
 
         if (result){
             logUpload(vendor, asn, null, files[0].name, fileurl);
             console.log("Log: ");
-            console.log(result);
+            console.log(result.success);
         }
     }
 });
