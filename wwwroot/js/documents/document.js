@@ -5,13 +5,13 @@
 const baseUrl = "https://tederikportaldocumentservice.azurewebsites.net/api/v1/deliverydocument/";
 
 
-$("#beggingDate").dxDateBox({
+$("#beggingDateFilter").dxDateBox({
     showClearButton: true,
     useMaskBehavior: true,
     displayFormat: dateFormat,
     type: "date",
 });
-$("#endDate").dxDateBox({
+$("#endDateFilter").dxDateBox({
     showClearButton: true,
     useMaskBehavior: true,
     displayFormat: dateFormat,
@@ -19,8 +19,9 @@ $("#endDate").dxDateBox({
 });
 
 
-const beggingDate = $("#beggingDate").dxDateBox("instance");
-const endDate = $("#endDate").dxDateBox("instance");
+const beggingDate = $("#beggingDateFilter").dxDateBox("instance");
+const endDate = $("#endDateFilter").dxDateBox("instance");
+const asn = $("#asnFilter");
 
 
 class DocumentGrid extends DataGrid {
@@ -50,8 +51,7 @@ class DocumentGrid extends DataGrid {
             vendor: sessionStorage[vendorKey],
             beggingdateforvaliduntildate: beggingDate ? beggingDate.option("value") : null,
             enddateforvaliduntildate: endDate ? endDate.option("value") : null,
-            refcode : refcode ? refcode.val() : null,
-            sku
+            asn : asn ? asn.val() : null,
 
         }
         let data = await fetchData(this.baseUrl + this.getMethod, request);
@@ -63,7 +63,7 @@ class DocumentGrid extends DataGrid {
 
 
 
-const saveDocumentData = async (filename, fileurl, validuntildate) => {
+const saveDocumentData = async (filename, fileurl, validuntildate, sku, refcode, note) => {
     let vendor = sessionStorage[vendorKey];
     let email = sessionStorage[emailKey];
 
@@ -78,7 +78,7 @@ const saveDocumentData = async (filename, fileurl, validuntildate) => {
         "upluser": email,
         "filename": filename,
         "fileurl": fileurl,
-        "refcode": "string",
+        "refcode": refcode,
         "pconf": "string",
         "tobeconfirmedbyvendor": "string",
         "validuntildate": validuntildate,
@@ -86,13 +86,16 @@ const saveDocumentData = async (filename, fileurl, validuntildate) => {
         "orderline": "string",
         "asn": "string",
         "asnline": "string",
-        "sku": "string",
+        "sku": sku,
         "lot": "string",
         "revno": "string",
         "devid": "string",
-        "devnoteid": "string"
+        "devnoteid": note
     };
 
+    
     let data = await fetchData(documentServiceBaseUri + "saveDocumentData", request);
     console.log(data);
+
+    return data;
 }

@@ -1,0 +1,45 @@
+<div class="filter-section">
+    <div class="filter-form">
+        <div class="text-inputs-field">
+            <div class="filter-heading">Olustur</div>
+            <div class="mat-input-inline-group">
+                <div class="mat-input dx-field">
+                    <div class="dx-field-label">Son Gecerlilik Tarihi</div>
+                    <div class="dx-field-value">
+                        <div id="validUntilDate"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="mat-input mat-text">
+                <input id="refcode" type="text">
+                <span class="placeholder">Referans Kodu</span>
+                <span class="input-border"></span>
+            </div>
+            <div class="mat-input mat-text">
+                <input id="sku" type="text">
+                <span class="placeholder">Referans Adı</span>
+                <span class="input-border"></span>
+            </div>
+            <div class="mat-input mat-text">
+                <input id="note" type="text">
+                <span class="placeholder">Not Alanı</span>
+                <span class="input-border"></span>
+            </div>
+            <div class="mat-input">
+                <button id="fileSelectButton" class="btn btn-primary">
+                    <span id="upload-text" style="display: block">
+                        Dosya Sec
+                    </span>
+                </button>
+                <input type="file" id="fileInput" style="display: none;"/>
+            </div>
+        </div>
+
+    </div>
+    <div class="action-footer">
+        <button id="createButton" class="btn btn-sm btn-outline-primary rounded-pill ripple-fx">
+            <span class="btn-icon fas fa-tasks"></span>
+            <span class="btn-title">Oluştur</span>
+        </button>
+    </div>
+</div>
