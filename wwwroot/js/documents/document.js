@@ -1,82 +1,98 @@
 "use strict";
 
 
-const status = document.getElementById("status");
-const selectButton = document.getElementById("select-button");
-const fileInput = document.getElementById("file-input");
-const processTypeInput = document.getElementById("process-type");
-const listButton = document.getElementById("list-button");
-const fileList = document.getElementById("file-list");
+
+const baseUrl = "https://tederikportaldocumentservice.azurewebsites.net/api/v1/deliverydocument/";
 
 
-const uploadText = $("#upload-text");
-const uploadSpinner = $("#upload-spinner");
+$("#beggingDate").dxDateBox({
+    showClearButton: true,
+    useMaskBehavior: true,
+    displayFormat: dateFormat,
+    type: "date",
+});
+$("#endDate").dxDateBox({
+    showClearButton: true,
+    useMaskBehavior: true,
+    displayFormat: dateFormat,
+    type: "date",
+});
 
 
-const reportStatus = (message, isSpinning) => {
-    status.innerHTML = `${message}<br/>`;
+const beggingDate = $("#beggingDate").dxDateBox("instance");
+const endDate = $("#endDate").dxDateBox("instance");
 
-    if (isSpinning) {
-        uploadText.css("display", "none");
-        uploadSpinner.css("display", "block");
-    } else {
-        uploadText.css("display", "block");
-        uploadSpinner.css("display", "none");
+
+class DocumentGrid extends DataGrid {
+    constructor(columns, {
+        enableGrouping = false,
+        selectionMode = "multiple",
+        gridContainerId = "#documentGridContainer",
+        key = "pkey",
+        exportEnabled = true,
+        searchPanelEnabled = true,
+        masterDetail = null
+    } = {}) {
+        super(baseUrl, 'listDocumentData', key, columns, {
+            enableGrouping: enableGrouping,
+            selectionMode: selectionMode,
+            gridContainerId: gridContainerId,
+            key: key,
+            exportEnabled: exportEnabled,
+            searchPanelEnabled: searchPanelEnabled,
+            masterDetail: masterDetail
+        });
     }
 
+
+    async getUpdateArray() {
+        let request = {
+            vendor: sessionStorage[vendorKey],
+            beggingdateforvaliduntildate: beggingDate ? beggingDate.option("value") : null,
+            enddateforvaliduntildate: endDate ? endDate.option("value") : null,
+            refcode : refcode ? refcode.val() : null,
+            sku
+
+        }
+        let data = await fetchData(this.baseUrl + this.getMethod, request);
+
+        
+        return data ? data.data : null;
+    }
 }
 
 
-const listFiles = async () => {
-    const request = {
-        vendor: sessionStorage[vendorKey],
-        documentType: "asdfg",
-        asNo: "123456789",
-        asLineNo: "123456"
+
+const saveDocumentData = async (filename, fileurl, validuntildate) => {
+    let vendor = sessionStorage[vendorKey];
+    let email = sessionStorage[emailKey];
+
+    let request = {
+        "vendor": vendor,
+        "doctype": {
+            "typecode": "string",
+            "lang": "string",
+            "definition": "string"
+        },
+        "upldate": "string",
+        "upluser": email,
+        "filename": filename,
+        "fileurl": fileurl,
+        "refcode": "string",
+        "pconf": "string",
+        "tobeconfirmedbyvendor": "string",
+        "validuntildate": validuntildate,
+        "orderno": "string",
+        "orderline": "string",
+        "asn": "string",
+        "asnline": "string",
+        "sku": "string",
+        "lot": "string",
+        "revno": "string",
+        "devid": "string",
+        "devnoteid": "string"
     };
 
-    let processType = processTypeInput.value.toString();
-
-    reportStatus("Listing Files...", false);
-    let data = await fetchData(documentServiceBaseUri + `getFilesByFilter/${processType}`, request);
-    //reportStatus("Listed", false);
-
-
-    if (data) {
-        fileList.innerHTML = "";
-
-        data.forEach(f => {
-            fileList.innerHTML += `<a href="${blobStorageBaseUri + f.filePath}">
-            ${f.fileName}
-        </a><br/>`;
-        });
-    }
-};
-
-
-
-selectButton.addEventListener("click", () => fileInput.click());
-fileInput.addEventListener("change", async () => {
-    reportStatus("Uploading files...", true);
-
-    let result = await uploadFiles(
-        fileInput.files, processTypeInput.value.toString(),
-        "asdfg", "123456789", "123456");
-
-    if (Number.isInteger(result)) {
-        if (result === 0)
-            reportStatus("Done.", false);
-        else if (result > 0)
-            reportStatus(`${result} Files Already Exists. Couldn't Upload.`);
-    } else
-        reportStatus(result, false);
-
-
-    await listFiles();
-});
-
-listButton.addEventListener("click", listFiles);
-processTypeInput.addEventListener('change', listFiles);
-
-
-listFiles();
+    let data = await fetchData(documentServiceBaseUri + "saveDocumentData", request);
+    console.log(data);
+}
