@@ -43,7 +43,7 @@ const uploadFiles = async (files, processType, documentType, asNo = null, asLine
                 azblob.Aborter.none, file, blockBlobURL));
 
             let filePath = vendor + '/' + getFilePath(processType, file.name, vendor, documentType, asNo, asLineNo);
-            await logUpload(vendor, asNo, asLineNo, file.name, filePath);
+            await logUpload(vendor, file.name, filePath, asNo, asLineNo);
         }
 
         if (promises.length > 0)
@@ -57,7 +57,7 @@ const uploadFiles = async (files, processType, documentType, asNo = null, asLine
     }
 }
 
-const logUpload = async (vendor, asno, asLineNo, filename, fileurl) => {
+const logUpload = async (vendor, filename, fileurl, asno, asLineNo = null) => {
     let request = {
         vendor: vendor,
         asn: asno,
