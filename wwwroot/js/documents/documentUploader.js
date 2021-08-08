@@ -31,7 +31,7 @@ const uploadFiles = async (files, processType, documentType, asNo = null, asLine
         const promises = [];
         for (const file of files) {
             let exists = await checkIfFileExists(processType, file.name, vendor, documentType, asNo, asLineNo);
-            if(exists) {
+            if (exists) {
                 console.log(`${file.name} Already Exists. Couldn't Upload.`);
                 failedUploads += 1;
                 continue;
@@ -45,10 +45,10 @@ const uploadFiles = async (files, processType, documentType, asNo = null, asLine
             let filePath = vendor + '/' + getFilePath(processType, file.name, vendor, documentType, asNo, asLineNo);
             await logUpload(vendor, asNo, asLineNo, file.name, filePath);
         }
-        
-        if(promises.length > 0)
+
+        if (promises.length > 0)
             await Promise.all(promises);
-        
+
         return failedUploads;
 
     } catch (error) {
@@ -56,7 +56,6 @@ const uploadFiles = async (files, processType, documentType, asNo = null, asLine
         return error;
     }
 }
-
 
 const logUpload = async (vendor, asno, asLineNo, filename, fileurl) => {
     let request = {

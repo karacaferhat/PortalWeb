@@ -1,0 +1,53 @@
+﻿@page
+@model QualityDocument
+@{
+    ViewBag.Title = "orders";
+}
+
+<div id="modals">
+   
+</div>
+
+
+<div class="my-3 container-fluid d-flex justify-content-center">
+    <div>
+        <h3>Bekleyen Siparişler</h3>
+    </div>
+</div>
+<div class="orders-content">
+    <partial name="~/Pages/Shared/PartialViews/_DocumentFilterSectionPartialView.cshtml"/>
+
+    <div class="action-section">
+        <button id="acceptModalToggleButton" class="btn btn-sm btn-primary rounded-pill ripple-fx no-border">
+            <span class="btn-icon fas fa-bookmark"></span>
+            <span class="btn-title">Sipariş Kabul</span>
+        </button>
+        <button id="cancelModalToggleButton" class="btn btn-sm btn-danger rounded-pill ripple-fx no-border">
+            <span class="btn-icon fas fa-ban"></span>
+            <span class="btn-title">Sipariş İptal</span>
+        </button>
+        <button id="suspendModalToggleButton" class="btn btn-sm btn-secondary rounded-pill ripple-fx no-border">
+            <span class="btn-icon fas fa-hourglass"></span>
+            <span class="btn-title">Askıya Al</span>
+        </button>
+        <button id="refreshGridButton" class="btn btn-sm btn-success rounded-pill ripple-fx no-border">
+            <span class="btn-icon fas fa-sync"></span>
+            <span class="btn-title">Tabloyu Yenile</span>
+        </button>
+
+    </div>
+
+    <div class="table-section">
+        <div id="documentGridContainer"></div>
+    </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.0/polyfill.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/3.3.1/exceljs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>
+
+<script src="~/js/dataGrid.js" asp-append-version="true"></script>
+<script src="~/js/documents/document.js" asp-append-version="true"></script>
+<script src="~/js/documents/documentUploader.js" asp-append-version="true"></script>
+<script src="~/js/documents/qualityDocuments.js" asp-append-version="true"></script>
