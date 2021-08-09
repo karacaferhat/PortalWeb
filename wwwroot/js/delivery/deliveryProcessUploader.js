@@ -21,7 +21,7 @@ const uploadAttachment = async (files, processType, documentType, asn, asnLine, 
 
             let exists = oldAttachments ? oldAttachments.find(o => o.fileurl === obj.fileurl) != undefined : false;
 
-            if(!exists)
+            if (!exists)
                 attachments.push(obj);
 
         }
@@ -186,7 +186,7 @@ const updateFiles = async (asn, asnline, files, eirsailye, oldAttachments) => {
 
 
     if (eirsailye) {
-        let edis = await uploadAttachment([eirsailye], processType, documentType, asn, asnline , []);
+        let edis = await uploadAttachment([eirsailye], processType, documentType, asn, asnline, []);
         console.log(edis);
 
         let request = {
@@ -223,8 +223,6 @@ const deleteHeaderAttachment = async (asn, fileurl, filename) => {
     console.log(data);
 
 
-
-
     request = {
         vendor: vendor,
         fileurl: fileurl.replace(`${vendor}/`, '')
@@ -249,8 +247,7 @@ const deleteEirsaliyeAttachment = async (asn, fileurl) => {
         "updUser": email
     };
 
-    let data = await fetchData(baseUrl + "deleteedispatch", request);
-    console.log(data);
+    let result = await fetchData(baseUrl + "deleteedispatch", request);
 
 
     request = {
@@ -258,7 +255,7 @@ const deleteEirsaliyeAttachment = async (asn, fileurl) => {
         fileurl: fileurl.replace(`${vendor}/`, '')
     };
     result = await fetchData(documentServiceBaseUri + "deleteFile", request);
-    console.log(result);
+
 
 
     await miniDeliveryGrid.updateGrid();
