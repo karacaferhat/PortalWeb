@@ -2,10 +2,7 @@
 
 const documentType = "KBLG";
 
-const documentGrid = new DocumentGrid([{
-        dataField: "doctype.typecode",
-        caption: "Dokuman Tipi"
-    },
+const documentGrid = new DocumentGrid([
     {
         dataField: "upldate",
         caption: "Yuklenme Tarihi"
@@ -38,44 +35,12 @@ const documentGrid = new DocumentGrid([{
         caption: "Onaylanma Durumu"
     },
     {
-        dataField: "confuser",
-        caption: "Onaylayan Kullanici"
-    },
-    {
         dataField: "confdate",
-        caption: "Onaylama Tarihi"
+        caption: "Onaylama Tarihi",
     },
     {
         dataField: "validuntildate",
         caption: "Onaylama Gecerlilik Tarihi"
-    },
-    {
-        dataField: "asn",
-        caption: "Sevkiyat No"
-    },
-    {
-        dataField: "asnline",
-        caption: "Sevkiyat Sira No"
-    },
-    {
-        dataField: "sku",
-        caption: "Ürün Kodu"
-    },
-    {
-        dataField: "lot",
-        caption: "LOT Numarasi"
-    },
-    {
-        dataField: "revno",
-        caption: "Revizyon Numarasi"
-    },
-    {
-        dataField: "devid",
-        caption: "Gelistirici ID"
-    },
-    {
-        dataField: "devnoteid",
-        caption: "Gelistirici Notu ID'si"
     }
 ]);
 
