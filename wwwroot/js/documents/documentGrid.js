@@ -1,27 +1,7 @@
 "use strict";
 
 
-
 const baseUrl = "https://tederikportaldocumentservice.azurewebsites.net/api/v1/deliverydocument/";
-
-
-$("#beggingDateFilter").dxDateBox({
-    showClearButton: true,
-    useMaskBehavior: true,
-    displayFormat: dateFormat,
-    type: "date",
-});
-$("#endDateFilter").dxDateBox({
-    showClearButton: true,
-    useMaskBehavior: true,
-    displayFormat: dateFormat,
-    type: "date",
-});
-
-
-const beggingDate = $("#beggingDateFilter").dxDateBox("instance");
-const endDate = $("#endDateFilter").dxDateBox("instance");
-const asn = $("#asnFilter");
 
 
 class DocumentGrid extends DataGrid {
@@ -49,11 +29,11 @@ class DocumentGrid extends DataGrid {
     async getUpdateArray() {
         let request = {
             vendor: sessionStorage[vendorKey],
-            beggingdateforvaliduntildate: beggingDate ? beggingDate.option("value") : null,
-            enddateforvaliduntildate: endDate ? endDate.option("value") : null,
-            asn : asn ? asn.val() : null,
-
+            tobeconfirmedbyvendor : null,
+            beggingdateforvaliduntildate:  null,
+            enddateforvaliduntildate:  null
         }
+
         let data = await fetchData(this.baseUrl + this.getMethod, request);
 
         
@@ -74,12 +54,10 @@ const saveDocumentData = async (filename, fileurl, validuntildate, sku, refcode,
             "lang": "string",
             "definition": "string"
         },
-        "upldate": "string",
         "upluser": email,
         "filename": filename,
         "fileurl": fileurl,
         "refcode": refcode,
-        "pconf": "string",
         "tobeconfirmedbyvendor": "string",
         "validuntildate": validuntildate,
         "orderno": "string",
