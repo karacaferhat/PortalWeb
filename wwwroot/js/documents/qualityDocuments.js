@@ -1,5 +1,7 @@
 "use strict";
 
+const documentType = "KBLG";
+
 const documentGrid = new DocumentGrid([{
         dataField: "doctype.typecode",
         caption: "Dokuman Tipi"
@@ -44,20 +46,8 @@ const documentGrid = new DocumentGrid([{
         caption: "Onaylama Tarihi"
     },
     {
-        dataField: "tobeconfirmedbyvendor",
-        caption: "Onaylayacak Kullanici"
-    },
-    {
         dataField: "validuntildate",
         caption: "Onaylama Gecerlilik Tarihi"
-    },
-    {
-        dataField: "orderno",
-        caption: "Siparis Numarasi"
-    },
-    {
-        dataField: "orderline",
-        caption: "Siparis Sira Numarasi"
     },
     {
         dataField: "asn",
@@ -88,6 +78,8 @@ const documentGrid = new DocumentGrid([{
         caption: "Gelistirici Notu ID'si"
     }
 ]);
+
+documentGrid.setDocumentType(documentType);
 
 
 const refreshGridButton = $("#refreshGridButton");
@@ -125,7 +117,10 @@ refreshGridButton.on('click', async () => {
 
     refreshGridButton.html(text);
 });
+
+
 fileSelectButton.on("click", () => fileInput.click());
+
 
 fileInput.on('change', () => {
     let files = fileInput.prop('files');
@@ -136,6 +131,7 @@ fileInput.on('change', () => {
     }
     $("#fileList").html('<ul>' + children + '</ul>');
 })
+
 
 createButton.on('click', async () => {
     let files = fileInput.prop('files');
@@ -152,25 +148,23 @@ createButton.on('click', async () => {
     );
 
 
-    let processType = "byDelivery";
-    let documentType = "qualityDocument";
-    let asn = "123456789";
+    let processType = "byType";
     let vendor = sessionStorage[vendorKey];
-    let fileurl = vendor + '/' + getFilePath(processType, files[0].name, vendor, documentType, asn)
+    let fileurl = vendor + '/' + getFilePath(processType, files[0].name, vendor, documentType)
 
 
-    let result = await uploadFiles(files, processType, documentType, asn);
+    let result = await uploadFiles(files, processType, documentType);
 
     console.log("Upload: ");
     console.log(result);
 
     if (Number.isInteger(result) && result < 1) {
-        result = await saveDocumentData(files[0].name, fileurl, validUntilDate.option("value"), sku.val(), refcode.val(), note.val());
+        result = await saveDocumentData(documentType, files[0].name, fileurl, validUntilDate.option("value"), sku.val(), refcode.val(), note.val());
         console.log("Save: ");
         console.log(result.success);
 
         if (result.success) {
-            logUpload(vendor, asn, null, files[0].name, fileurl);
+            logUpload(vendor, null, null, files[0].name, fileurl);
             console.log("Log: ");
             console.log(result.success);
         }
@@ -180,6 +174,7 @@ createButton.on('click', async () => {
     createButton.html(text);
     documentGrid.updateGrid();
 });
+
 
 deleteItemButton.on('click', async () => {
     let rows = documentGrid.selectedRows;
@@ -194,7 +189,7 @@ deleteItemButton.on('click', async () => {
         let result = await fetchData(documentServiceBaseUri + "deleteFile", {
             vendor: vendor,
             fileurl: url
-        })
+        });
 
 
         if (result.success) {
@@ -230,5 +225,7 @@ confirmItemButton.on('click', async () => {
     }
 });
 
+
+if(sessionStorage[vendorKey] !== "DONMEZ") confirmItemButton.hide();
 
 documentGrid.updateGrid();
