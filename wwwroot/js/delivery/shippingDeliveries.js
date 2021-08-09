@@ -21,7 +21,7 @@ let deliveryGridWithItems = new DeliveryGridWithItems('TRA',
         {
             caption: "E-Irsaliye",
             dataField: "edispatchfile",
-            cellTemplate: function (container, options) {
+            cellTemplate: (container, options) => {
                 let link = options.value;
 
                 if (link)

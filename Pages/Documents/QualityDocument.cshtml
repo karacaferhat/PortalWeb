@@ -5,7 +5,7 @@
 }
 
 <div id="modals">
-   
+
 </div>
 
 
@@ -15,10 +15,14 @@
     </div>
 </div>
 <div class="orders-content">
-    <partial name="~/Pages/Shared/PartialViews/_DocumentCreateSectionPartialView.cshtml"/>
-    <partial name="~/Pages/Shared/PartialViews/_DocumentFilterSectionPartialView.cshtml"/>
+    <partial name="~/Pages/Shared/PartialViews/_DocumentCreateSectionPartialView.cshtml" />
 
     <div class="action-section">
+        <button id="deleteItemButton" class="btn btn-sm btn-danger rounded-pill ripple-fx no-border">
+            <span class="btn-icon fas fa-ban"></span>
+            <span class="btn-title">Sil</span>
+        </button>
+        
         <button id="refreshGridButton" class="btn btn-sm btn-success rounded-pill ripple-fx no-border">
             <span class="btn-icon fas fa-sync"></span>
             <span class="btn-title">Tabloyu Yenile</span>
@@ -40,6 +44,6 @@
 
 
 <script src="~/js/dataGrid.js" asp-append-version="true"></script>
-<script src="~/js/documents/document.js" asp-append-version="true"></script>
+<script src="~/js/documents/documentGrid.js" asp-append-version="true"></script>
 <script src="~/js/documents/documentUploader.js" asp-append-version="true"></script>
 <script src="~/js/documents/qualityDocuments.js" asp-append-version="true"></script>
