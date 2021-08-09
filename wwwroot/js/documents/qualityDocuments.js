@@ -95,7 +95,7 @@ const createButton = $("#createButton");
 const deleteItemButton = $("#deleteItemButton");
 const fileInput = $("#fileInput");
 const fileSelectButton = $("#fileSelectButton");
-
+const confirmItemButton = $("#confirmItemButton");
 
 
 $("#validUntilDate").dxDateBox({
@@ -209,6 +209,26 @@ deleteItemButton.on('click', async () => {
     documentGrid.updateGrid();
 });
 
+
+confirmItemButton.on('click', async () => {
+    let rows = documentGrid.selectedRows;
+    if (rows.length < 1) return;
+
+    let email = sessionStorage[emailKey];
+
+    for (let i = 0; i < rows.length; i++) {
+        let row = rows[i];
+        let request = {
+            id: row.id,
+            confuser: email
+        };
+
+        let result = await fetchData(documentServiceBaseUri + "confirmDocument", request);
+        console.log(result)
+        
+        documentGrid.updateGrid();
+    }
+});
 
 
 documentGrid.updateGrid();
