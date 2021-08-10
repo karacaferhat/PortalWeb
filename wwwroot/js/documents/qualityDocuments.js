@@ -54,6 +54,9 @@ const fileInput = $("#fileInput");
 const fileSelectButton = $("#fileSelectButton");
 const confirmItemButton = $("#confirmItemButton");
 
+const confirmModal = $("#confirmModal");
+const confirmModalShowButton = $("#confirmModalShowButton");
+
 
 $("#validUntilDate").dxDateBox({
     showClearButton: true,
@@ -188,8 +191,15 @@ confirmItemButton.on('click', async () => {
         
         documentGrid.updateGrid();
     }
+
+    confirmModal.modal('hide');
 });
 
+confirmModalShowButton.on('click', ()=>{
+    if(documentGrid.selectedKeys.length < 1) return;
+
+    confirmModal.modal('show');
+})
 
 if(sessionStorage[vendorKey] !== "DONMEZ") confirmItemButton.hide();
 

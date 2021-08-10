@@ -66,7 +66,7 @@ const saveDocumentData = async (documentType, filename, fileurl, validuntildate,
         "fileurl": fileurl,
         "refcode": refcode,
         "tobeconfirmedbyvendor": "DONMEZ",
-        "validuntildate": validuntildate,
+        "validuntildate": formatDate(validuntildate),
         "orderno": "string",
         "orderline": "string",
         "asn": "string",
@@ -77,6 +77,8 @@ const saveDocumentData = async (documentType, filename, fileurl, validuntildate,
         "devid": "string",
         "devnoteid": note
     };
+
+    console.log(request);
 
     
     let data = await fetchData(documentServiceBaseUri + "saveDocumentData", request);
