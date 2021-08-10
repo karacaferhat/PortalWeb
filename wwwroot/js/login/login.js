@@ -60,7 +60,11 @@ const login = async () => {
             }
         }
 
+<<<<<<< HEAD
         window.location.href = "Index?role=A";
+=======
+        window.location.href = "Index?role=" + sessionStorage[roleKey];
+>>>>>>> 45ae93906785c5690ff487b480505874094416fe
     }
     else{
         reportStatus("Login", "Username Or Password is Wrong");

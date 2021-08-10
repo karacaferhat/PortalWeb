@@ -23,34 +23,41 @@ class DocumentGrid extends DataGrid {
             searchPanelEnabled: searchPanelEnabled,
             masterDetail: masterDetail
         });
+
+        this._documentType = "";
     }
 
 
     async getUpdateArray() {
         let request = {
-            vendor: sessionStorage[vendorKey],
+            doctype: this._documentType,
+            vendor: null,
             tobeconfirmedbyvendor : null,
             beggingdateforvaliduntildate:  null,
             enddateforvaliduntildate:  null
         }
 
+        console.log(request);
+
         let data = await fetchData(this.baseUrl + this.getMethod, request);
 
         
-        return data ? data.data : null;
+        return data ? data.data : [];
     }
+
+    setDocumentType(documentType){this._documentType = documentType;}
 }
 
 
 
-const saveDocumentData = async (filename, fileurl, validuntildate, sku, refcode, note) => {
+const saveDocumentData = async (documentType, filename, fileurl, validuntildate, sku, refcode, note) => {
     let vendor = sessionStorage[vendorKey];
     let email = sessionStorage[emailKey];
 
     let request = {
         "vendor": vendor,
         "doctype": {
-            "typecode": "string",
+            "typecode": documentType,
             "lang": "string",
             "definition": "string"
         },
@@ -58,8 +65,8 @@ const saveDocumentData = async (filename, fileurl, validuntildate, sku, refcode,
         "filename": filename,
         "fileurl": fileurl,
         "refcode": refcode,
-        "tobeconfirmedbyvendor": "string",
-        "validuntildate": validuntildate,
+        "tobeconfirmedbyvendor": "DONMEZ",
+        "validuntildate": formatDate(validuntildate),
         "orderno": "string",
         "orderline": "string",
         "asn": "string",
@@ -70,6 +77,8 @@ const saveDocumentData = async (filename, fileurl, validuntildate, sku, refcode,
         "devid": "string",
         "devnoteid": note
     };
+
+    console.log(request);
 
     
     let data = await fetchData(documentServiceBaseUri + "saveDocumentData", request);

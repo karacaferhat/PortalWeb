@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@{
+    bool isAdmin = Context.Request.Query["role"] == "A";
+    Dictionary<string, string> role = new Dictionary<string, string>(){{"role", Context.Request.Query["role"]}};
+}
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -40,14 +45,14 @@
     @* EXTENDED FRAMEWORKS *@
     <link rel="stylesheet" href="~/css/hur-preloader.css">
     <link rel="stylesheet" href="~/css/hur-mat.css">
-    
+
 
     @*Login Ekranini Bozuyor*@
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
     @*Login Ekranini Bozuyor*@
 
-    
-    
+
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
     @* END of EXTENDED FRAMEWORKS *@
 
@@ -69,15 +74,21 @@
 </head>
 
 <body class='@ViewData["Title"]'>
+
+
     <div class="wrapper">
         <div id="sideMenu" class="side-menu vertical-nav">
+<<<<<<< HEAD
             <span class="brand" asp-area="" asp-page="/Index?">
+=======
+            <span class="brand" >
+>>>>>>> 45ae93906785c5690ff487b480505874094416fe
                 <img class="icon" src="~/imgs/navimgs/d_icon.svg" alt="Dönmez Icon">
                 <img class="full" src="~/imgs/navimgs/d_logo.svg" alt="Dönmez Logo">
             </span>
             <ul>
                 <li class="active">
-                    <a href="/Index?loggedIn">
+                    <a asp-area="" asp-page="/Index" asp-all-route-data = "role">
                         <span class="nav-link-icon fas fa-tachometer-alt"></span>
                         <span class="nav-link-title">Panel</span>
                     </a>
@@ -89,30 +100,39 @@
                     </a>
                     <ul class="collapse" id="orders">
                         <li>
-                            <a asp-area="" asp-page="/orders/waitingorders">
+                            <a asp-area="" asp-page="/orders/waitingorders" asp-all-route-data = "role">
                                 <span class="nav-link-icon fas fa-shipping-fast"></span>
                                 <span class="nav-link-title">Bekleyen Siparişler</span>
                             </a>
                         </li>
                         <li>
-                            <a asp-area="" asp-page="/orders/canceledorders">
+                            <a asp-area="" asp-page="/orders/canceledorders" asp-all-route-data = "role">
                                 <span class="nav-link-icon fas fa-shipping-fast"></span>
                                 <span class="nav-link-title">İptal Edilen Siparişler</span>
                             </a>
                         </li>
                         <li>
-                            <a asp-area="" asp-page="/orders/readyorders">
+                            <a asp-area="" asp-page="/orders/readyorders" asp-all-route-data = "role">
                                 <span class="nav-link-icon fas fa-clipboard-list"></span>
                                 <span class="nav-link-title">Kabul Edilen Siparişler</span>
                             </a>
 
                         </li>
                         <li>
-                            <a asp-area="" asp-page="/orders/suspendedorders">
+                            <a asp-area="" asp-page="/orders/suspendedorders" asp-all-route-data = "role">
                                 <span class="nav-link-icon fas fa-paragraph"></span>
                                 <span class="nav-link-title">Askıya Alınan Siparişler</span>
                             </a>
                         </li>
+                        @if (isAdmin)
+                        {
+                            <li>
+                                <a asp-area="" asp-page="#" asp-all-route-data = "role">
+                                    <span class="nav-link-icon fas fa-paragraph"></span>
+                                    <span class="nav-link-title">Sapma Belgeleri</span>
+                                </a>
+                            </li>
+                        }
                     </ul>
                 </li>
                 <li>
@@ -121,26 +141,29 @@
                         <span class="nav-link-title">Sevkiyat</span>
                     </a>
                     <ul class="collapse" id="deliveries">
+                        @if (!isAdmin)
+                        {
+                            <li>
+                                <a asp-area="" asp-page="/delivery/deliveryProcess" asp-all-route-data = "role">
+                                    <span class="nav-link-icon fas fa-shipping-fast"></span>
+                                    <span class="nav-link-title">Sevkiyat İşlemleri</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-page="/delivery/preparingDeliveries" asp-all-route-data = "role">
+                                    <span class="nav-link-icon fas fa-shipping-fast"></span>
+                                    <span class="nav-link-title">Hazırlanan Sevkiyatlar</span>
+                                </a>
+                            </li>
+                        }
                         <li>
-                            <a asp-area="" asp-page="/delivery/deliveryProcess">
-                                <span class="nav-link-icon fas fa-shipping-fast"></span>
-                                <span class="nav-link-title">Sevkiyat İşlemleri</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a asp-area="" asp-page="/delivery/preparingDeliveries">
-                                <span class="nav-link-icon fas fa-shipping-fast"></span>
-                                <span class="nav-link-title">Hazırlanan Sevkiyatlar</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a asp-area="" asp-page="/delivery/shippingDeliveries">
+                            <a asp-area="" asp-page="/delivery/shippingDeliveries" asp-all-route-data = "role">
                                 <span class="nav-link-icon fas fa-shipping-fast"></span>
                                 <span class="nav-link-title">Yoldaki Sevkiyatlar</span>
                             </a>
                         </li>
                         <li>
-                            <a asp-area="" asp-page="/delivery/canceledDeliveries">
+                            <a asp-area="" asp-page="/delivery/canceledDeliveries" asp-all-route-data = "role">
                                 <span class="nav-link-icon fas fa-shipping-fast"></span>
                                 <span class="nav-link-title">İade Sevkiyatlar</span>
                             </a>
@@ -234,6 +257,24 @@
                         </li>
                     </ul>
                 </li>
+
+                @if (isAdmin)
+                {
+                    <li>
+                        <a class="collapser collapsed" data-bs-toggle="collapse" href="#settings">
+                            <span class="nav-link-icon fas fa-list-alt"></span>
+                            <span class="nav-link-title">Ayarlar</span>
+                        </a>
+                        <ul class="collapse" id="settings">
+                            <li>
+                                <a asp-area="" asp-page="#" asp-all-route-data = "role">
+                                    <span class="nav-link-icon fas fa-shipping-fast"></span>
+                                    <span class="nav-link-title">Kullanicilar</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                }
             </ul>
         </div>
 
