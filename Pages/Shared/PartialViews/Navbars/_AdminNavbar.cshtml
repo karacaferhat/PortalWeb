@@ -1,0 +1,102 @@
+@{
+    bool isAdmin = Context.Request.Query["role"] == "A";
+    Dictionary<string, string> role = new Dictionary<string, string>() { { "role", Context.Request.Query["role"] } };
+}
+<ul>
+    <li class="active">
+        <a asp-area="" asp-page="/Index" asp-all-route-data="role">
+            <span class="nav-link-icon fas fa-tachometer-alt"></span>
+            <span class="nav-link-title">Admin Panel</span>
+        </a>
+    </li>
+    <li>
+        <a class="collapser collapsed" data-bs-toggle="collapse" href="#orders">
+            <span class="nav-link-icon fas fa-list-alt"></span>
+            <span class="nav-link-title">Sipariş Yönetimi</span>
+        </a>
+        <ul class="collapse" id="orders">
+            <li id="waitingOrdersMenuItem">
+                <a asp-area="" asp-page="/orders/waitingorders" asp-all-route-data="role">
+                    <span class="nav-link-icon fas fa-shipping-fast"></span>
+                    <span class="nav-link-title">Bekleyen Siparişler</span>
+                </a>
+            </li>
+            <li id="cancelledOrdersMenuItem">
+                <a asp-area="" asp-page="/orders/canceledorders" asp-all-route-data="role">
+                    <span class="nav-link-icon fas fa-shipping-fast"></span>
+                    <span class="nav-link-title">İptal Edilen Siparişler</span>
+                </a>
+            </li>
+            <li id="readyOrdersMenuItem">
+                <a asp-area="" asp-page="/orders/readyorders" asp-all-route-data="role">
+                    <span class="nav-link-icon fas fa-clipboard-list"></span>
+                    <span class="nav-link-title">Kabul Edilen Siparişler</span>
+                </a>
+
+            </li>
+            <li id="suspendedOrdersMenuItem">
+                <a asp-area="" asp-page="/orders/suspendedorders" asp-all-route-data="role">
+                    <span class="nav-link-icon fas fa-paragraph"></span>
+                    <span class="nav-link-title">Askıya Alınan Siparişler</span>
+                </a>
+            </li>
+            <li>
+                <a asp-area="" asp-page="#" asp-all-route-data="role">
+                    <span class="nav-link-icon fas fa-paragraph"></span>
+                    <span class="nav-link-title">Sapma Belgeleri</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a class="collapser collapsed" data-bs-toggle="collapse" href="#deliveries">
+            <span class="nav-link-icon fas fa-shipping-fast"></span>
+            <span class="nav-link-title">Sevkiyat</span>
+        </a>
+        <ul class="collapse" id="deliveries">
+            <li>
+                <a asp-area="" asp-page="/delivery/shippingDeliveries" asp-all-route-data="role">
+                    <span class="nav-link-icon fas fa-shipping-fast"></span>
+                    <span class="nav-link-title">Yoldaki Sevkiyatlar Raporu</span>
+                </a>
+            </li>
+            <li>
+                <a asp-area="" asp-page="/delivery/canceledDeliveries" asp-all-route-data="role">
+                    <span class="nav-link-icon fas fa-shipping-fast"></span>
+                    <span class="nav-link-title">İade Sevkiyatlar Raporu</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a class="collapser collapsed" data-bs-toggle="collapse" href="#documents">
+            <span class="nav-link-icon fas fa-list-alt"></span>
+            <span class="nav-link-title">Belgeler</span>
+        </a>
+        <ul class="collapse" id="documents">
+            <li>
+                <a asp-area="" asp-page="/documents/qualityDocument">
+                    <span class="nav-link-icon fas fa-trash-alt"></span>
+                    <span class="nav-link-title">Kalite Belgele Girişi</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+
+    <li>
+        <a class="collapser collapsed" data-bs-toggle="collapse" href="#settings">
+            <span class="nav-link-icon fas fa-list-alt"></span>
+            <span class="nav-link-title">Ayarlar</span>
+        </a>
+        <ul class="collapse" id="settings">
+            <li>
+                <a asp-area="" asp-page="#" asp-all-route-data="role">
+                    <span class="nav-link-icon fas fa-shipping-fast"></span>
+                    <span class="nav-link-title">Kullanıcılar</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+</ul>

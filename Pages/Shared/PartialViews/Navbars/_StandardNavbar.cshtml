@@ -1,0 +1,164 @@
+@{
+    bool isAdmin = Context.Request.Query["role"] == "A";
+    Dictionary<string, string> role = new Dictionary<string, string>() { { "role", Context.Request.Query["role"] } };
+}
+<ul>
+    <li id="panelMenuItem">
+        <a asp-area="" asp-page="/Index" asp-all-route-data="role">
+            <span class="nav-link-icon fas fa-tachometer-alt"></span>
+            <span class="nav-link-title">Panel</span>
+        </a>
+    </li>
+    <li>
+        <a class="collapser collapsed" data-bs-toggle="collapse" href="#orders">
+            <span class="nav-link-icon fas fa-list-alt"></span>
+            <span class="nav-link-title">Siparişler</span>
+        </a>
+        <ul class="collapse" id="orders">
+            <li id="waitingOrdersMenuItem">
+                <a asp-area="" asp-page="/orders/waitingorders" asp-all-route-data="role">
+                    <span class="nav-link-icon fas fa-shipping-fast"></span>
+                    <span class="nav-link-title">Bekleyen Siparişler</span>
+                </a>
+            </li>
+            <li id="cancelledOrdersMenuItem">
+                <a asp-area="" asp-page="/orders/canceledorders" asp-all-route-data="role">
+                    <span class="nav-link-icon fas fa-shipping-fast"></span>
+                    <span class="nav-link-title">İptal Edilen Siparişler</span>
+                </a>
+            </li>
+            <li id="readyOrdersMenuItem">
+                <a asp-area="" asp-page="/orders/readyorders" asp-all-route-data="role">
+                    <span class="nav-link-icon fas fa-clipboard-list"></span>
+                    <span class="nav-link-title">Kabul Edilen Siparişler</span>
+                </a>
+
+            </li>
+            <li id="suspendedOrdersMenuItem">
+                <a asp-area="" asp-page="/orders/suspendedorders" asp-all-route-data="role">
+                    <span class="nav-link-icon fas fa-paragraph"></span>
+                    <span class="nav-link-title">Askıya Alınan Siparişler</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a class="collapser collapsed" data-bs-toggle="collapse" href="#deliveries">
+            <span class="nav-link-icon fas fa-shipping-fast"></span>
+            <span class="nav-link-title">Sevkiyat</span>
+        </a>
+        <ul class="collapse" id="deliveries">
+            <li id="deliveryProcessMenuItem">
+                <a asp-area="" asp-page="/delivery/deliveryProcess" asp-all-route-data="role">
+                    <span class="nav-link-icon fas fa-shipping-fast"></span>
+                    <span class="nav-link-title">Sevkiyat İşlemleri</span>
+                </a>
+            </li>
+            <li id="preparingDeliveriesMenuItem">
+                <a asp-area="" asp-page="/delivery/preparingDeliveries" asp-all-route-data="role">
+                    <span class="nav-link-icon fas fa-shipping-fast"></span>
+                    <span class="nav-link-title">Hazırlanan Sevkiyatlar</span>
+                </a>
+            </li>
+            <li id="shippingDeliveriesMenuItem">
+                <a asp-area="" asp-page="/delivery/shippingDeliveries" asp-all-route-data="role">
+                    <span class="nav-link-icon fas fa-shipping-fast"></span>
+                    <span class="nav-link-title">Yoldaki Sevkiyatlar</span>
+                </a>
+            </li>
+            <li id="canceledDeliviresMenuItem">
+                <a asp-area="" asp-page="/delivery/canceledDeliveries" asp-all-route-data="role">
+                    <span class="nav-link-icon fas fa-shipping-fast"></span>
+                    <span class="nav-link-title">İade Sevkiyatlar</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a class="collapser collapsed" data-bs-toggle="collapse" href="#documents">
+            <span class="nav-link-icon fas fa-list-alt"></span>
+            <span class="nav-link-title">Belgeler</span>
+        </a>
+        <ul class="collapse" id="documents">
+            <li>
+                <a class="collapser collapsed" data-bs-toggle="collapse">
+                    <span class="nav-link-icon fas fa-inbox"></span>
+                    <span class="nav-link-title">PPAP</span>
+                </a>
+            </li>
+
+            <li>
+                <a asp-area="" asp-page="/#">
+                    <span class="nav-link-icon fas fa-box-open"></span>
+                    <span class="nav-link-title">Sözleşme</span>
+                </a>
+            </li>
+            <li>
+                <a asp-area="" asp-page="/#">
+                    <span class="nav-link-icon fas fa-clock"></span>
+                    <span class="nav-link-title">Kalite Sözleşmesi</span>
+                </a>
+            </li>
+            <li>
+                <a asp-area="" asp-page="/#">
+                    <span class="nav-link-icon fas fa-trash-alt"></span>
+                    <span class="nav-link-title">Lojistik Sözleşmesi</span>
+                </a>
+            </li>
+            <li>
+                <a asp-area="" asp-page="/#">
+                    <span class="nav-link-icon fas fa-trash-alt"></span>
+                    <span class="nav-link-title">Kalıp Aparat Sözleşmesi</span>
+                </a>
+            </li>
+            <li>
+                <a asp-area="" asp-page="/#">
+                    <span class="nav-link-icon fas fa-trash-alt"></span>
+                    <span class="nav-link-title">Paketleme Formu</span>
+                </a>
+            </li>
+            <li>
+                <a asp-area="" asp-page="/#">
+                    <span class="nav-link-icon fas fa-trash-alt"></span>
+                    <span class="nav-link-title">Gizlilik Sözleşmesi</span>
+                </a>
+            </li>
+            <li>
+                <a asp-area="" asp-page="/documents/qualityDocument">
+                    <span class="nav-link-icon fas fa-trash-alt"></span>
+                    <span class="nav-link-title">Kalite Belgeleri</span>
+                </a>
+            </li>
+            <li>
+                <a asp-area="" asp-page="/#">
+                    <span class="nav-link-icon fas fa-trash-alt"></span>
+                    <span class="nav-link-title">Ön Değerlendirme Formu</span>
+                </a>
+            </li>
+            <li>
+                <a asp-area="" asp-page="/#">
+                    <span class="nav-link-icon fas fa-trash-alt"></span>
+                    <span class="nav-link-title">Denetim Raporları</span>
+                </a>
+            </li>
+            <li>
+                <a asp-area="" asp-page="/#">
+                    <span class="nav-link-icon fas fa-trash-alt"></span>
+                    <span class="nav-link-title">APQP Belgeleri</span>
+                </a>
+            </li>
+            <li>
+                <a asp-area="" asp-page="/#">
+                    <span class="nav-link-icon fas fa-trash-alt"></span>
+                    <span class="nav-link-title">Yerleşim Yeri Denetimi</span>
+                </a>
+            </li>
+            <li>
+                <a asp-area="" asp-page="/#">
+                    <span class="nav-link-icon fas fa-trash-alt"></span>
+                    <span class="nav-link-title">Ziyaret Notları</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+</ul>
