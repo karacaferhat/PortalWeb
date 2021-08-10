@@ -10,6 +10,13 @@ Statik bir isimlendirme olacaksa bu durum işe yarar ama her sayfa için isim ve
 buraya girilip scripte ek yapmak gerekir. Dinamik bir çözüm bulmak için bir mantık geliştirmek gerekecek.
 */
 var theTitle=$('body').attr('class');
+
+
+    $('#sideMenu li').removeClass('active');
+    $('#'+theTitle).parent().addClass('show');
+    $('#'+theTitle).addClass('active');    
+
+
 if (theTitle=='orders') {
     $('#sideMenu li').removeClass('active');
     $('#orders').addClass('show');

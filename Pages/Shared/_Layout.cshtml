@@ -95,26 +95,26 @@
                         <span class="nav-link-title">Siparişler</span>
                     </a>
                     <ul class="collapse" id="orders">
-                        <li>
+                        <li id="waitingOrdersMenuItem" >
                             <a asp-area="" asp-page="/orders/waitingorders" asp-all-route-data = "role">
                                 <span class="nav-link-icon fas fa-shipping-fast"></span>
                                 <span class="nav-link-title">Bekleyen Siparişler</span>
                             </a>
                         </li>
-                        <li>
+                        <li id="cancelledOrdersMenuItem">
                             <a asp-area="" asp-page="/orders/canceledorders" asp-all-route-data = "role">
                                 <span class="nav-link-icon fas fa-shipping-fast"></span>
                                 <span class="nav-link-title">İptal Edilen Siparişler</span>
                             </a>
                         </li>
-                        <li>
+                        <li id="readyOrdersMenuItem" >
                             <a asp-area="" asp-page="/orders/readyorders" asp-all-route-data = "role">
                                 <span class="nav-link-icon fas fa-clipboard-list"></span>
                                 <span class="nav-link-title">Kabul Edilen Siparişler</span>
                             </a>
 
                         </li>
-                        <li>
+                        <li id="suspendedOrdersMenuItem">
                             <a asp-area="" asp-page="/orders/suspendedorders" asp-all-route-data = "role">
                                 <span class="nav-link-icon fas fa-paragraph"></span>
                                 <span class="nav-link-title">Askıya Alınan Siparişler</span>
