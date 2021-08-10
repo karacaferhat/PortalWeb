@@ -14,14 +14,14 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
+                <h3><span id="waitingOrderInfoBox">-</span> </h3>
 
                 <p>Bekleyen Siparişler</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="/waitingorders" class="small-box-footer">Daha fazla bilgi <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="Orders/waitingorders" class="small-box-footer">Daha fazla bilgi <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
 
@@ -30,14 +30,14 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>3<sup style="font-size: 20px">%</sup></h3>
+                <h3><span id="readyOrderInfoBox">-</span></h3>
 
                 <p>Kabul Edilen Siparişler</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="/readyorders" class="small-box-footer">Daha fazla bilgi <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="Orders/readyorders" class="small-box-footer">Daha fazla bilgi <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
         
@@ -46,14 +46,14 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3><span id="suspendedOrderInfoBox">-</span></h3>
 
                 <p>Askıda Bekleyen Siparişler</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="/suspendedorders" class="small-box-footer">Daha fazla bilgi<i class="fas fa-arrow-circle-right"></i></a>
+              <a href="Orders/suspendedorders" class="small-box-footer">Daha fazla bilgi<i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
 
@@ -63,14 +63,14 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
+                 <h3><span id="cancelledOrderInfoBox">-</span></h3>
 
                 <p>İptal Edilen Siparişler</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
-              <a href="/cancelledorders" class="small-box-footer">Daha fazla bilgi <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="Orders/cancelledorders" class="small-box-footer">Daha fazla bilgi <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
 
@@ -81,16 +81,9 @@
  
     </div>     
       <div class="row">
-        <div class="dx-viewport col-4">
-        <div class="demo-container">
-                <div id="chart-demo">
-                    <div id="pie"></div>
-                    
-                </div>
-            </div>
-        </div>
-
-        <div class="dx-viewport col-8">
+      
+        <h5>Tedarikçi Performans Grafiği</h5>
+        <div class="dx-viewport col-12">
                 <div class="demo-container">
                     <div id="chart"></div>
                 </div>
@@ -98,7 +91,7 @@
         
 
     </div>
-    <h3>Takvim</h3>
+    <h5>Sipariş Takvimi</h5>
      <div class="demo-container">
         <div id="scheduler"></div>
     </div>
