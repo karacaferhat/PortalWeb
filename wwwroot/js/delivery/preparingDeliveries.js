@@ -7,7 +7,7 @@ let deliveryGridWithItems = new DeliveryGridWithItems('WAI',
             caption: "Sevkiyat No",
             cellTemplate: function (container, options) {
                 $(`<a> ${options.value} </a>`)
-                    .attr('href', "/Delivery/DeliveryProcess#" + options.value)
+                    .attr('href', "/Delivery/DeliveryProcess?role="+ sessionStorage[roleKey] + "#" + options.value)
                     .appendTo(container);
             }
         },
