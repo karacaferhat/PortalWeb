@@ -13,6 +13,7 @@ const surnameKey = "surnameKey";
 const vendorNameKey = "vendorName";
 const vendorKey ="vendor";
 const emailKey = "eMail";
+const roleKey = "role";
 
 let last_request_uri = null;
 
@@ -130,6 +131,7 @@ const setKeys = (data) => {
         sessionStorage.setItem(vendorNameKey, data.userInfo.vendorname);
         sessionStorage.setItem(vendorKey, data.userInfo.vendor);
         sessionStorage.setItem(emailKey, data.userInfo.eMail);
+        sessionStorage.setItem(roleKey, data.userInfo.role);
     }
 }
 
@@ -141,6 +143,7 @@ const removeKeys = () => {
     sessionStorage.removeItem(vendorNameKey);
     sessionStorage.removeItem(vendorKey);
     sessionStorage.removeItem(emailKey);
+    sessionStorage.removeItem(roleKey);
 }
 
 const storeKeysAtLocalStorage = (data) => {
@@ -152,6 +155,7 @@ const storeKeysAtLocalStorage = (data) => {
         localStorage.setItem(vendorNameKey, data.userInfo.vendorname);
         localStorage.setItem(vendorKey, data.userInfo.vendor);
         localStorage.setItem(emailKey, data.userInfo.eMail);
+        localStorage.setItem(roleKey, data.userInfo.role);
     }
 }
 
@@ -164,5 +168,6 @@ const removeKeysFromLocalStorage = (data) => {
         localStorage.removeItem(vendorNameKey);
         localStorage.removeItem(vendorKey);
         localStorage.removeItem(emailKey);
+        localStorage.removeItem(roleKey);
     }
 } 
